@@ -11,11 +11,6 @@ export const PokemonContextProvider = ({children}) => {
     const [pokemonCount, setPokemonCount] =useState([])
     const [pokemonImage, setPokemonImage] = useState(null);
 
-    const allPokemones = Array.from(Array(pokemonCount).keys()).map((pokemon) => {
-        return pokemon + 1;
-    })
-    // console.log("ALLPOKEMONES",allPokemones)
-
     useEffect(() => {
         Axios.get("https://pokeapi.co/api/v2/pokemon")
             .then((response) => {
@@ -27,8 +22,15 @@ export const PokemonContextProvider = ({children}) => {
             })
     }, [])
 
+    const allPokemones = Array.from(Array(pokemonCount).keys()).map((pokemon) => {
+        return pokemon + 1;
+    })
+    console.log("ALLPOKEMONES", allPokemones)
+
+    const urlDetail = `https://pokeapi.co/api/v2/pokemon/${allPokemones}`
+
     useEffect(() => {
-        Axios.get(`https://pokeapi.co/api/v2/pokemon/${allPokemones}`)
+        Axios.get(urlDetail)
             .then((response) => {
                 if(response.status === 200) {
                     console.log("UN POKEMON", response.data);
