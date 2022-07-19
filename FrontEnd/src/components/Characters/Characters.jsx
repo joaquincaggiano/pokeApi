@@ -8,21 +8,25 @@ const Characters = () => {
   const ctx = useContext(PokemonContext);
   return (
     <div className="row">
-        {ctx.pokemones.map((pokemon, i) => {
-            return(
-            <div className="col-3" key={i + pokemon.name}>
+      {ctx.dataPokemon.map((pokemon) => {
+        return (
+          <div className="col-3" key={pokemon.id}>
             <div className="card">
-              <img src={ctx.pokemonImage} className="card-img-top" alt="..."/>
+              <img
+                src={pokemon.image}
+                className="card-img-top"
+                alt={pokemon.name}
+              />
               <div className="card-body">
                 <h5 className="card-title">{pokemon.name}</h5>
-                <a href={pokemon.url} className="btn btn-primary">
+                <a href="#" className="btn btn-primary">
                   Ver Pokemon
                 </a>
               </div>
             </div>
           </div>
-            )
-        })}
+        );
+      })}
     </div>
   );
 };

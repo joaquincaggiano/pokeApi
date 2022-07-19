@@ -12,15 +12,15 @@ import {PokemonContextProvider} from "./context/charactersContext"
 function App() {
   return (
     <>
+        <PokemonContextProvider>
       <Header />
       <main>
         {/* <Container>
           <Register />
         </Container> */}
-        <PokemonContextProvider>
           <Characters />
-        </PokemonContextProvider>
       </main>
+        </PokemonContextProvider>
     </>
   );
 }
