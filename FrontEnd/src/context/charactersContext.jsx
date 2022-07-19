@@ -8,35 +8,37 @@ export const PokemonContext = createContext();
 
 export const PokemonContextProvider = ({ children }) => {
   const [dataPokemon, setDataPokemon] = useState([]);
-  
+  const [isLoading, setIsLoading] = useState(true);
+
   const URL = "https://pokeapi.co/api/v2/pokemon";
   useEffect(() => {
     let eachPokemon = [];
     const data = async () => {
       await Axios.get(URL).then((response) => {
         // console.log(response.data.results)
-        const pokemonArray = response.data.results
+        const pokemonArray = response.data.results;
         pokemonArray.forEach(async (pokemon) => {
-          const infoPokemon = await Axios.get(pokemon.url)
-            .then(result => {
-              // console.log("RESULT", result.data);
+          await Axios.get(pokemon.url).then((result) => {
+            // console.log("RESULT", result.data);
+            if (result.status === 200) {
               eachPokemon.push({
                 id: result.data.id,
                 name: result.data.name,
-                image: result.data.sprites.front_default
-              })
-            })
+                image: result.data.sprites.front_default,
+              });
+            }
+            if (eachPokemon.length >= 20) {
+              eachPokemon.sort((a, b) => a.id - b.id);
+              setDataPokemon(eachPokemon); // hacer un loading para conditional rendering
+              setIsLoading(false);
+            }
+          });
         });
-        console.log("EACH POKEMON", eachPokemon)
       });
     };
-    const dataArray = data()
-    setDataPokemon(eachPokemon); // hacer un loading para conditional rendering si dale
+    const dataArray = data();
   }, []);
-  console.log("STATE",dataPokemon)
-  
-
-
+  console.log("STATE", dataPokemon);
 
   // useEffect(() => {
   //   try {
@@ -71,8 +73,9 @@ export const PokemonContextProvider = ({ children }) => {
 
   const valueProvider = {
     dataPokemon,
+    isLoading,
   };
-  
+
   return (
     <PokemonContext.Provider value={valueProvider}>
       {children}
