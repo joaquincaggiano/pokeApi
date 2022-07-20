@@ -24,7 +24,9 @@ export const PokemonContextProvider = ({ children }) => {
               eachPokemon.push({
                 id: result.data.id,
                 name: result.data.name,
-                image: result.data.sprites.front_default,
+                image: result.data.sprites.other.home.front_default
+                // image: result.data.sprites.other.dream_world.front_default
+                // image: result.data.sprites.front_default,
               });
             }
             if (eachPokemon.length >= 20) {
