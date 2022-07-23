@@ -1,11 +1,25 @@
 // React
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 // Context
 import { PokemonContext } from "../../context/charactersContext";
 
+// Component
+import DetailPokemon from "./DetailPokemon";
+
 const Characters = () => {
   const ctx = useContext(PokemonContext);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const showModalHandler = () => {
+    setShowModal(true)
+  }
+
+  const CloseModalHandler = () => {
+    setShowModal(false)
+  }
+
   return (
     <>
       {!ctx.isLoading && (
@@ -21,12 +35,13 @@ const Characters = () => {
                   />
                   <div className="card-body">
                     <h5 className="card-title">{pokemon.name}</h5>
-                    <a
+                    {/* <a
                       href={`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`}
                       className="btn btn-primary"
                     >
                       Ver Pokemon
-                    </a>
+                    </a> */}
+                    <button onClick={showModalHandler}>Ver Pokemon</button>
                   </div>
                 </div>
               </div>
@@ -34,6 +49,8 @@ const Characters = () => {
           })}
         </div>
       )}
+
+      {showModal && <DetailPokemon onCloseModal={CloseModalHandler}/>}
     </>
   );
 };

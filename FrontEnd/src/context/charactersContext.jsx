@@ -19,12 +19,12 @@ export const PokemonContextProvider = ({ children }) => {
         const pokemonArray = response.data.results;
         pokemonArray.forEach(async (pokemon) => {
           await Axios.get(pokemon.url).then((result) => {
-            // console.log("RESULT", result.data);
+            console.log("RESULT", result.data);
             if (result.status === 200) {
               eachPokemon.push({
                 id: result.data.id,
                 name: result.data.name,
-                image: result.data.sprites.other.home.front_default
+                image: result.data.sprites.other.home.front_default,
                 // image: result.data.sprites.other.dream_world.front_default
                 // image: result.data.sprites.front_default,
               });
