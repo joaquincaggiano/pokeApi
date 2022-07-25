@@ -8,22 +8,27 @@ export const PokemonContext = createContext();
 
 export const PokemonContextProvider = ({ children }) => {
   const [dataPokemon, setDataPokemon] = useState([]);
+  const [allPokemones, setAllPokemones] = useState([])
   const [isLoading, setIsLoading] = useState(true);
 
   const URL = "https://pokeapi.co/api/v2/pokemon";
   useEffect(() => {
     let eachPokemon = [];
+    let allPokemonArray = [];
     const data = async () => {
       await Axios.get(URL).then((response) => {
-        // console.log(response.data.results)
+        // console.log("TODA LA DATA", response.data.results);
         const pokemonArray = response.data.results;
         pokemonArray.forEach(async (pokemon) => {
           await Axios.get(pokemon.url).then((result) => {
-            console.log("RESULT", result.data);
+            // console.log("RESULT", result.data);
+            const nameWithUppercase = result.data.name[0].toUpperCase() + result.data.name.slice(1)
             if (result.status === 200) {
+              allPokemonArray.push(result.data)
+
               eachPokemon.push({
                 id: result.data.id,
-                name: result.data.name,
+                name: nameWithUppercase,
                 image: result.data.sprites.other.home.front_default,
                 // image: result.data.sprites.other.dream_world.front_default
                 // image: result.data.sprites.front_default,
@@ -36,46 +41,17 @@ export const PokemonContextProvider = ({ children }) => {
             }
           });
         });
+        setAllPokemones(allPokemonArray)
       });
     };
     const dataArray = data();
   }, []);
   console.log("STATE", dataPokemon);
 
-  // useEffect(() => {
-  //   try {
-  //     (async () => {
-  //       const pokemonsFetch = await Axios.get(
-  //         "https://pokeapi.co/api/v2/pokemon"
-  //       );
-  //       const pokemons = pokemonsFetch.data.results;
-
-  //       pokemons.forEach(async (pokemon) => {
-  //         let info = await Axios(pokemon.url);
-  //         setDataPokemon((prevState) => {
-  //           return [
-  //             ...prevState,
-  //             {
-  //               id: info.data.id,
-  //               name: info.data.name,
-  //               image: info.data.sprites.front_default,
-  //             },
-  //           ];
-  //         });
-  //       });
-  //     })();
-  //   } catch {
-  //     (error) => console.log(`Se produjo el siguiente error: ${error}`);
-  //   }
-  // }, []);
-  // const sortedPokemons = dataPokemon.sort((a, b) => {
-  //   return a.id < b.id;
-  // });
-  // console.log("SORTEDPOKEMON", sortedPokemons);
-
   const valueProvider = {
     dataPokemon,
     isLoading,
+    allPokemones
   };
 
   return (

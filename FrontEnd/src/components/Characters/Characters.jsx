@@ -1,24 +1,30 @@
 // React
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 
 // Context
 import { PokemonContext } from "../../context/charactersContext";
 
 // Component
 import DetailPokemon from "./DetailPokemon";
+import EachCharacter from "./EachCharacter";
 
 const Characters = () => {
   const ctx = useContext(PokemonContext);
 
   const [showModal, setShowModal] = useState(false);
+  const [pokemonId, setPokemonId] = useState(null);
 
-  const showModalHandler = () => {
-    setShowModal(true)
-  }
+  const modalPositionRef = useRef()
 
   const CloseModalHandler = () => {
-    setShowModal(false)
-  }
+    setShowModal(false);
+  };
+
+  useEffect(()=>{
+    if (modalPositionRef != undefined) {
+      modalPositionRef?.current?.scrollIntoView({behaviour: 'smooth'})
+    }
+  }, [showModal])
 
   return (
     <>
@@ -26,31 +32,20 @@ const Characters = () => {
         <div className="row">
           {ctx.dataPokemon.map((pokemon, i) => {
             return (
-              <div className="col-3" key={pokemon.id}>
-                <div className="card">
-                  <img
-                    src={pokemon.image}
-                    className="card-img-top"
-                    alt={pokemon.name}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{pokemon.name}</h5>
-                    {/* <a
-                      href={`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`}
-                      className="btn btn-primary"
-                    >
-                      Ver Pokemon
-                    </a> */}
-                    <button onClick={showModalHandler}>Ver Pokemon</button>
-                  </div>
-                </div>
-              </div>
+              <EachCharacter
+                key={i}
+                id={pokemon.id}
+                name={pokemon.name}
+                image={pokemon.image}
+                setShowModal={setShowModal}
+                setPokemonId={setPokemonId}
+              />
             );
           })}
         </div>
       )}
 
-      {showModal && <DetailPokemon onCloseModal={CloseModalHandler}/>}
+      {showModal && <DetailPokemon ref={modalPositionRef} pokemonId={pokemonId} onCloseModal={CloseModalHandler} />}
     </>
   );
 };

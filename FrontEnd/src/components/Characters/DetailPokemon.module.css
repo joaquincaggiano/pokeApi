@@ -12,8 +12,9 @@
     position: fixed;
     /* top: 400px; */
     bottom: 130vw;
-    left: 550px;
+    left: 30vw;
     width: 40%;
     z-index: 100;
     overflow: hidden;
+    padding: 20px;
 }
