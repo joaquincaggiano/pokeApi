@@ -17,7 +17,7 @@ export const PokemonContextProvider = ({ children }) => {
     let allPokemonArray = [];
     const data = async () => {
       await Axios.get(URL).then((response) => {
-        // console.log("TODA LA DATA", response.data.results);
+        console.log("TODA LA DATA", response.data);
         const pokemonArray = response.data.results;
         pokemonArray.forEach(async (pokemon) => {
           await Axios.get(pokemon.url).then((result) => {
