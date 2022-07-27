@@ -7,31 +7,50 @@ import Axios from "axios";
 export const PokemonContext = createContext();
 
 export const PokemonContextProvider = ({ children }) => {
+  // URL
+  const URL = "https://pokeapi.co/api/v2/pokemon";
+
+  // useState
   const [dataPokemon, setDataPokemon] = useState([]);
-  const [allPokemones, setAllPokemones] = useState([])
-  const [actualURL, setActualURL] =useState("")
+  const [allPokemones, setAllPokemones] = useState([]);
+  const [actualURL, setActualURL] = useState(URL);
+  const [nextPage, setNextPage] = useState("");
+  const [prevPage, setPrevPage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  // const URL = "https://pokeapi.co/api/v2/pokemon";
-  const URL ="https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
+  // const URL ="https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
 
-  // const handlerURL = (url) => {
-  //   setActualURL(url)
-  // }
+  // Handler
+  const handlerURL = (e) => {
+    const type = e.target.dataset.type;
+
+    if (type === "next") {
+      setActualURL(nextPage);
+    }
+    if (type === "prev") {
+      setActualURL(prevPage);
+    }
+  };
 
   useEffect(() => {
     let eachPokemon = [];
     let allPokemonArray = [];
     const data = async () => {
-      await Axios.get(URL || actualURL).then((response) => {
-        console.log("TODA LA DATA", response.data);
+      await Axios.get(actualURL).then((response) => {
+        // console.log("TODA LA DATA", response.data);
+        if(response.status === 200) {
+          setNextPage(response.data.next);
+          setPrevPage(response.data.previous);
+        }
+
         const pokemonArray = response.data.results;
         pokemonArray.forEach(async (pokemon) => {
           await Axios.get(pokemon.url).then((result) => {
             // console.log("RESULT", result.data);
-            const nameWithUppercase = result.data.name[0].toUpperCase() + result.data.name.slice(1)
+            const nameWithUppercase =
+              result.data.name[0].toUpperCase() + result.data.name.slice(1);
             if (result.status === 200) {
-              allPokemonArray.push(result.data)
+              allPokemonArray.push(result.data);
 
               eachPokemon.push({
                 id: result.data.id,
@@ -48,17 +67,20 @@ export const PokemonContextProvider = ({ children }) => {
             }
           });
         });
-        setAllPokemones(allPokemonArray)
+        setAllPokemones(allPokemonArray);
       });
     };
     const dataArray = data();
-  }, []);
+  }, [actualURL]);
   // console.log("STATE", dataPokemon);
+  // console.log("next page", nextPage);
+  // console.log("prev page", prevPage);
 
   const valueProvider = {
     dataPokemon,
     isLoading,
-    allPokemones
+    allPokemones,
+    handlerURL,
   };
 
   return (

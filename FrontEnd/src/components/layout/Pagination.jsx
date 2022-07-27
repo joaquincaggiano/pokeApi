@@ -25,8 +25,8 @@ const Pagination = () => {
       </div>
 
       <div className="col-3 d-flex align-items-center">
-        <button>Next</button>
-        <button>Prev</button>
+        <button data-type="prev" onClick={ctx.handlerURL}>Prev</button>
+        <button data-type="next" onClick={ctx.handlerURL}>Next</button>
       </div>
     </div>
   );
