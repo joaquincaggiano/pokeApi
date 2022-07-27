@@ -17,10 +17,12 @@ const DetailPokemon = React.forwardRef((props, ref) => {
   // UseState
   const [onePokemon, setOnePokemon] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [quotes, setQuotes] = useState([])
-  // const [finalQuotes, setFinalQuotes] = useState([])
+  const [quotes, setQuotes] = useState([]);
+  const [actualQuote, setActualQuote] = useState("");
 
   // console.log("ALL POKEMONES", ctx.allPokemones);
+
+  // useEffect
   useEffect(() => {
     const unPokemon = ctx.allPokemones.find((pokemon) => {
       return pokemon.id === props.pokemonId;
@@ -30,40 +32,34 @@ const DetailPokemon = React.forwardRef((props, ref) => {
   }, []);
   console.log("ONE POKEMON", onePokemon);
 
-  let finalQuotes = []
+  let finalQuotes = [];
   useEffect(() => {
     const data = async () => {
-      await Axios.get(`https://pokeapi.co/api/v2/pokemon-species/${onePokemon.id}/`)
-      .then(results =>{
-        if(results.status === 200) {
-          console.log('results', results)
-          let filterQuotes = results.data?.flavor_text_entries.filter((oneQuote)=>{
-            return oneQuote.language.name === 'en'
-          })
-
-          let dfq = filterQuotes.filter ((oneQuote) => {
-            for (let i = 0; i < filterQuotes.length; i++) {
-              let currentQuote = filterQuotes[i].flavor_text;
-              if (currentQuote !== oneQuote.flavor_text) {
-                finalQuotes.push(currentQuote)
+      await Axios.get(
+        `https://pokeapi.co/api/v2/pokemon-species/${onePokemon.id}/`
+      )
+        .then((results) => {
+          if (results.status === 200) {
+            console.log("results", results);
+            let filterQuotes = results.data?.flavor_text_entries.filter(
+              (oneQuote) => {
+                return oneQuote.language.name === "en";
               }
-            }
-          })
-          setQuotes(finalQuotes)
-        }
-      })
-      .catch(error => console.error(error))
-    }
+            );
+            // console.log("filter quotes", filterQuotes)
+            const mapQuotes = filterQuotes.map((quote) => quote.flavor_text);
+            // console.log("MAP QUOTES", mapQuotes)
+            const uniqueQuotes = [...new Set(mapQuotes)];
+            // console.log("UNIQUE QUOTES", uniqueQuotes)
+
+            setQuotes(uniqueQuotes);
+          }
+        })
+        .catch((error) => console.error(error));
+    };
     data();
-  }, [onePokemon])
+  }, [onePokemon]);
 
-let newArray = [...new Set(quotes)]
-
-console.log("new array", newArray)
-  // console.log("DFQ",doubleFilterQuotes)
-  
-  // console.log("final quotes", finalQuotes)
-  
   // console.log("QUOTES", quotes)
 
   const pokemonType = onePokemon?.types;
@@ -76,12 +72,21 @@ console.log("new array", newArray)
         return pokemon.id === onePokemon.id - 1;
       })
     );
+    setActualQuote("Choose a quote below")
   };
 
   const rightHandlerPokemon = () => {
-    setOnePokemon(ctx.allPokemones.find((pokemon) => {
-      return pokemon.id === onePokemon.id + 1
-    }))
+    setOnePokemon(
+      ctx.allPokemones.find((pokemon) => {
+        return pokemon.id === onePokemon.id + 1;
+      })
+    );
+    setActualQuote("Choose a quote below")
+  };
+
+  const changeQuoteHandler = (e) => {
+    const type = Number(e.target.dataset.type)
+    setActualQuote(quotes[type]);
   }
 
   return (
@@ -162,30 +167,30 @@ console.log("new array", newArray)
                 <br />
                 <strong>Weight:</strong> {onePokemon.weight}lbs.
                 <br />
-                <p>Uses mysterious powers to perform various attacks.</p>
+                <strong>Info:</strong><p>{!actualQuote && "Choose a quote below"}{actualQuote}</p>
                 <br />
               </div>
               <div id={classes.blueButtons1}>
-                <div className={classes.blueButton}></div>
-                <div className={classes.blueButton}></div>
-                <div className={classes.blueButton}></div>
-                <div className={classes.blueButton}></div>
-                <div className={classes.blueButton}></div>
+                <div className={classes.blueButton} data-type="0" onClick={changeQuoteHandler}></div>
+                <div className={classes.blueButton} data-type="1" onClick={changeQuoteHandler}></div>
+                <div className={classes.blueButton} data-type="2" onClick={changeQuoteHandler}></div>
+                <div className={classes.blueButton} data-type="3" onClick={changeQuoteHandler}></div>
+                <div className={classes.blueButton} data-type="4" onClick={changeQuoteHandler}></div>
               </div>
               <div id={classes.blueButtons2}>
-                <div className={classes.blueButton}></div>
-                <div className={classes.blueButton}></div>
-                <div className={classes.blueButton}></div>
-                <div className={classes.blueButton}></div>
-                <div className={classes.blueButton}></div>
+                <div className={classes.blueButton} data-type="5" onClick={changeQuoteHandler}></div>
+                <div className={classes.blueButton} data-type="6" onClick={changeQuoteHandler}></div>
+                <div className={classes.blueButton} data-type="7" onClick={changeQuoteHandler}></div>
+                <div className={classes.blueButton} data-type="8" onClick={changeQuoteHandler}></div>
+                <div className={classes.blueButton} data-type="9" onClick={changeQuoteHandler}></div>
               </div>
               <div id={classes.miniButtonGlass4}></div>
               <div id={classes.miniButtonGlass5}></div>
               <div id={classes.barbutton3}></div>
               <div id={classes.barbutton4}></div>
-              <button id={classes.yellowBox1}>Ver más</button>
+              <button id={classes.yellowBox1}>See more</button>
               <button id={classes.yellowBox2} onClick={props.onCloseModal}>
-                Cerrar
+                Close
               </button>
               <div id={classes.bg_curve1_right}></div>
               <div id={classes.bg_curve2_right}></div>

@@ -706,13 +706,15 @@
   }
 
   div#stats {
-    height: 130px;
+    height: 145px;
     width: 280px;
-    padding: 10px;
+    padding: 15px;
     background-color: #30da0c;
     z-index: 1;
     font-size: 13px;
     font-family: arial, sans-serif;
+
+    overflow-y: scroll;
 
     position: absolute;
     top: 130px;
@@ -731,6 +733,7 @@
 
   div#blueButtons1 {
     z-index: 1;
+    cursor: pointer;
 
     position: absolute;
     top: 295px;
@@ -739,6 +742,7 @@
 
   div#blueButtons2 {
     z-index: 1;
+    cursor: pointer;
 
     position: absolute;
     top: 335px;

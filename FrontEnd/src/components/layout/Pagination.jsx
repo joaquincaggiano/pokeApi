@@ -10,15 +10,15 @@ const Pagination = () => {
   return (
     <div className="row p-3 border border-danger border-4 mb-4">
       <div className="col-3 d-flex align-items-center">
-        <b>Total de pokemones:</b>
+        <b>Total pokemon:</b>
       </div>
 
       <div className="col-3 d-flex align-items-center">
-        <b>Página:</b>
+        <b>Page:</b>
       </div>
 
       <div className="col-3 d-flex align-items-center">
-        <b>Ir a la página:</b>
+        <b>Go to page:</b>
         <select>
           <option>1</option>
         </select>
