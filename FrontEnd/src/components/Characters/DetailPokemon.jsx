@@ -63,7 +63,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
   // console.log("QUOTES", quotes)
 
   const pokemonType = onePokemon?.types;
-  const pokemonMoves = onePokemon?.moves;
+  // const pokemonMoves = onePokemon?.moves;
 
   // Handlers
   const leftHandlerPokemon = () => {
@@ -72,7 +72,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
         return pokemon.id === onePokemon.id - 1;
       })
     );
-    setActualQuote("Choose a quote below")
+    setActualQuote("Choose a quote below");
   };
 
   const rightHandlerPokemon = () => {
@@ -81,13 +81,13 @@ const DetailPokemon = React.forwardRef((props, ref) => {
         return pokemon.id === onePokemon.id + 1;
       })
     );
-    setActualQuote("Choose a quote below")
+    setActualQuote("Choose a quote below");
   };
 
   const changeQuoteHandler = (e) => {
-    const type = Number(e.target.dataset.type)
+    const type = Number(e.target.dataset.type);
     setActualQuote(quotes[type]);
-  }
+  };
 
   return (
     <>
@@ -167,22 +167,66 @@ const DetailPokemon = React.forwardRef((props, ref) => {
                 <br />
                 <strong>Weight:</strong> {onePokemon.weight}lbs.
                 <br />
-                <strong>Info:</strong><p>{!actualQuote && "Choose a quote below"}{actualQuote}</p>
+                <strong>Info:</strong>
+                <p>
+                  {!actualQuote && "Choose a quote below"}
+                  {actualQuote}
+                </p>
                 <br />
               </div>
               <div id={classes.blueButtons1}>
-                <div className={classes.blueButton} data-type="0" onClick={changeQuoteHandler}></div>
-                <div className={classes.blueButton} data-type="1" onClick={changeQuoteHandler}></div>
-                <div className={classes.blueButton} data-type="2" onClick={changeQuoteHandler}></div>
-                <div className={classes.blueButton} data-type="3" onClick={changeQuoteHandler}></div>
-                <div className={classes.blueButton} data-type="4" onClick={changeQuoteHandler}></div>
+                <div
+                  className={classes.blueButton}
+                  data-type="0"
+                  onClick={changeQuoteHandler}
+                ></div>
+                <div
+                  className={classes.blueButton}
+                  data-type="1"
+                  onClick={changeQuoteHandler}
+                ></div>
+                <div
+                  className={classes.blueButton}
+                  data-type="2"
+                  onClick={changeQuoteHandler}
+                ></div>
+                <div
+                  className={classes.blueButton}
+                  data-type="3"
+                  onClick={changeQuoteHandler}
+                ></div>
+                <div
+                  className={classes.blueButton}
+                  data-type="4"
+                  onClick={changeQuoteHandler}
+                ></div>
               </div>
               <div id={classes.blueButtons2}>
-                <div className={classes.blueButton} data-type="5" onClick={changeQuoteHandler}></div>
-                <div className={classes.blueButton} data-type="6" onClick={changeQuoteHandler}></div>
-                <div className={classes.blueButton} data-type="7" onClick={changeQuoteHandler}></div>
-                <div className={classes.blueButton} data-type="8" onClick={changeQuoteHandler}></div>
-                <div className={classes.blueButton} data-type="9" onClick={changeQuoteHandler}></div>
+                <div
+                  className={classes.blueButton}
+                  data-type="5"
+                  onClick={changeQuoteHandler}
+                ></div>
+                <div
+                  className={classes.blueButton}
+                  data-type="6"
+                  onClick={changeQuoteHandler}
+                ></div>
+                <div
+                  className={classes.blueButton}
+                  data-type="7"
+                  onClick={changeQuoteHandler}
+                ></div>
+                <div
+                  className={classes.blueButton}
+                  data-type="8"
+                  onClick={changeQuoteHandler}
+                ></div>
+                <div
+                  className={classes.blueButton}
+                  data-type="9"
+                  onClick={changeQuoteHandler}
+                ></div>
               </div>
               <div id={classes.miniButtonGlass4}></div>
               <div id={classes.miniButtonGlass5}></div>
