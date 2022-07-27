@@ -30,32 +30,33 @@ const DetailPokemon = React.forwardRef((props, ref) => {
     setOnePokemon(unPokemon);
     setIsLoading(false);
   }, []);
-  console.log("ONE POKEMON", onePokemon);
+  // console.log("ONE POKEMON", onePokemon);
 
-  let finalQuotes = [];
   useEffect(() => {
     const data = async () => {
-      await Axios.get(
-        `https://pokeapi.co/api/v2/pokemon-species/${onePokemon.id}/`
-      )
-        .then((results) => {
-          if (results.status === 200) {
-            console.log("results", results);
-            let filterQuotes = results.data?.flavor_text_entries.filter(
-              (oneQuote) => {
-                return oneQuote.language.name === "en";
-              }
-            );
-            // console.log("filter quotes", filterQuotes)
-            const mapQuotes = filterQuotes.map((quote) => quote.flavor_text);
-            // console.log("MAP QUOTES", mapQuotes)
-            const uniqueQuotes = [...new Set(mapQuotes)];
-            // console.log("UNIQUE QUOTES", uniqueQuotes)
+      if (onePokemon.id !== undefined) {
+        await Axios.get(
+          `https://pokeapi.co/api/v2/pokemon-species/${onePokemon.id}/`
+        )
+          .then((results) => {
+            if (results.status === 200) {
+              // console.log("results", results);
+              let filterQuotes = results.data?.flavor_text_entries.filter(
+                (oneQuote) => {
+                  return oneQuote.language.name === "en";
+                }
+              );
+              // console.log("filter quotes", filterQuotes)
+              const mapQuotes = filterQuotes.map((quote) => quote.flavor_text);
+              // console.log("MAP QUOTES", mapQuotes)
+              const uniqueQuotes = [...new Set(mapQuotes)];
+              // console.log("UNIQUE QUOTES", uniqueQuotes)
 
-            setQuotes(uniqueQuotes);
-          }
-        })
-        .catch((error) => console.error(error));
+              setQuotes(uniqueQuotes);
+            }
+          })
+          .catch((error) => console.error(error));
+      }
     };
     data();
   }, [onePokemon]);
@@ -88,6 +89,19 @@ const DetailPokemon = React.forwardRef((props, ref) => {
     const type = Number(e.target.dataset.type);
     setActualQuote(quotes[type]);
   };
+
+  // Element div button
+  const divElement = Array.from({ length: 10 }, (_, i) => {
+    return (
+      <div key={i}
+        className={classes.blueButton}
+        data-type={i}
+        onClick={changeQuoteHandler}
+      >
+        {i + 1}
+      </div>
+    );
+  });
 
   return (
     <>
@@ -175,33 +189,11 @@ const DetailPokemon = React.forwardRef((props, ref) => {
                 <br />
               </div>
               <div id={classes.blueButtons1}>
-                <div
-                  className={classes.blueButton}
-                  data-type="0"
-                  onClick={changeQuoteHandler}
-                ></div>
-                <div
-                  className={classes.blueButton}
-                  data-type="1"
-                  onClick={changeQuoteHandler}
-                ></div>
-                <div
-                  className={classes.blueButton}
-                  data-type="2"
-                  onClick={changeQuoteHandler}
-                ></div>
-                <div
-                  className={classes.blueButton}
-                  data-type="3"
-                  onClick={changeQuoteHandler}
-                ></div>
-                <div
-                  className={classes.blueButton}
-                  data-type="4"
-                  onClick={changeQuoteHandler}
-                ></div>
+                {divElement.map((div, i) => {
+                  return div
+                })}
               </div>
-              <div id={classes.blueButtons2}>
+              {/* <div id={classes.blueButtons2}>
                 <div
                   className={classes.blueButton}
                   data-type="5"
@@ -227,7 +219,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
                   data-type="9"
                   onClick={changeQuoteHandler}
                 ></div>
-              </div>
+              </div> */}
               <div id={classes.miniButtonGlass4}></div>
               <div id={classes.miniButtonGlass5}></div>
               <div id={classes.barbutton3}></div>

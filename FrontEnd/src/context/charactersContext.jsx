@@ -9,15 +9,22 @@ export const PokemonContext = createContext();
 export const PokemonContextProvider = ({ children }) => {
   const [dataPokemon, setDataPokemon] = useState([]);
   const [allPokemones, setAllPokemones] = useState([])
+  const [actualURL, setActualURL] =useState("")
   const [isLoading, setIsLoading] = useState(true);
 
-  const URL = "https://pokeapi.co/api/v2/pokemon";
+  // const URL = "https://pokeapi.co/api/v2/pokemon";
+  const URL ="https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
+
+  // const handlerURL = (url) => {
+  //   setActualURL(url)
+  // }
+
   useEffect(() => {
     let eachPokemon = [];
     let allPokemonArray = [];
     const data = async () => {
-      await Axios.get(URL).then((response) => {
-        // console.log("TODA LA DATA", response.data);
+      await Axios.get(URL || actualURL).then((response) => {
+        console.log("TODA LA DATA", response.data);
         const pokemonArray = response.data.results;
         pokemonArray.forEach(async (pokemon) => {
           await Axios.get(pokemon.url).then((result) => {
