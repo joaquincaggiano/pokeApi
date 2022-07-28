@@ -16,6 +16,7 @@ export const PokemonContextProvider = ({ children }) => {
   const [actualURL, setActualURL] = useState(URL);
   const [nextPage, setNextPage] = useState("");
   const [prevPage, setPrevPage] = useState("");
+  const [totalPokemon, setTotalPokemon] = useState(0)
   const [isLoading, setIsLoading] = useState(true);
 
   // const URL ="https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
@@ -37,10 +38,11 @@ export const PokemonContextProvider = ({ children }) => {
     let allPokemonArray = [];
     const data = async () => {
       await Axios.get(actualURL).then((response) => {
-        // console.log("TODA LA DATA", response.data);
+        console.log("TODA LA DATA", response.data);
         if(response.status === 200) {
           setNextPage(response.data.next);
           setPrevPage(response.data.previous);
+          setTotalPokemon(response.data.count)
         }
 
         const pokemonArray = response.data.results;
@@ -81,6 +83,7 @@ export const PokemonContextProvider = ({ children }) => {
     isLoading,
     allPokemones,
     handlerURL,
+    totalPokemon
   };
 
   return (

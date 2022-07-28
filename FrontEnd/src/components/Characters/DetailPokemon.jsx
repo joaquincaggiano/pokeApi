@@ -193,33 +193,6 @@ const DetailPokemon = React.forwardRef((props, ref) => {
                   return div
                 })}
               </div>
-              {/* <div id={classes.blueButtons2}>
-                <div
-                  className={classes.blueButton}
-                  data-type="5"
-                  onClick={changeQuoteHandler}
-                ></div>
-                <div
-                  className={classes.blueButton}
-                  data-type="6"
-                  onClick={changeQuoteHandler}
-                ></div>
-                <div
-                  className={classes.blueButton}
-                  data-type="7"
-                  onClick={changeQuoteHandler}
-                ></div>
-                <div
-                  className={classes.blueButton}
-                  data-type="8"
-                  onClick={changeQuoteHandler}
-                ></div>
-                <div
-                  className={classes.blueButton}
-                  data-type="9"
-                  onClick={changeQuoteHandler}
-                ></div>
-              </div> */}
               <div id={classes.miniButtonGlass4}></div>
               <div id={classes.miniButtonGlass5}></div>
               <div id={classes.barbutton3}></div>
