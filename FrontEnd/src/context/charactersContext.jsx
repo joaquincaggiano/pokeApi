@@ -16,7 +16,8 @@ export const PokemonContextProvider = ({ children }) => {
   const [actualURL, setActualURL] = useState(URL);
   const [nextPage, setNextPage] = useState("");
   const [prevPage, setPrevPage] = useState("");
-  const [totalPokemon, setTotalPokemon] = useState(0)
+  const [totalPokemon, setTotalPokemon] = useState(0);
+  const [actualPage, setActualPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
   // const URL ="https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
@@ -27,9 +28,11 @@ export const PokemonContextProvider = ({ children }) => {
 
     if (type === "next") {
       setActualURL(nextPage);
+      setActualPage(actualPage + 1);
     }
     if (type === "prev") {
       setActualURL(prevPage);
+      setActualPage(actualPage - 1);
     }
   };
 
@@ -38,11 +41,11 @@ export const PokemonContextProvider = ({ children }) => {
     let allPokemonArray = [];
     const data = async () => {
       await Axios.get(actualURL).then((response) => {
-        console.log("TODA LA DATA", response.data);
-        if(response.status === 200) {
+        // console.log("TODA LA DATA", response.data);
+        if (response.status === 200) {
           setNextPage(response.data.next);
           setPrevPage(response.data.previous);
-          setTotalPokemon(response.data.count)
+          setTotalPokemon(response.data.count);
         }
 
         const pokemonArray = response.data.results;
@@ -78,12 +81,26 @@ export const PokemonContextProvider = ({ children }) => {
   // console.log("next page", nextPage);
   // console.log("prev page", prevPage);
 
+  const goToPage = (e) => {
+    const numberGoTo = Number(e.target.value)
+    // console.log("numberGoTo", numberGoTo)
+    const pageNumber = numberGoTo * 20;
+    setActualURL(`https://pokeapi.co/api/v2/pokemon?offset=${pageNumber}&limit=20`)
+  };
+
+  const totalOfpage = Math.ceil(totalPokemon / 20)
+
   const valueProvider = {
     dataPokemon,
     isLoading,
     allPokemones,
     handlerURL,
-    totalPokemon
+    totalPokemon,
+    prevPage,
+    nextPage,
+    actualPage,
+    goToPage,
+    totalOfpage
   };
 
   return (
