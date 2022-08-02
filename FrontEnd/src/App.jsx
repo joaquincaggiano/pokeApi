@@ -1,3 +1,6 @@
+// Css
+import classes from "./App.module.css"
+
 // Components
 import Header from "./components/layout/Header";
 import Characters from "./components/Characters/Characters";
@@ -15,7 +18,7 @@ function App() {
     <>
         <PokemonContextProvider>
       <Header />
-      <main>
+      <main className={classes.pokeFondo} /*style={{backgroundColor: "black"}}*/>
         {/* <Container>
           <Register />
         </Container> */}

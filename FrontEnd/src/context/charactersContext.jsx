@@ -55,6 +55,8 @@ export const PokemonContextProvider = ({ children }) => {
             const nameWithUppercase =
               result.data.name[0].toUpperCase() + result.data.name.slice(1);
             if (result.status === 200) {
+              const typePokemon =  result.data.types.map((oneType) => oneType.type.name)
+              // console.log("TYPES", typePokemon)
               allPokemonArray.push(result.data);
 
               eachPokemon.push({
@@ -63,6 +65,7 @@ export const PokemonContextProvider = ({ children }) => {
                 image: result.data.sprites.other.home.front_default,
                 // image: result.data.sprites.other.dream_world.front_default
                 // image: result.data.sprites.front_default,
+                type: typePokemon
               });
             }
             if (eachPokemon.length >= 20) {

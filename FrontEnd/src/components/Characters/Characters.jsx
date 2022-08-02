@@ -8,45 +8,57 @@ import { PokemonContext } from "../../context/charactersContext";
 import DetailPokemon from "./DetailPokemon";
 import EachCharacter from "./EachCharacter";
 
+// Css
+import classes from "./Characters.module.css";
+
 const Characters = () => {
   const ctx = useContext(PokemonContext);
 
   const [showModal, setShowModal] = useState(false);
   const [pokemonId, setPokemonId] = useState(null);
 
-  const modalPositionRef = useRef()
+  const modalPositionRef = useRef();
 
   const CloseModalHandler = () => {
     setShowModal(false);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     if (modalPositionRef != undefined) {
-      modalPositionRef?.current?.scrollIntoView({behaviour: 'smooth'})
+      modalPositionRef?.current?.scrollIntoView({ behaviour: "smooth" });
     }
-  }, [showModal])
+  }, [showModal]);
 
   return (
-    <>
-      {!ctx.isLoading && (
-        <div className="row">
-          {ctx.dataPokemon.map((pokemon, i) => {
-            return (
-              <EachCharacter
-                key={i}
-                id={pokemon.id}
-                name={pokemon.name}
-                image={pokemon.image}
-                setShowModal={setShowModal}
-                setPokemonId={setPokemonId}
-              />
-            );
-          })}
-        </div>
-      )}
+    <div className="container">
+      <div className={classes.pokeFondo}>
+        {!ctx.isLoading && (
+          <div className="row">
+            {ctx.dataPokemon.map((pokemon, i) => {
+              return (
+                <EachCharacter
+                  key={i}
+                  id={pokemon.id}
+                  name={pokemon.name}
+                  image={pokemon.image}
+                  typePokemon={pokemon.type}
+                  setShowModal={setShowModal}
+                  setPokemonId={setPokemonId}
+                />
+              );
+            })}
+          </div>
+        )}
 
-      {showModal && <DetailPokemon ref={modalPositionRef} pokemonId={pokemonId} onCloseModal={CloseModalHandler} />}
-    </>
+        {showModal && (
+          <DetailPokemon
+            ref={modalPositionRef}
+            pokemonId={pokemonId}
+            onCloseModal={CloseModalHandler}
+          />
+        )}
+      </div>
+    </div>
   );
 };
 
