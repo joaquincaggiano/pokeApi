@@ -117,7 +117,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
                 <div id={classes.buttonGlass}>
                   <div id={classes.reflect}> </div>
                 </div>
-                <div id={classes.miniButtonGlass1}></div>
+                <div id={classes.miniButtonGlass1} onClick={props.onCloseModal}></div>
                 <div id={classes.miniButtonGlass2}></div>
                 <div id={classes.miniButtonGlass3}></div>
               </div>

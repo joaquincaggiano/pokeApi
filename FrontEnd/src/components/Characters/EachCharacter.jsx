@@ -159,7 +159,7 @@ function EachCharacter(props) {
         <div className={classes.imgStyle}>
           <img src={props.image} className="card-img-top" alt={props.name} />
           <p className="text-secondary fw-bold">
-            Nº {pokemonNumber.padStart(4, 0)}
+            Nº {pokemonNumber.padStart(3, 0)}
           </p>
         </div>
         <div className="card-body">

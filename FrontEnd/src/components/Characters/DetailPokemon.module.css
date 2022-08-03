@@ -162,6 +162,7 @@
     height: 20px;
     margin-right: 10px;
     float: left;
+    cursor: pointer;
 
     box-shadow: 0 0 10px #490000;
     -webkit-box-shadow: 0 0 10px #490000;

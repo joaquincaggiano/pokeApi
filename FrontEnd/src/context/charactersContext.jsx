@@ -17,7 +17,7 @@ export const PokemonContextProvider = ({ children }) => {
   const [nextPage, setNextPage] = useState("");
   const [prevPage, setPrevPage] = useState("");
   const [totalPokemon, setTotalPokemon] = useState(0);
-  const [actualPage, setActualPage] = useState(1);
+  // const [actualPage, setActualPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   // const URL ="https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
@@ -28,11 +28,11 @@ export const PokemonContextProvider = ({ children }) => {
 
     if (type === "next") {
       setActualURL(nextPage);
-      setActualPage(actualPage + 1);
+      // setActualPage(actualPage + 1);
     }
     if (type === "prev") {
       setActualURL(prevPage);
-      setActualPage(actualPage - 1);
+      // setActualPage(actualPage - 1);
     }
   };
 
@@ -43,9 +43,13 @@ export const PokemonContextProvider = ({ children }) => {
       await Axios.get(actualURL).then((response) => {
         // console.log("TODA LA DATA", response.data);
         if (response.status === 200) {
-          setNextPage(response.data.next);
+          if(response.data.next === "https://pokeapi.co/api/v2/pokemon?offset=920&limit=20") {
+            setNextPage(null)
+          } else {
+            setNextPage(response.data.next);
+          }         
           setPrevPage(response.data.previous);
-          setTotalPokemon(response.data.count);
+          setTotalPokemon(920);
         }
 
         const pokemonArray = response.data.results;
@@ -55,7 +59,9 @@ export const PokemonContextProvider = ({ children }) => {
             const nameWithUppercase =
               result.data.name[0].toUpperCase() + result.data.name.slice(1);
             if (result.status === 200) {
-              const typePokemon =  result.data.types.map((oneType) => oneType.type.name)
+              const typePokemon = result.data.types.map(
+                (oneType) => oneType.type.name
+              );
               // console.log("TYPES", typePokemon)
               allPokemonArray.push(result.data);
 
@@ -65,7 +71,7 @@ export const PokemonContextProvider = ({ children }) => {
                 image: result.data.sprites.other.home.front_default,
                 // image: result.data.sprites.other.dream_world.front_default
                 // image: result.data.sprites.front_default,
-                type: typePokemon
+                type: typePokemon,
               });
             }
             if (eachPokemon.length >= 20) {
@@ -80,6 +86,7 @@ export const PokemonContextProvider = ({ children }) => {
     };
     const dataArray = data();
   }, [actualURL]);
+  // console.log("ACTUAL URL", actualURL )
   // console.log("STATE", dataPokemon);
   // console.log("next page", nextPage);
   // console.log("prev page", prevPage);
@@ -91,19 +98,19 @@ export const PokemonContextProvider = ({ children }) => {
     setActualURL(`https://pokeapi.co/api/v2/pokemon?offset=${pageNumber}&limit=20`)
   };
 
-  const totalOfpage = Math.ceil(totalPokemon / 20)
+  const totalOfpage = Math.ceil(totalPokemon / 20);
 
   const valueProvider = {
     dataPokemon,
     isLoading,
     allPokemones,
     handlerURL,
-    totalPokemon,
     prevPage,
     nextPage,
-    actualPage,
+    totalPokemon,
+    totalOfpage,
+    // actualPage,
     goToPage,
-    totalOfpage
   };
 
   return (
