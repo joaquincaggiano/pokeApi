@@ -10,7 +10,7 @@ import classes from "./Pagination.module.css";
 const Pagination = () => {
   const {
     totalPokemon,
-    // actualPage,
+    actualPage,
     goToPage,
     totalOfpage,
     handlerURL,
@@ -19,7 +19,7 @@ const Pagination = () => {
   } = useContext(PokemonContext);
 
   return (
-    <div className={`${classes.paginationStyle} mb-4`}>
+    <div className={`${classes.paginationStyle} mb-5`}>
       <div>
         <p
           className={`${classes.borderColorPagination} ${classes.familyPokemon}`}
@@ -32,7 +32,7 @@ const Pagination = () => {
         <p
           className={`${classes.borderColorPagination} ${classes.familyPokemon}`}
         >
-          Page: {/*actualPage*/}
+          Page: {actualPage}
         </p>
       </div>
 
@@ -44,7 +44,9 @@ const Pagination = () => {
         </p>
         <select
           className={`${classes.familyPokemon} ${classes.selectStyle}`}
+          data-type="goTo"
           onChange={(e) => goToPage(e)}
+          value={actualPage}
         >
           {Array.from(Array(totalOfpage).keys()).map((page, i) => {
             return (
@@ -53,7 +55,6 @@ const Pagination = () => {
               </option>
             );
           })}
-          {/* <option>1</option> */}
         </select>
       </div>
 

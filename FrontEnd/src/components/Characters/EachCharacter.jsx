@@ -15,8 +15,6 @@ function EachCharacter(props) {
 
   const pokemonNumber = String(props.id);
 
-  // console.log("pokemonNumber",  pokemonNumber.padStart(4, 0))
-
   // CSS para cada TYPE
   const classType = props.typePokemon.map((type, i) => {
     if (type === "poison") {

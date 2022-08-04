@@ -2,3 +2,7 @@
     background-image: url("./img/blackFondo.jpg");
     background-size:cover;
 }
+
+main{
+    padding-bottom: 50px;
+}

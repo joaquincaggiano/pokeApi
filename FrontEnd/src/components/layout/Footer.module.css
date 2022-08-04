@@ -1,0 +1,16 @@
+footer {
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 2px solid #4682B4;
+}
+
+.logoPokemonStyle {
+    width: 400px;
+}
+
+.footerText{
+    color: white;
+}

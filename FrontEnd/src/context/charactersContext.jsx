@@ -17,7 +17,7 @@ export const PokemonContextProvider = ({ children }) => {
   const [nextPage, setNextPage] = useState("");
   const [prevPage, setPrevPage] = useState("");
   const [totalPokemon, setTotalPokemon] = useState(0);
-  // const [actualPage, setActualPage] = useState(0);
+  const [actualPage, setActualPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   // const URL ="https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
@@ -28,11 +28,11 @@ export const PokemonContextProvider = ({ children }) => {
 
     if (type === "next") {
       setActualURL(nextPage);
-      // setActualPage(actualPage + 1);
+      setActualPage(actualPage + 1);
     }
     if (type === "prev") {
       setActualURL(prevPage);
-      // setActualPage(actualPage - 1);
+      setActualPage(actualPage - 1);
     }
   };
 
@@ -76,7 +76,7 @@ export const PokemonContextProvider = ({ children }) => {
             }
             if (eachPokemon.length >= 20) {
               eachPokemon.sort((a, b) => a.id - b.id);
-              setDataPokemon(eachPokemon); // hacer un loading para conditional rendering
+              setDataPokemon(eachPokemon);
               setIsLoading(false);
             }
           });
@@ -92,9 +92,13 @@ export const PokemonContextProvider = ({ children }) => {
   // console.log("prev page", prevPage);
 
   const goToPage = (e) => {
-    const numberGoTo = Number(e.target.value)
+    const type = e.target.dataset.type;
+    let numberGoTo = Number(e.target.value)
     // console.log("numberGoTo", numberGoTo)
     const pageNumber = numberGoTo * 20;
+    if(type === "goTo") {
+      setActualPage(numberGoTo)
+    }
     setActualURL(`https://pokeapi.co/api/v2/pokemon?offset=${pageNumber}&limit=20`)
   };
 
@@ -109,7 +113,7 @@ export const PokemonContextProvider = ({ children }) => {
     nextPage,
     totalPokemon,
     totalOfpage,
-    // actualPage,
+    actualPage,
     goToPage,
   };
 
