@@ -2,7 +2,6 @@
 import classes from "./App.module.css";
 
 // Components
-import Header from "./components/layout/Header";
 import Characters from "./components/Characters/Characters";
 import Pagination from "./components/layout/Pagination";
 import Register from "./components/User/Register";
@@ -14,22 +13,24 @@ import { Container } from "react-bootstrap";
 // Context
 import { PokemonContextProvider } from "./context/charactersContext";
 
-function App() {
+const App = () => {
   return (
     <>
       <PokemonContextProvider>
-        <Header />
-        <main className={classes.pokeFondo}>
+        <Pagination />
+        <main className={`${classes.pokeFondo} p-5`}>
           {/* <Container>
           <Register />
         </Container> */}
-          <Pagination />
           <Characters />
+          <div className={classes.arrowUpContainer}>
+            <i className="fa-solid fa-arrow-up"></i>
+          </div>
         </main>
       </PokemonContextProvider>
       <Footer />
     </>
   );
-}
+};
 
 export default App;

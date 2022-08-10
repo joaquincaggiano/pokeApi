@@ -7,7 +7,7 @@ import { PokemonContext } from "../../context/charactersContext";
 // Css
 import classes from "./Pagination.module.css";
 
-const Pagination = () => {
+const Pagination = (ref) => {
   const {
     totalPokemon,
     actualPage,
@@ -19,7 +19,7 @@ const Pagination = () => {
   } = useContext(PokemonContext);
 
   return (
-    <div className={`${classes.paginationStyle} mb-5`}>
+    <header className={`${classes.paginationStyle} mb-5 fixed-top`}>
       <div>
         <p
           className={`${classes.borderColorPagination} ${classes.familyPokemon}`}
@@ -78,7 +78,7 @@ const Pagination = () => {
           </button>
         )}
       </div>
-    </div>
+    </header>
   );
 };
 
