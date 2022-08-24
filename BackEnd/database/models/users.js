@@ -1,6 +1,6 @@
 module.exports = (sequelize,DataTypes) => {
     const User = sequelize.define ('User', {
-        userId: {
+        id: {
             primaryKey: true,
             autoIncrement: true,
             type: DataTypes.INTEGER
@@ -14,7 +14,7 @@ module.exports = (sequelize,DataTypes) => {
        paranoid: true
     });
     User.associate = function (models) {
-        User.belongsToMany(models.PokeFavorites, {
+        User.belongsToMany(models.PokeFavorite, {
             as: 'users',
             through: 'pokeFavorites_users',
             foreignKey: 'userId',

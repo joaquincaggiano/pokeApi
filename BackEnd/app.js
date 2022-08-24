@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path');
+const methodOverride = require('method-override')
 
 const app = express();
 
 app.listen(3030, () => {
-    console.log('Servidor corriendo correctamente')
+    console.log('Servidor corriendo correctamente en puerto 3030')
 });
 
 //requiero el req.body//

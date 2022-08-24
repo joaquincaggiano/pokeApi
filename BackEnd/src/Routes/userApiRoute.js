@@ -6,5 +6,6 @@ const userController = require("../Controllers/apiUserController")
 
 // Rutas
 router.get("/user/:id", userController.userDetail)
+router.post('/user/create', userController.createUser)
 
 module.exports = router;
