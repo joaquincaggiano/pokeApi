@@ -7,6 +7,7 @@ import { PokemonContext } from "../../context/charactersContext";
 // Component
 import DetailPokemon from "./DetailPokemon";
 import EachCharacter from "./EachCharacter";
+import Pagination from "../layout/Pagination";
 
 // Css
 import classes from "./Characters.module.css";
@@ -30,35 +31,38 @@ const Characters = () => {
   }, [showModal]);
 
   return (
-    <div className="container">
-      <div className={classes.pokeFondo}>
-        {!ctx.isLoading && (
-          <div className="row">
-            {ctx.dataPokemon.map((pokemon, i) => {
-              return (
-                <EachCharacter
-                  key={i}
-                  id={pokemon.id}
-                  name={pokemon.name}
-                  image={pokemon.image}
-                  typePokemon={pokemon.type}
-                  setShowModal={setShowModal}
-                  setPokemonId={setPokemonId}
-                />
-              );
-            })}
-          </div>
-        )}
+    <>
+      <Pagination />
+      <div className="container">
+        <div className={classes.pokeFondo}>
+          {!ctx.isLoading && (
+            <div className="row p-4">
+              {ctx.dataPokemon.map((pokemon, i) => {
+                return (
+                  <EachCharacter
+                    key={i}
+                    id={pokemon.id}
+                    name={pokemon.name}
+                    image={pokemon.image}
+                    typePokemon={pokemon.type}
+                    setShowModal={setShowModal}
+                    setPokemonId={setPokemonId}
+                  />
+                );
+              })}
+            </div>
+          )}
 
-        {showModal && (
-          <DetailPokemon
-            ref={modalPositionRef}
-            pokemonId={pokemonId}
-            onCloseModal={CloseModalHandler}
-          />
-        )}
+          {showModal && (
+            <DetailPokemon
+              ref={modalPositionRef}
+              pokemonId={pokemonId}
+              onCloseModal={CloseModalHandler}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

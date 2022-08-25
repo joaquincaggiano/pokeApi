@@ -19,7 +19,7 @@ const Pagination = (ref) => {
   } = useContext(PokemonContext);
 
   return (
-    <header className={`${classes.paginationStyle} mb-5 fixed-top`}>
+    <div className={`${classes.paginationStyle} mb-5`}>
       <div>
         <p
           className={`${classes.borderColorPagination} ${classes.familyPokemon}`}
@@ -78,7 +78,7 @@ const Pagination = (ref) => {
           </button>
         )}
       </div>
-    </header>
+    </div>
   );
 };
 
