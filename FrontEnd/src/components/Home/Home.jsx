@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import pikapika from '../../img/waving-pikachu.gif'
 function Home() {
   return (
     <>
+      <h1>ESTE ES EL HOME POKEMON</h1>
+      <img src={pikapika} alt="" />
       <nav>
         <ul>
           <li>
@@ -17,7 +19,6 @@ function Home() {
           </li>
         </ul>
       </nav>
-      <h1>ESTE ES EL HOME POKEMON</h1>
     </>
   );
 }

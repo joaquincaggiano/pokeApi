@@ -1,17 +1,28 @@
 // Hooks
 import { useContext } from "react";
 
+// router
+import {useNavigate} from "react-router-dom";
+
 //  Context
 import {UserContext} from "../../context/userContext"
 
 // Boostrap
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 
 function Register(props) {
-  const {handleOnSubmit, userNameRef, emailRef, passwordRef} = useContext(UserContext)
+  const {register, userNameRef, emailRef, passwordRef} = useContext(UserContext)
+  let navigate = useNavigate()
+
+  function handleOnSubmit(e){
+    e.preventDefault()
+    register();
+    return navigate('login')
+  }
 
   return (
-    <Form onSubmit={handleOnSubmit}>
+    <Container>
+    <Form onSubmit={(e)=> handleOnSubmit(e)}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>User Name:</Form.Label>
         <Form.Control
@@ -43,6 +54,8 @@ function Register(props) {
         Registrarse
       </Button>
     </Form>
+
+    </Container>
   );
 }
 
