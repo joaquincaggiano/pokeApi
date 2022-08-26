@@ -1,11 +1,17 @@
-const express = require ("express");
+const express = require("express");
 const router = express.Router();
 
 // Requiero el controller
-const userController = require("../Controllers/apiUserController")
+const userController = require("../Controllers/apiUserController");
 
 // Rutas
-router.get("/user/:id", userController.userDetail)
-router.post('/user/create', userController.createUser)
+// Profile
+router.get("/user/:id", userController.profile);
+
+// Register
+router.post("/user/create", userController.createUser);
+
+// Login
+router.post("/user/login", userController.processLogin);
 
 module.exports = router;
