@@ -9,6 +9,9 @@ import axios from "axios";
 //navigate
 import { useNavigate } from "react-router-dom";
 
+//validation
+import {reducer, errorsState, ACTIONS} from './validationReducer'
+
 
 export const UserContext = createContext();
 
@@ -75,7 +78,10 @@ export const UserProvider = ({ children }) => {
     userNameRef,
     emailRef,
     passwordRef,
-    userLogged
+    userLogged,
+    reducer, 
+    errorsState,
+    ACTIONS
   };
 
   return (
