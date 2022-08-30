@@ -25,7 +25,7 @@ const Login = () => {
   };
   return (
     <Container>
-      <Form onSubmit={loginSubmitHandler}>
+      <Form className="text-white" onSubmit={loginSubmitHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email:</Form.Label>
           <Form.Control

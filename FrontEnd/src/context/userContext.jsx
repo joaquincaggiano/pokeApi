@@ -10,14 +10,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 //validation
-import {reducer, errorsState, ACTIONS} from './validationReducer'
-
+import { reducer, errorsState, ACTIONS } from "./validationReducer";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   // STATES
-  const [userLogged, setUserLogged] = useState()
+  const [userLogged, setUserLogged] = useState();
+  const [isFormValid, setIsFormValid] = useState(false)
 
   // REFERENCIAS DE INPUTS
   const userNameRef = useRef();
@@ -41,36 +41,49 @@ export const UserProvider = ({ children }) => {
           console.log("response", response);
         })
         .catch((error) => console.log("Error", error));
-      } catch{
-        console.error()
-      }
+    } catch {
+      console.error();
+    }
   }
+
+
 
   // LOGIN
   const login = async () => {
     let userToLogin = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
-    }
+    };
     try {
       await axios
         .post("http://localhost:3030/api/user/login", userToLogin)
         .then((response) => {
           if (response.data.status === 400) {
-            console.log("LAS CREDENCIALES NO COINCIDEN")
+            console.log("LAS CREDENCIALES NO COINCIDEN");
           } else {
             console.log("USUARIO LOGEADO", response.data.user);
-            setUserLogged({...response.data.user})
-            navigate('/')
+            setUserLogged({ ...response.data.user });
+            navigate("/");
           }
           console.log("response", response);
         })
         .catch((error) => console.log("Error", error));
-      } catch{
-        console.error()
-      }
+    } catch {
+      console.error();
     }
-    console.log("User STATE",userLogged)
+  };
+  console.log("User STATE", userLogged);
+
+  const formValidation = () =>{
+    for (const isValid in errorsState){
+        if (isValid === true){
+          setIsFormValid(false)
+        } else {
+          setIsFormValid(true)
+        }
+    }
+    return isFormValid
+  }
 
   const userDataProvider = {
     register,
@@ -79,9 +92,9 @@ export const UserProvider = ({ children }) => {
     emailRef,
     passwordRef,
     userLogged,
-    reducer, 
+    reducer,
     errorsState,
-    ACTIONS
+    ACTIONS,
   };
 
   return (

@@ -1,5 +1,5 @@
 // Hooks
-import { useContext, useState, useReducer } from "react";
+import { useContext, useState, useReducer, useEffect } from "react";
 
 // router
 import { useNavigate } from "react-router-dom";
@@ -10,17 +10,18 @@ import { UserContext } from "../../context/userContext";
 // Boostrap
 import { Form, Button, Container } from "react-bootstrap";
 
-function Register(props) {
-  
-  // // STATE
-  // const [usernameError, setUsernameError] = useState();
-  // const [passwordError, setPasswordError] = useState();
-  const [error, setError] = useState();
-  
+function Register() {
   // CONTEXT
-  const { register, userNameRef, emailRef, passwordRef, reducer, errorsState, ACTIONS} =
-  useContext(UserContext);
-  
+  const {
+    register,
+    userNameRef,
+    emailRef,
+    passwordRef,
+    reducer,
+    errorsState,
+    ACTIONS,
+  } = useContext(UserContext);
+
   // Reducer States
   const [state, dispatch] = useReducer(reducer, errorsState);
 
@@ -35,52 +36,76 @@ function Register(props) {
   }
 
   const onChangeHandler = (e) => {
-    if (e.target.name === 'Username'){
-      dispatch({ type: ACTIONS.USERNAME_LENGTH, payload: {value: e.target.value} });
-    }else if(e.target.name === 'Email'){
-      dispatch({ type: ACTIONS.EMAIL_FORMAT, payload: {value: e.target.value} });
-  }else{
-    dispatch({ type: ACTIONS.PASSWORD_FORMAT, payload: {value: e.target.value} });
-  }};
-  
-console.log("STATE", state)
+    dispatch({
+      type: e.target.dataset.type,
+      payload: {
+        value: e.target.value,
+        msg: e.target.dataset.msg,
+      },
+    });
+  };
+
+  const onBlurHandler = (e) => {
+    if (e.target.value.trim() === "") {
+      dispatch({
+        type: e.target.dataset.type,
+        payload: { value: e.target.value, msg: "Field cannot be empty" },
+      });
+    }
+  };
+
   return (
     <Container>
-      <Form onSubmit={(e) => handleOnSubmit(e)}>
+      <Form className="text-white" onSubmit={(e) => handleOnSubmit(e)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>User Name:</Form.Label>
           <Form.Control
-            name='Username'
+            data-type={ACTIONS.USERNAME_LENGTH}
+            data-msg="Username must be at least 6 characters"
+            name="Username"
             onChange={onChangeHandler}
+            onBlur={onBlurHandler}
             ref={userNameRef}
             type="text"
             placeholder="Escribí tu nombre de usuario"
           />
-          {state.usernameLength.isInvalid === true && <span className="text-danger">{state.usernameLength.msg}</span>}
+          {state.usernameLength.isValid === true && (
+            <span className="text-danger">{state.usernameLength.msg}</span>
+          )}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email:</Form.Label>
           <Form.Control
             ref={emailRef}
-            name='Email'
+            data-type={ACTIONS.EMAIL_FORMAT}
+            data-msg="Please enter a valid email"
+            name="Email"
             onChange={onChangeHandler}
+            onBlur={onBlurHandler}
             type="email"
             placeholder="Escribí tu email"
           />
-            {state.emailFormat.isInvalid === true && <span className="text-danger">{state.emailFormat.msg}</span>}
+          {state.emailFormat.isValid === true && (
+            <span className="text-danger">{state.emailFormat.msg}</span>
+          )}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password:</Form.Label>
           <Form.Control
-            name='Password'
+            data-type={ACTIONS.PASSWORD_FORMAT}
+            data-msg="Password be at least 8 characters and must contain at least one upper case, one lower case and one number"
+            name="Password"
             ref={passwordRef}
             onChange={onChangeHandler}
+            onBlur={onBlurHandler}
             type="password"
             placeholder="Password"
           />
-            {state.passwordFormat.isInvalid === true && <span className="text-danger">{state.passwordFormat.msg}</span>}
+          {state.passwordFormat.isValid === true && (
+            <span className="text-danger">{state.passwordFormat.msg}</span>
+          )}
         </Form.Group>
 
         <Button variant="primary" type="submit">
