@@ -1,5 +1,5 @@
 // Hooks
-import { useContext, useState, useReducer, useEffect } from "react";
+import { useContext, useEffect, useReducer} from "react";
 
 // router
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,8 @@ function Register() {
     reducer,
     errorsState,
     ACTIONS,
+    formValidation,
+    isFormValid
   } = useContext(UserContext);
 
   // Reducer States
@@ -43,6 +45,7 @@ function Register() {
         msg: e.target.dataset.msg,
       },
     });
+    formValidation(state)
   };
 
   const onBlurHandler = (e) => {
@@ -53,6 +56,10 @@ function Register() {
       });
     }
   };
+
+  // useEffect(()=>{
+  //   formValidation(state)
+  // }, [emailRef, passwordRef, userNameRef])
 
   return (
     <Container>
@@ -108,7 +115,9 @@ function Register() {
           )}
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button 
+        disabled={!isFormValid}
+        variant="primary" type="submit">
           Registrarse
         </Button>
       </Form>

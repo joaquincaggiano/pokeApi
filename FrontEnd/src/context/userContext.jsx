@@ -46,8 +46,6 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-
-
   // LOGIN
   const login = async () => {
     let userToLogin = {
@@ -74,15 +72,15 @@ export const UserProvider = ({ children }) => {
   };
   console.log("User STATE", userLogged);
 
-  const formValidation = () =>{
-    for (const isValid in errorsState){
+  const formValidation = (object) =>{
+    for (const isValid in object){
         if (isValid === true){
           setIsFormValid(false)
         } else {
           setIsFormValid(true)
         }
     }
-    return isFormValid
+    // return isFormValid
   }
 
   const userDataProvider = {
@@ -95,6 +93,8 @@ export const UserProvider = ({ children }) => {
     reducer,
     errorsState,
     ACTIONS,
+    formValidation,
+    isFormValid
   };
 
   return (
