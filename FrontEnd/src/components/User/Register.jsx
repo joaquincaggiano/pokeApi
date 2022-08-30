@@ -1,5 +1,5 @@
 // Hooks
-import { useContext, useState, useReducer } from "react";
+import { useContext,useReducer } from "react";
 
 // router
 import { useNavigate } from "react-router-dom";
@@ -10,31 +10,66 @@ import { UserContext } from "../../context/userContext";
 // Boostrap
 import { Form, Button, Container } from "react-bootstrap";
 
-// Function reducer
+// Function reducer and initial state
 const userNameReducer = (state, action) => {
-  if (action.type === 'USER_NAME') {
-    return { value: action.val, isValid: action.val.length > 6 };
+  if(action.type === "USER_NAME_CHANGE") {
+    return {value: action.value, isValid: action.value.trim().length > 6, msg: action.msg, isTouched: state.isTouched}
   }
+  if(action.type === "USER_NAME_BLUR") {
+    return {value: state.value, isValid: action.value.trim() !== "", msg: action.msg, isTouched: true}
+  }
+  return {value: "", isValid: false, msg: "", isTouched: false};
+}
+
+const emailReducer = (state, action) => {
+  if(action.type === "EMAIL_CHANGED"){
+    return {value: action.value, isValid: action.value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g), msg: action.msg, isTouched: state.isTouched}
+  }
+
+  if(action.type === "EMAIL_BLUR") {
+    return {value: state.value, isValid: action.value.trim() !== "", msg: action.msg, isTouched: true}
+  }
+  return {value: "", isValid: false, msg: "", isTouched: false};
+}
+
+const passwordReducer = (state, action) => {
+  if(action.type === "PASSWORD_CHANGED") {
+    return {value: action.value, isValid: action.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/), msg: action.msg, isTouched: state.isTouched}
+  }
+  if(action.type === "PASSWORD_BLUR") {
+    return {value: state.value, isValid: action.value.trim() !== "", msg: action.msg, isTouched: true}
+  }
+  return {value: "", isValid: false, msg: "", isTouched: false};
+}
+
+const initialState = {
+  value: "",
+  isValid: false,
+  msg: "",
+  isTouched: false,
 }
 
 function Register(props) {
-  // Reducer States
-  const [userNameState, dispatchUserName] = useReducer(userNameReducer, {
-    value: '',
-    isValid: null,
-  });
+  // State
+  // const [formIsValid, setFormIsValid] = useState(false);
 
-  // // STATE
-  // const [usernameError, setUsernameError] = useState();
-  // const [passwordError, setPasswordError] = useState();
-  const [error, setError] = useState();
+  // Reducer States
+  const [userNameState, dispatchUserName] = useReducer(userNameReducer, initialState);
+  const [emailState, dispatchEmail] = useReducer(emailReducer, initialState);
+  const [passwordState, dispatchPassword] = useReducer(passwordReducer, initialState);
 
   // CONTEXT
-  const { register, userNameRef, emailRef, passwordRef} =
+  const { register, userNameRef, emailRef, passwordRef } =
     useContext(UserContext);
-  
+
   // Navigate
   let navigate = useNavigate();
+
+  let formIsValid = false
+
+  if(userNameState.isValid && emailState.isValid && passwordState.isValid) {
+    formIsValid = true;
+  }
 
   // Submit function
   function handleOnSubmit(e) {
@@ -44,66 +79,75 @@ function Register(props) {
   }
 
   // VALIDATION FUNCTION
-  // function handleOnChange(e) {
-  //   let errorMsg = `${e.target.name} must be at least 6 characters`
-  //     if (e.target.value.length < 6) {
-  //       if(e.target.name === 'Password'){
-  //         setPasswordError(errorMsg)
-  //       } 
-  //       if(e.target.name === 'Username') {
-  //         setUsernameError(errorMsg)
-  //       } 
-  //     } else {
-  //       if(e.target.name === 'Password'){
-  //         setPasswordError('');
-  //       } 
-  //       if(e.target.name === 'Username') {
-  //         setUsernameError('');
-  //       } 
-  //     }
-  // }
-
   const userNameChangeHandler = (e) => {
-    dispatchEmail({ type: 'USER_NAME', val: e.target.value });
+    dispatchUserName({type: "USER_NAME_CHANGE", value: e.target.value, msg: "Debe contener al menos 7 caracteres"})
+  }
+
+  const userNameBlur = (e) => {
+    dispatchUserName({type: "USER_NAME_BLUR", value: e.target.value, msg: "No puede estar vacío"})
+  }
+
+  const emailChangeHandler = (e) => {
+    dispatchEmail({type: "EMAIL_CHANGED", value: e.target.value, msg: "Debe ser un email válido"})
+  };
+
+  const emailBlurHandler = (e) => {
+    dispatchEmail({type: "EMAIL_BLUR", value: e.target.value, msg: "No puede estar vacío"})
+  };
+
+  const passwordChangeHandler = (e) => {
+    dispatchPassword({type: "PASSWORD_CHANGED", value: e.target.value, msg: "Mínimo 8 caracteres, al menos una Mayúscula, una minúscula y un número"})
+  };
+
+  const passwordBlurHandler = (e) => {
+    dispatchPassword({type: "PASSWORD_BLUR", value: e.target.value, msg: "No puede estar vacío"})
   };
 
   return (
     <Container>
       <Form onSubmit={(e) => handleOnSubmit(e)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>User Name:</Form.Label>
+          <Form.Label className="text-white">User Name:</Form.Label>
           <Form.Control
-            name='Username'
             onChange={userNameChangeHandler}
+            onBlur={userNameBlur}
+            name="Username"
             ref={userNameRef}
             type="text"
             placeholder="Escribí tu nombre de usuario"
+            value={userNameState.value}
           />
-          {/* {usernameError && <span className="text-danger">{usernameError}</span>} */}
+          {!userNameState.isValid && <span className="text-danger">{userNameState.msg}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email:</Form.Label>
+          <Form.Label className="text-white">Email:</Form.Label>
           <Form.Control
             ref={emailRef}
             type="email"
             placeholder="Escribí tu email"
+            value={emailState.value}
+            onChange={emailChangeHandler}
+            onBlur={emailBlurHandler}
           />
+          {!emailState.isValid && <span className="text-danger">{emailState.msg}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password:</Form.Label>
+          <Form.Label className="text-white">Password:</Form.Label>
           <Form.Control
-            // onChange={handleOnChange}
-            name='Password'
+            name="Password"
             ref={passwordRef}
             type="password"
             placeholder="Password"
+            onChange={passwordChangeHandler}
+            onBlur={passwordBlurHandler}
+            value={passwordState.value}
           />
-           {/* {passwordError && <span className="text-danger">{passwordError}</span>} */}
+          {!passwordState.isValid && <span className="text-danger">{passwordState.msg}</span>}
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button disabled={!formIsValid} variant="primary" type="submit">
           Registrarse
         </Button>
       </Form>
