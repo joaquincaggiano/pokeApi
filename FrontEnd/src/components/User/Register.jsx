@@ -30,10 +30,18 @@ function Register() {
 
   // useEffect
   useEffect(() => {
-    if(state.usernameLength.isValid && state.emailFormat.isValid && state.passwordFormat.isValid) {
-      setFormIsValid(true)
-    };
-  }, [state.usernameLength.value, state.emailFormat.value, state.passwordFormat.value])
+    if (
+      state.usernameLength.isValid &&
+      state.emailFormat.isValid &&
+      state.passwordFormat.isValid
+    ) {
+      setFormIsValid(true);
+    }
+  }, [
+    state.usernameLength.value,
+    state.emailFormat.value,
+    state.passwordFormat.value,
+  ]);
 
   // Navigate
   let navigate = useNavigate();
