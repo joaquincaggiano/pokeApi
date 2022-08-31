@@ -46,8 +46,6 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-
-
   // LOGIN
   const login = async () => {
     let userToLogin = {
@@ -74,16 +72,16 @@ export const UserProvider = ({ children }) => {
   };
   console.log("User STATE", userLogged);
 
-  const formValidation = () =>{
-    for (const isValid in errorsState){
-        if (isValid === true){
-          setIsFormValid(false)
-        } else {
-          setIsFormValid(true)
-        }
-    }
-    return isFormValid
-  }
+  // const formValidation = () =>{
+  //   for (const isValid in errorsState){
+  //       if (isValid === true){
+  //         setIsFormValid(false)
+  //       } else {
+  //         setIsFormValid(true)
+  //       }
+  //   }
+  //   return isFormValid
+  // }
 
   const userDataProvider = {
     register,

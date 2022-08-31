@@ -1,4 +1,3 @@
-
 export const ACTIONS = {
   EMAIL_FORMAT: "emailFormat",
   USERNAME_LENGTH: "usernameLength",
@@ -18,7 +17,7 @@ export function reducer(state, action) {
         return {
           ...state,
           usernameLength: {
-            isValid: true,
+            isValid: false,
             value: action.payload.value,
             msg: action.payload.msg,
           },
@@ -27,13 +26,18 @@ export function reducer(state, action) {
         return {
           ...state,
           usernameLength: {
-            isValid: true,
+            isValid: false,
             value: action.payload.value,
             msg: action.payload.msg,
           },
         };
       } else {
-        return errorsState;
+        return {
+          ...state,
+          usernameLength: {
+            isValid: true,
+          },
+        };
       }
     case ACTIONS.EMAIL_FORMAT:
       let validFormat =
@@ -42,7 +46,7 @@ export function reducer(state, action) {
         return {
           ...state,
           emailFormat: {
-            isValid: true,
+            isValid: false,
             value: action.payload.value,
             msg: action.payload.msg,
           },
@@ -51,13 +55,18 @@ export function reducer(state, action) {
         return {
           ...state,
           emailFormat: {
-            isValid: true,
+            isValid: false,
             value: action.payload.value,
             msg: action.payload.msg,
           },
         };
       } else {
-        return errorsState;
+        return {
+          ...state,
+          emailFormat: {
+            isValid: true,
+          },
+        };
       }
     case ACTIONS.PASSWORD_FORMAT:
       let validPassFormat =
@@ -66,7 +75,7 @@ export function reducer(state, action) {
         return {
           ...state,
           passwordFormat: {
-            isValid: true,
+            isValid: false,
             value: action.payload.value,
             msg: action.payload.msg,
           },
@@ -75,13 +84,18 @@ export function reducer(state, action) {
         return {
           ...state,
           passwordFormat: {
-            isValid: true,
+            isValid: false,
             value: action.payload.value,
             msg: action.payload.msg,
           },
         };
       } else {
-        return errorsState;
+        return {
+          ...state,
+          passwordFormat: {
+            isValid: true,
+          },
+        };
       }
     default:
       throw new Error("error");

@@ -25,6 +25,16 @@ function Register() {
   // Reducer States
   const [state, dispatch] = useReducer(reducer, errorsState);
 
+  // useState
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  // useEffect
+  useEffect(() => {
+    if(state.usernameLength.isValid && state.emailFormat.isValid && state.passwordFormat.isValid) {
+      setFormIsValid(true)
+    };
+  }, [state.usernameLength.value, state.emailFormat.value, state.passwordFormat.value])
+
   // Navigate
   let navigate = useNavigate();
 
@@ -69,7 +79,7 @@ function Register() {
             type="text"
             placeholder="Escribí tu nombre de usuario"
           />
-          {state.usernameLength.isValid === true && (
+          {state.usernameLength.isValid === false && (
             <span className="text-danger">{state.usernameLength.msg}</span>
           )}
         </Form.Group>
@@ -86,7 +96,7 @@ function Register() {
             type="email"
             placeholder="Escribí tu email"
           />
-          {state.emailFormat.isValid === true && (
+          {state.emailFormat.isValid === false && (
             <span className="text-danger">{state.emailFormat.msg}</span>
           )}
         </Form.Group>
@@ -103,12 +113,12 @@ function Register() {
             type="password"
             placeholder="Password"
           />
-          {state.passwordFormat.isValid === true && (
+          {state.passwordFormat.isValid === false && (
             <span className="text-danger">{state.passwordFormat.msg}</span>
           )}
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button disabled={!formIsValid} variant="primary" type="submit">
           Registrarse
         </Button>
       </Form>

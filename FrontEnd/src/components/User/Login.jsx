@@ -17,11 +17,6 @@ const Login = () => {
   const loginSubmitHandler = (e) => {
     e.preventDefault();
     login();
-    // setTimeout(() => {
-    //   if (userLogged) {
-    //     navigate("/")
-    //   }
-    // }, 2000)
   };
   return (
     <Container>
