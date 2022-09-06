@@ -28,6 +28,7 @@ export const UserProvider = ({ children }) => {
 
   // REGISTER
   async function register() {
+    
     let userCreated = {
       userName: userNameRef.current.value,
       email: emailRef.current.value,

@@ -23,8 +23,10 @@ const userController = {
           msg: "Email already exist in database",
         });
       }
+      const img = req.file.image
+      
 
-      const userToCreate = await User.create({ ...req.body, password: hashPassword });
+      const userToCreate = await User.create({ ...req.body, password: hashPassword, img: img });
       console.log("usuario creado: ", userToCreate);
       if (userToCreate === null) {
         return res.json({

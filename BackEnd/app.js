@@ -23,6 +23,9 @@ app.use(express.json());
 // Utilizamos PUT y PATCH y DELETE
 app.use(methodOverride('_method'));
 
+// Static files
+app.use(express.static(path.resolve(__dirname, "./public")))
+
 // Rutas de APIs
 const userApiRoute = require("./src/Routes/userApiRoute");
 app.use("/api", userApiRoute);

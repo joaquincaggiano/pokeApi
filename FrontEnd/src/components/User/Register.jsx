@@ -72,6 +72,14 @@ function Register() {
     }
   };
 
+  const onSendHandler = (e) => {
+
+  }
+
+  const onChangeFile = (e) => {
+    const file = e.target.files
+  }
+
   return (
     <Container>
       <Form className="text-white" onSubmit={(e) => handleOnSubmit(e)}>
@@ -125,8 +133,24 @@ function Register() {
             <span className="text-danger">{state.passwordFormat.msg}</span>
           )}
         </Form.Group>
+        <Form.Group className="mb-3" controlId="avatarUpload">
+          <Form.Label>Avatar:</Form.Label>
+          <Form.Control
+            // data-type={ACTIONS.PASSWORD_FORMAT}
+            // data-msg="Password be at least 8 characters and must contain at least one upper case, one lower case and one number"
+            name="Avatar"
+            // ref={passwordRef}
+            // onChange={onChangeHandler}
+            // onBlur={onBlurHandler}
+            type="file"
+            placeholder="Avatar"
+          />
+          {/* {state.passwordFormat.isValid === false && (
+            <span className="text-danger">{state.passwordFormat.msg}</span>
+          )} */}
+        </Form.Group>
 
-        <Button disabled={!formIsValid} variant="primary" type="submit">
+        <Button onClick={onSendHandler} disabled={!formIsValid} variant="primary" type="submit">
           Registrarse
         </Button>
       </Form>
