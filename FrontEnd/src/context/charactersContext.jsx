@@ -69,7 +69,7 @@ export const PokemonContextProvider = ({ children }) => {
                 id: result.data.id,
                 name: nameWithUppercase,
                 image: result.data.sprites.other.home.front_default,
-                // image: result.data.sprites.other.dream_world.front_default
+                // image: result.data.sprites.other.dream_world.front_default,
                 // image: result.data.sprites.front_default,
                 type: typePokemon,
               });

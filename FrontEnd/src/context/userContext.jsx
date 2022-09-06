@@ -57,24 +57,26 @@ export const UserProvider = ({ children }) => {
       .post("http://localhost:3030/api/user/login", userToLogin)
       .then((response) => {
         console.log("response", response);
-        if (response.data.status === 400) {
-          setValidationLogin("You must complete all the fields");
-          console.log("You must complete all the fields", validationLogin);
-        } else if (response.data.status === 401) {
-          setValidationLogin("Credentials do not match");
-          console.log("Credentials do not match", validationLogin);
-        } else if (response.data.status === 404) {
-          setValidationLogin("User not found");
-          console.log("User not found", validationLogin);
-        } else {
-          console.log("USUARIO LOGEADO", response.data.user);
+        if (response.status === 200) {
           setUserLogged({ ...response.data.user });
           navigate("/");
         }
       })
-      .catch((error) => console.log("Error", error));
+      .catch((error) => {
+        if (error.response.status === 400) {
+          setValidationLogin("You must complete all the fields");
+          console.log("You must complete all the fields", validationLogin);
+        } else if (error.response.status === 401) {
+          setValidationLogin("Credentials do not match");
+          console.log("Credentials do not match", validationLogin);
+        } else if (error.response.status === 404) {
+          setValidationLogin("User not found");
+          console.log("User not found", validationLogin);
+        }
+      });
   };
   // console.log("User STATE", userLogged);
+  // console.log("validation login", validationLogin)
 
   const userDataProvider = {
     register,
@@ -87,6 +89,7 @@ export const UserProvider = ({ children }) => {
     errorsState,
     ACTIONS,
     validationLogin,
+    // msgErrorLogin,
   };
 
   return (

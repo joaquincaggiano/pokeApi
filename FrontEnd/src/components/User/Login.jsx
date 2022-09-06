@@ -11,7 +11,6 @@ import { UserContext } from "../../context/userContext";
 import { Form, Button, Container } from "react-bootstrap";
 
 const Login = () => {
-
   // Router
   const navigate = useNavigate();
 
@@ -25,6 +24,7 @@ const Login = () => {
     errorsState,
     ACTIONS,
     validationLogin,
+    // msgErrorLogin
   } = useContext(UserContext);
 
   // Reducer States
@@ -53,8 +53,6 @@ const Login = () => {
   const loginSubmitHandler = (e) => {
     e.preventDefault();
     login();
-    setTimeout(()=>{console.log("validation login", validationLogin)}, 2000)
-    
   };
   return (
     <Container>
@@ -91,8 +89,9 @@ const Login = () => {
           )}
         </Form.Group>
 
-        {validationLogin && <span className="text-danger">{validationLogin}</span>}
-
+        {validationLogin && (
+          <div className="text-danger">{validationLogin}</div>
+        )}
         <Button variant="primary" type="submit">
           Login
         </Button>
