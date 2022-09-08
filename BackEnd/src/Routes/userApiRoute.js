@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../../multer/multer")
 
 // Requiero el controller
 const userController = require("../Controllers/apiUserController");
@@ -9,7 +10,7 @@ const userController = require("../Controllers/apiUserController");
 router.get("/user/:id", userController.profile);
 
 // Register
-router.post("/user/create", userController.createUser);
+router.post("/user/create", upload.single("file"), userController.createUser);
 
 // Login
 router.post("/user/login", userController.processLogin);

@@ -1,6 +1,9 @@
 // Hooks
 import { useContext, useState, useReducer, useEffect } from "react";
 
+// Axios
+import axios from "axios";
+
 // router
 import { useNavigate } from "react-router-dom";
 
@@ -20,6 +23,7 @@ function Register() {
     reducer,
     errorsState,
     ACTIONS,
+    setFile
   } = useContext(UserContext);
 
   // Reducer States
@@ -27,6 +31,7 @@ function Register() {
 
   // useState
   const [formIsValid, setFormIsValid] = useState(false);
+  // const [file, setFile] = useState();
 
   // useEffect
   useEffect(() => {
@@ -72,13 +77,10 @@ function Register() {
     }
   };
 
-  const onSendHandler = (e) => {
-
-  }
-
   const onChangeFile = (e) => {
-    const file = e.target.files
-  }
+    const file = e.target.files[0];
+    setFile(file);
+  };
 
   return (
     <Container>
@@ -134,23 +136,22 @@ function Register() {
           )}
         </Form.Group>
         <Form.Group className="mb-3" controlId="avatarUpload">
-          <Form.Label>Avatar:</Form.Label>
+          <Form.Label>Avatar - accepts extensions .jpg, .jpeg, .png:</Form.Label>
           <Form.Control
-            // data-type={ACTIONS.PASSWORD_FORMAT}
-            // data-msg="Password be at least 8 characters and must contain at least one upper case, one lower case and one number"
             name="Avatar"
-            // ref={passwordRef}
-            // onChange={onChangeHandler}
-            // onBlur={onBlurHandler}
             type="file"
+            accept=".jpg, .jpeg, .png"
             placeholder="Avatar"
+            onChange={onChangeFile}
           />
-          {/* {state.passwordFormat.isValid === false && (
-            <span className="text-danger">{state.passwordFormat.msg}</span>
-          )} */}
         </Form.Group>
 
-        <Button onClick={onSendHandler} disabled={!formIsValid} variant="primary" type="submit">
+        <Button
+          // onClick={onSendHandler}
+          disabled={!formIsValid}
+          variant="primary"
+          type="submit"
+        >
           Registrarse
         </Button>
       </Form>

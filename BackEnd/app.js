@@ -5,12 +5,13 @@ const methodOverride = require('method-override')
 const app = express();
 
 const cors = require('cors');
-const corsOptions ={
-    origin:'http://localhost:3000', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
+// const corsOptions ={
+//     origin:'http://localhost:3000', 
+//     credentials:true,            //access-control-allow-credentials:true
+//     optionSuccessStatus:200
+// }
+// app.use(cors(corsOptions));
+app.use(cors());
 
 app.listen(3030, () => {
     console.log('Servidor corriendo correctamente en puerto 3030')

@@ -2,13 +2,13 @@
 const { User } = require("../../database/models");
 
 // bcrypt
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 const userController = {
   profile: (req, res) => {
     console.log("Hola");
   },
-  createUser: async (req, res) => {
+  createUser: async (req, res, next) => {
     let hashPassword = bcrypt.hashSync(req.body.password, 10);
 
     try {
@@ -23,10 +23,16 @@ const userController = {
           msg: "Email already exist in database",
         });
       }
-      const img = req.file.image
-      
 
-      const userToCreate = await User.create({ ...req.body, password: hashPassword, img: img });
+      // if(req.file?.detectedFileExtension !== ".jpg") {
+      //   next(new Error("Invalid file type"));
+      // }
+
+      const userToCreate = await User.create({
+        ...req.body,
+        password: hashPassword,
+        file: req.file ? req.file.filename : "",
+      });
       console.log("usuario creado: ", userToCreate);
       if (userToCreate === null) {
         return res.json({
@@ -50,7 +56,10 @@ const userController = {
           email: req.body.email,
         },
       });
-      let passwordCorrect = bcrypt.compareSync(req.body?.password, userToLogin.password);
+      let passwordCorrect = bcrypt.compareSync(
+        req.body?.password,
+        userToLogin.password
+      );
 
       if (!req.body.password || !req.body.email) {
         return res.status(400).json({

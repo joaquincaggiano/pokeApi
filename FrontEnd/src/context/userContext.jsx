@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 
 // Axios
 import axios from "axios";
+
 //navigate
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +19,8 @@ export const UserProvider = ({ children }) => {
   // STATES
   const [userLogged, setUserLogged] = useState();
   const [validationLogin, setValidationLogin] = useState("");
+  const [file, setFile] = useState();
+
 
   // REFERENCIAS DE INPUTS
   const userNameRef = useRef();
@@ -28,16 +31,22 @@ export const UserProvider = ({ children }) => {
 
   // REGISTER
   async function register() {
+    const dataUser = new FormData();
+    dataUser.append("userName", userNameRef.current.value);
+    dataUser.append("email", emailRef.current.value);
+    dataUser.append("password", passwordRef.current.value);
+    dataUser.append("file", file);
+
     
-    let userCreated = {
-      userName: userNameRef.current.value,
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    };
-    console.log("user created", userCreated);
+    // let userCreated = {
+    //   userName: userNameRef.current.value,
+    //   email: emailRef.current.value,
+    //   password: passwordRef.current.value,
+    // };
+    // console.log("user created", userCreated);
     try {
       axios
-        .post("http://localhost:3030/api/user/create", userCreated)
+        .post("http://localhost:3030/api/user/create", dataUser)
         .then((response) => {
           console.log("response", response);
         })
@@ -90,6 +99,7 @@ export const UserProvider = ({ children }) => {
     errorsState,
     ACTIONS,
     validationLogin,
+    setFile
     // msgErrorLogin,
   };
 
