@@ -8,7 +8,10 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 
 // Boostrap
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container, Card } from "react-bootstrap";
+
+import styles from "./Login.module.css"
+
 
 function Register() {
   // CONTEXT
@@ -80,8 +83,10 @@ function Register() {
   };
 
   return (
-    <Container>
-      <Form className="text-white" onSubmit={(e) => handleOnSubmit(e)}>
+    <Container className='pt-5'>
+      <Card className={`pt-3 w-50 m-auto rounded`} style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
+  
+      <Form className="text-white p-3 align-self-center " onSubmit={(e) => handleOnSubmit(e)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>User Name:</Form.Label>
           <Form.Control
@@ -148,10 +153,13 @@ function Register() {
           disabled={!formIsValid}
           variant="primary"
           type="submit"
+          className={`${styles.buttonUpdate}`}
         >
           Registrarse
         </Button>
       </Form>
+            
+      </Card>
     </Container>
   );
 }

@@ -50,12 +50,13 @@ const Login = () => {
   const loginSubmitHandler = (e) => {
     e.preventDefault();
     login();
-    // setTimeout(()=>{console.log("USER LOGGED IN LOGIN", userLogged)}, 2000)
   };
+ 
   return (
-    <Container className="border p-3 opacity-3 bc">
-      <Card></Card>
-      <Form className={`text-white ${styles.formStyle} p-3`} onSubmit={loginSubmitHandler}>
+    <Container className='pt-5'>
+
+    <Card className={`pt-3 w-50 m-auto rounded`} style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
+      <Form className={`text-white ${styles.formStyle} p-3 align-self-center `} onSubmit={loginSubmitHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email:</Form.Label>
           <Form.Control
@@ -91,11 +92,13 @@ const Login = () => {
         {validationLogin && (
           <div className="text-danger">{validationLogin}</div>
         )}
-        <Button variant="primary" type="submit">
+        <Button className={`${styles.buttonUpdate}`} variant="primary" type="submit">
           Login
         </Button>
       </Form>
-    </Container>
+    </Card>
+          
+   </Container>
   );
 };
 
