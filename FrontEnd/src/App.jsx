@@ -19,7 +19,7 @@ const App = () => {
       <UserProvider>
         <PokemonContextProvider>
           <Header />
-          <main className={`${classes.pokeFondo}`}>
+          <main className={`${classes.pokeFondo} container-fluid`}>
             <PokemonRoutes />
             <div className={classes.arrowUpContainer}>
               <i className="fa-solid fa-arrow-up"></i>

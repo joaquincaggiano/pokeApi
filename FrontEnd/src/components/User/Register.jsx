@@ -1,9 +1,6 @@
 // Hooks
 import { useContext, useState, useReducer, useEffect } from "react";
 
-// Axios
-import axios from "axios";
-
 // router
 import { useNavigate } from "react-router-dom";
 

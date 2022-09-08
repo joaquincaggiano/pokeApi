@@ -6,6 +6,7 @@ import Home from "../components/Home/Home";
 import Register from "../components/User/Register";
 import Characters from "../components/Characters/Characters";
 import Login from "../components/User/Login";
+import Profile from '../components/User/Profile'
 
 function PokemonRoutes() {
   return (
@@ -13,7 +14,7 @@ function PokemonRoutes() {
     <Route path="/" element={<Home/>} />
     <Route path="/user/create" element={<Register/>} />
     <Route path="/user/login" element={<Login/>} />
-    <Route>Profile</Route>
+    <Route path="/user/profile" element={<Profile/>} />
     <Route path="/characters" element={<Characters/>} />
   </Routes>
   );

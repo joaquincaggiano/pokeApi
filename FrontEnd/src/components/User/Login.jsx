@@ -1,29 +1,26 @@
 // Hooks
 import { useContext, useReducer } from "react";
 
-// router
-import { useNavigate } from "react-router-dom";
-
 //  Context
 import { UserContext } from "../../context/userContext";
 
 // Boostrap
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container, Card } from "react-bootstrap";
+
+// Css
+import styles from "./Login.module.css"
 
 const Login = () => {
-  // Router
-  const navigate = useNavigate();
-
   // UseContext
   const {
     login,
     emailRef,
     passwordRef,
-    userLogged,
+    // userLogged,
     reducer,
     errorsState,
     ACTIONS,
-    validationLogin,
+    validationLogin
     // msgErrorLogin
   } = useContext(UserContext);
 
@@ -53,10 +50,12 @@ const Login = () => {
   const loginSubmitHandler = (e) => {
     e.preventDefault();
     login();
+    // setTimeout(()=>{console.log("USER LOGGED IN LOGIN", userLogged)}, 2000)
   };
   return (
-    <Container>
-      <Form className="text-white" onSubmit={loginSubmitHandler}>
+    <Container className="border p-3 opacity-3 bc">
+      <Card></Card>
+      <Form className={`text-white ${styles.formStyle} p-3`} onSubmit={loginSubmitHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email:</Form.Label>
           <Form.Control

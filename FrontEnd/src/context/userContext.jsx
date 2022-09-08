@@ -2,7 +2,7 @@
 import { createContext } from "react";
 
 // Hooks
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 // Axios
 import axios from "axios";
@@ -17,10 +17,9 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   // STATES
-  const [userLogged, setUserLogged] = useState();
+  const [userLogged, setUserLogged] = useState(false);
   const [validationLogin, setValidationLogin] = useState("");
   const [file, setFile] = useState();
-
 
   // REFERENCIAS DE INPUTS
   const userNameRef = useRef();
@@ -37,13 +36,6 @@ export const UserProvider = ({ children }) => {
     dataUser.append("password", passwordRef.current.value);
     dataUser.append("file", file);
 
-    
-    // let userCreated = {
-    //   userName: userNameRef.current.value,
-    //   email: emailRef.current.value,
-    //   password: passwordRef.current.value,
-    // };
-    // console.log("user created", userCreated);
     try {
       axios
         .post("http://localhost:3030/api/user/create", dataUser)
@@ -68,8 +60,18 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         console.log("response", response);
         if (response.status === 200) {
-          setUserLogged({ ...response.data.user });
-          navigate("/");
+          console.log("USUARIO LOGEADO", response.data.user);
+          let userLogged = {
+            userName: response.data.user.userName,
+            email: response.data.user.email,
+            file: response.data.user.file,
+          };
+          localStorage.setItem("user", JSON.stringify(userLogged));
+          setUserLogged(true)
+          navigate("/user/profile");
+
+          // setUserLogged({...response.data.user});
+          // console.log("USER LOGGED", userLogged);
         }
       })
       .catch((error) => {
@@ -85,8 +87,13 @@ export const UserProvider = ({ children }) => {
         }
       });
   };
-  // console.log("User STATE", userLogged);
-  // console.log("validation login", validationLogin)
+
+  //PROFILE
+  // useEffect(()=>{
+  //   if(localStorage.getItem('user')){
+  //     setUserLogged(true)
+  //   }
+  // }, [])
 
   const userDataProvider = {
     register,
@@ -99,8 +106,8 @@ export const UserProvider = ({ children }) => {
     errorsState,
     ACTIONS,
     validationLogin,
-    setFile
-    // msgErrorLogin,
+    setFile,
+    setUserLogged
   };
 
   return (

@@ -5,10 +5,14 @@ const { User } = require("../../database/models");
 const bcrypt = require("bcryptjs");
 
 const userController = {
-  profile: (req, res) => {
-    console.log("Hola");
+  profile: async (req, res) => {
+    let isUserInDB = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
   },
-  createUser: async (req, res, next) => {
+  createUser: async (req, res) => {
     let hashPassword = bcrypt.hashSync(req.body.password, 10);
 
     try {
@@ -31,7 +35,7 @@ const userController = {
       const userToCreate = await User.create({
         ...req.body,
         password: hashPassword,
-        file: req.file ? req.file.filename : "",
+        file: req.file ? req.file.filename : "default_image.jpeg",
       });
       console.log("usuario creado: ", userToCreate);
       if (userToCreate === null) {
