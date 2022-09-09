@@ -55,8 +55,8 @@ const Login = () => {
   return (
     <Container className='pt-5'>
 
-    <Card className={`pt-3 w-50 m-auto rounded`} style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
-      <Form className={`text-white ${styles.formStyle} p-3 align-self-center `} onSubmit={loginSubmitHandler}>
+    <Card className={`pt-3 w-75 m-auto rounded`} style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
+      <Form className={`text-white p-3 align-self-center container-fluid `} onSubmit={loginSubmitHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email:</Form.Label>
           <Form.Control
@@ -92,7 +92,7 @@ const Login = () => {
         {validationLogin && (
           <div className="text-danger">{validationLogin}</div>
         )}
-        <Button className={`${styles.buttonUpdate}`} variant="primary" type="submit">
+        <Button className={`${styles.buttonUpdate} `} variant="primary" type="submit">
           Login
         </Button>
       </Form>

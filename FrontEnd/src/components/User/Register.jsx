@@ -84,9 +84,9 @@ function Register() {
 
   return (
     <Container className='pt-5'>
-      <Card className={`pt-3 w-50 m-auto rounded`} style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
+      <Card className={`pt-3 w-75 m-auto rounded container-fluid`} style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
   
-      <Form className="text-white p-3 align-self-center " onSubmit={(e) => handleOnSubmit(e)}>
+      <Form className="text-white p-3 align-self-center container-fluid" onSubmit={(e) => handleOnSubmit(e)}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>User Name:</Form.Label>
           <Form.Control

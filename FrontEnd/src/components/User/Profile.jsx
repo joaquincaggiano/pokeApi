@@ -24,7 +24,7 @@ function Profile() {
   }
 
   return (
-    <Card className={`pt-3 pb-3 w-50 m-auto rounded`} style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
+    <Card className={`pt-3 pb-3 w-50 m-auto rounded container-fluid`} style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
     <div className="d-flex flex-column justify-content-center align-items-center text-white">
       <img
         className={`rounded-circle ${style.imgUser}`}
