@@ -68,20 +68,22 @@ const DetailPokemon = React.forwardRef((props, ref) => {
 
   // Handlers
   const leftHandlerPokemon = () => {
-    setOnePokemon(
-      ctx.allPokemones.find((pokemon) => {
-        return pokemon.id === onePokemon.id - 1;
-      })
-    );
+    const unPokemon = ctx.allPokemones.find((pokemon) => {
+      return pokemon.id === onePokemon.id - 1;
+    })
+    if(unPokemon){
+      setOnePokemon(unPokemon);
+    }
     setActualQuote("Choose a quote below");
   };
 
   const rightHandlerPokemon = () => {
-    setOnePokemon(
-      ctx.allPokemones.find((pokemon) => {
-        return pokemon.id === onePokemon.id + 1;
-      })
-    );
+    const unPokemon = ctx.allPokemones.find((pokemon) => {
+      return pokemon.id === onePokemon.id + 1;
+    })
+    if(unPokemon){
+      setOnePokemon(unPokemon);
+    }
     setActualQuote("Choose a quote below");
   };
 
