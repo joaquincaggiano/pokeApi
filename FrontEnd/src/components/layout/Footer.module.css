@@ -2,16 +2,62 @@ footer {
     background-color: black;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     border-top: 2px solid #4682B4;
-    
+}
+
+.owners {
+    font-size: 18px;
 }
 
 .logoPokemonStyle {
-    width: 400px;
+    width: 100%
 }
 
 .footerText{
     color: white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(min-width: 768px){
+    .logoPokemonStyle {
+        width: 300px;
+    }
+
+    footer {
+        background-color: black;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        border-top: 2px solid #4682B4;
+    }
+
+    .footerText{
+        margin-top: 40px;
+    }
+
+    .owners, .foundation {
+        font-size: 22px;
+    }
+}
+
+@media(min-width: 1200px) {
+    .logoPokemonStyle {
+        width: 450px;
+    }
+
+    .owners {
+        font-size: 28px;
+    }
+    .foundation{
+        font-size: 24px;
+    }
 }

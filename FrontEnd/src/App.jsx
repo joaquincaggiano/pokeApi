@@ -21,9 +21,9 @@ const App = () => {
           <Header />
           <main className={`${classes.pokeFondo} container-fluid`}>
             <PokemonRoutes />
-            <div className={classes.arrowUpContainer}>
+            {/* <div className={classes.arrowUpContainer}>
               <i className="fa-solid fa-arrow-up"></i>
-            </div>
+            </div> */}
           </main>
         </PokemonContextProvider>
         <Footer />

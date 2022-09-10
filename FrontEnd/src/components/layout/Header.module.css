@@ -1,0 +1,60 @@
+header {
+    background-color: black;
+    width: 100%;
+}
+
+.visibilityNav {
+    display: none;
+}
+
+.visibilityBurguer {
+    display: block;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+i{
+    font-size: 22px;
+}
+
+.logoPokemon{
+    width: 200px;
+}
+
+.liBox {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+li{
+    list-style: none;
+    margin-right: 15px;
+}
+
+.linkStyle {
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+}
+
+@media(min-width: 768px) {
+    .visibilityNav {
+        display: block;
+    }
+
+    .visibilityBurguer {
+        display: none;
+    }
+
+    nav {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}

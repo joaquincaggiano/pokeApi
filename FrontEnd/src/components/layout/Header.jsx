@@ -1,31 +1,42 @@
 import React from "react";
+// Assets
 import logoPokemon from "../../img/footer.jpg";
+
+// Router
 import { Link } from "react-router-dom";
+
+// UseContext
 import { UserContext } from "../../context/userContext";
 import { useContext } from "react";
+
+// Css
+import classes from "./Header.module.css";
 
 function Header() {
   const { userLogged } = useContext(UserContext);
   return (
-    <header style={{ backgroundColor: "black" }}>
-      <nav className="d-flex justify-content-around align-items-center">
+    <header>
+      <nav>
+
         <Link to="/">
-          <img src={logoPokemon} alt="pokemon" style={{ width: "200px" }} />
+          <img src={logoPokemon} alt="pokemon" className={classes.logoPokemon}/>
         </Link>
 
+        <i className={`fa-solid fa-bars text-white ${classes.visibilityBurguer}`}></i>
+
         {userLogged ? (
-          <div className="d-flex justify-content-around">
-             <li className="list-unstyled me-4">
+          <div className={classes.liBox}>
+             <li className={classes.visibilityNav}>
               <Link
-                className="text-decoration-none text-white fs-4"
+                className={classes.linkStyle}
                 to="/characters"
               >
                 Pokemones
               </Link>
             </li>
-            <li className="list-unstyled me-4">
+            <li className={classes.visibilityNav}>
               <Link
-                className="text-decoration-none text-white fs-4"
+                className={classes.linkStyle}
                 to="/user/profile"
               >
                 Profile
@@ -33,26 +44,26 @@ function Header() {
             </li>
           </div>
         ) : (
-          <div className="d-flex justify-content-around">
-            <li className="list-unstyled me-4">
+          <div className={classes.liBox}>
+            <li className={classes.visibilityNav}>
               <Link
-                className="text-decoration-none text-white fs-4"
+                className={classes.linkStyle}
                 to="/characters"
               >
                 Pokemones
               </Link>
             </li>
-            <li className="list-unstyled me-4">
+            <li className={classes.visibilityNav}>
               <Link
-                className="text-decoration-none text-white fs-4"
+                className={classes.linkStyle}
                 to="/user/create"
               >
                 Register
               </Link>
             </li>
-            <li className="list-unstyled me-4">
+            <li className={classes.visibilityNav}>
               <Link
-                className="text-decoration-none text-white fs-4"
+                className={classes.linkStyle}
                 to="/user/login"
               >
                 Login

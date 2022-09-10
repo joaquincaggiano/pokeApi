@@ -13,8 +13,8 @@ function Footer() {
         alt="logoPokemon"
       />
       <div className={classes.footerText}>
-        <h2>Joaquín Caggiano - Catalina Quarleri</h2>
-        <p>©2022 PokeApi</p>
+        <h2 className={classes.owners}>Joaquín Caggiano - Catalina Quarleri</h2>
+        <p className={classes.foundation}>©2022 PokeApi</p>
       </div>
     </footer>
   );
