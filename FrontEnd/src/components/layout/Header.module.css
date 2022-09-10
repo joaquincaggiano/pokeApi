@@ -21,10 +21,11 @@ nav {
 
 i{
     font-size: 22px;
+    margin-bottom: 20px;
 }
 
 .logoPokemon{
-    width: 200px;
+    width: 250px;
 }
 
 .liBox {
@@ -56,5 +57,20 @@ li{
     nav {
         flex-direction: row;
         justify-content: space-around;
+    }
+
+    .linkStyle{
+        font-size: 24px;
+    }
+
+}
+
+@media(min-width: 1200px){
+    .linkStyle{
+        font-size: 28px;
+    }
+
+    .logoPokemon{
+        width: 350px;
     }
 }
