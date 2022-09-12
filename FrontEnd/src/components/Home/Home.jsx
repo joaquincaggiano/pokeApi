@@ -5,7 +5,7 @@ function Home() {
   return (
     <>
       <h1>ESTE ES EL HOME POKEMON</h1>
-      <img src={pikapika} alt="pikachuGif" className="w-75"/>
+      <img src={pikapika} alt="pikachuGif" className="w-25"/>
     </>
   );
 }

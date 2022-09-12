@@ -45,6 +45,41 @@ li{
     font-size: 22px;
 }
 
+.linkStyle:hover {
+    color: yellow;
+    transition: all 0.4s;
+}
+
+.navMobile{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.divMobile{
+    width: 95%;
+    margin-bottom: 20px;
+}
+
+.divMobileVisibility {
+    display: none;
+}
+
+.liMobile {
+    width: 100%;
+    /* border: 1px solid yellow; */
+    padding: 8px;
+}
+
+/* .liMobile:hover {
+    background-color: #4682B4;
+    transition: all 0.4s;
+} */
+
+
 @media(min-width: 768px) {
     .visibilityNav {
         display: block;
