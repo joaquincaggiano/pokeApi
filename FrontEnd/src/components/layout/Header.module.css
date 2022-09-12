@@ -98,6 +98,10 @@ li{
         font-size: 24px;
     }
 
+    .navMobile{
+        display: none;
+    }
+
 }
 
 @media(min-width: 1200px){
