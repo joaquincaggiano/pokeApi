@@ -24,18 +24,16 @@ function Header() {
 
   // useState
   const [showMenu, setShowMenu] = useState(false);
-  const [menuVisibility, setMenuVisibility] = useState("d-none");
+  // const [menuVisibility, setMenuVisibility] = useState("d-none");
 
   const handleMenuMobile = () => {
     setShowMenu(!showMenu);
-    if (showMenu) {
-      setMenuVisibility("d-block");
-    } else {
-      setMenuVisibility("d-none");
-    }
+    // if (showMenu) {
+    //   setMenuVisibility("d-block");
+    // } else {
+    //   setMenuVisibility("d-none");
+    // }
   };
-  console.log("showMenu", showMenu);
-  console.log("MENU", menu)
 
   return (
     <header>
@@ -79,7 +77,7 @@ function Header() {
               onClick={handleMenuMobile}
             ></i>
             <div
-              className={`${classes.divMobile} ${menuVisibility}`}
+              className={`${classes.divMobile} ${!showMenu ? classes.divMobileVisibility : ""}`}
               ref={menu}
             >
               <li className={classes.liMobile}>
