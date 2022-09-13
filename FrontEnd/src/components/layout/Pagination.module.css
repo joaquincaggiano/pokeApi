@@ -133,11 +133,9 @@
   background: #fff;
 }
 
-/* @media (min-width: 768px) {
-  .paginationMobile {
-    display: none;
-  }
-} */
+.paginationDesktop{
+  display: none;
+}
 
 @media (min-width: 768px) {
   .paginationMobile {
