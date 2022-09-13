@@ -19,20 +19,11 @@ function Header() {
   // Context
   const { userLogged } = useContext(UserContext);
 
-  // useRef
-  const menu = useRef();
-
   // useState
   const [showMenu, setShowMenu] = useState(false);
-  // const [menuVisibility, setMenuVisibility] = useState("d-none");
 
   const handleMenuMobile = () => {
     setShowMenu(!showMenu);
-    // if (showMenu) {
-    //   setMenuVisibility("d-block");
-    // } else {
-    //   setMenuVisibility("d-none");
-    // }
   };
 
   return (
@@ -51,24 +42,29 @@ function Header() {
           <div className={`${classes.navMobile}`}>
             <i
               className={`fa-solid fa-bars text-white ${classes.visibilityBurguer}`}
+              onClick={handleMenuMobile}
             ></i>
-            <ul>
-              <li>
+            <div
+              className={`${classes.divMobile} ${
+                !showMenu ? classes.divMobileVisibility : ""
+              }`}
+            >
+              <li className={classes.liMobile}>
                 <Link className={classes.linkStyle} to="/">
                   Home
                 </Link>
               </li>
-              <li>
+              <li className={classes.liMobile}>
                 <Link className={classes.linkStyle} to="/characters">
                   Pokemones
                 </Link>
               </li>
-              <li>
+              <li className={classes.liMobile}>
                 <Link className={classes.linkStyle} to="/user/profile">
                   Profile
                 </Link>
               </li>
-            </ul>
+            </div>
           </div>
         ) : (
           <div className={`${classes.navMobile}`}>
@@ -77,9 +73,10 @@ function Header() {
               onClick={handleMenuMobile}
             ></i>
             <div
-              className={`${classes.divMobile} ${!showMenu ? classes.divMobileVisibility : ""}`}
-              ref={menu}
-            >
+              className={`${classes.divMobile} ${
+                !showMenu ? classes.divMobileVisibility : ""
+              }`}
+            >            
               <li className={classes.liMobile}>
                 <Link className={classes.linkStyle} to="/">
                   Home

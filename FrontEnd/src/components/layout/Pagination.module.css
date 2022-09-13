@@ -1,55 +1,182 @@
 .paginationStyle {
+  display: none;
+}
+
+.paginationMobile {
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.optionsMobile {
+  width: 100%;
+  padding: 15px;
+  background: rgba(255, 0, 0, 0.407);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  transition: all 3s;
+}
+
+.optionsMobile li {
+  color: white;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.optionsMobile li select {
+  width: 80px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.buttonsMobileBox {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.buttonMobile {
+  width: 100px;
+  border: 1px solid #dc143cb2;
+  color: #dc143c;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 0px rgba(220, 20, 60, 0.75);
+}
+
+.visibilityMenu {
+  display: none;
+}
+
+/* Pokebola */
+
+.pokebola {
+  cursor: pointer;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border: 3px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+  transition: all 1s;
+}
+
+.pokebola::before {
+  content: "";
+  position: absolute;
+  background: #ff1c1c;
+  width: 100%;
+  height: 50%;
+}
+
+.pokebola::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1.5px);
+  width: 100%;
+  height: 50%;
+  background: #fff;
+  border-top: 3px solid;
+}
+
+.pokebola2 {
+  cursor: pointer;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border: 3px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+  transform: rotate(180deg);
+  transition: all 1s;
+}
+
+.pokebola2::before {
+  content: "";
+  position: absolute;
+  background: #ff1c1c;
+  width: 100%;
+  height: 50%;
+}
+
+.pokebola2::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1.5px);
+  width: 100%;
+  height: 50%;
+  background: #fff;
+  border-top: 3px solid;
+}
+
+.detailPokebola {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid;
+  border-radius: 50%;
+  top: calc(50% - 1px - 4px);
+  left: calc(50% - 1px - 4px);
+  z-index: 10;
+  background: #fff;
+}
+
+/* @media (min-width: 768px) {
+  .paginationMobile {
+    display: none;
+  }
+} */
+
+@media (min-width: 768px) {
+  .paginationMobile {
+    display: none;
+  }
+
+  .paginationDesktop {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    padding: 5px;
-    background-color: #f5f5f5;
-    box-shadow: 0px 5px 5px 0px rgba(70,130,180,0.75);
-}
-
-.borderColorPagination{
-    -webkit-text-stroke: 2px #4682B4;
-    color: yellow;
-    font-size: 30px;
-}
-
-.familyPokemon {
-    font-family: 'Pokemon Solid', 'sans-serif';
-}
-
-.selectContainer{
-    position: relative;
-}
-
-.selectStyle {
-    width: 60px;
-    position: absolute;
-    top:5px;
-    left: 100%;
-    border: 2px solid #4682B4;
-    border-radius: 3px;
-    color: #4682B4;
-    cursor: pointer;
-}
-
-.buttonStyle{
-    font-family: 'Pokemon Solid', sans-serif;
-    border-color: #4682B4;
-    color: #4682B4;
-    width: 100px;
-    padding: 5px;
+    background: 	rgba(220, 20, 60, 0.781);
     border-radius: 5px;
+    color: white;
     font-size: 20px;
-    margin-right: 10px;
-    box-shadow: 3px 3px 5px 0px rgba(70,130,180,0.75);
-    
+  }
+
+  .paginationDesktop select {
+    width: 60px;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+  .buttonsDesktop{
+    width: 80px;
+    border-radius: 5px;
+    color: #dc143c;
+    border: 1px solid #dc143cb2;
+  }
+  .buttonsDesktop:hover{
+    font-weight: bold;
+  }
 }
 
-.buttonStyle:hover {
-    background-color: #4682B4;
-    border-color: #4682B4;
-    color: white;
-    box-shadow: 1px 0px 10px 5px rgba(70,130,180,0.75);
-    transition: all 0.4s;
+@media (min-width: 1200px){
+  .paginationDesktop{
+    font-size: 26px;
+  }
 }

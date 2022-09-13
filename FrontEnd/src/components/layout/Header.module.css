@@ -95,7 +95,7 @@ li{
     }
 
     .linkStyle{
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .navMobile{
@@ -106,7 +106,7 @@ li{
 
 @media(min-width: 1200px){
     .linkStyle{
-        font-size: 28px;
+        font-size: 30px;
     }
 
     .logoPokemon{

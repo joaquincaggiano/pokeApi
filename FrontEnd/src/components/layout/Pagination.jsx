@@ -1,5 +1,5 @@
 // Hooks
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 // Context
 import { PokemonContext } from "../../context/charactersContext";
@@ -18,67 +18,110 @@ const Pagination = (ref) => {
     nextPage,
   } = useContext(PokemonContext);
 
+  const [showMenu, setShowMenu] = useState(false);
+
+  const handlePokebolaMenu = () => {
+    setShowMenu(!showMenu);
+  };
+
   return (
-    <div className={`${classes.paginationStyle} mb-5`}>
-      <div>
-        <p
-          className={`${classes.borderColorPagination} ${classes.familyPokemon}`}
+    <>
+      {/* MOBILE */}
+      <div className={classes.paginationMobile}>
+        <div
+          className={!showMenu ? classes.pokebola : classes.pokebola2}
+          onClick={handlePokebolaMenu}
         >
-          Total Pokemon: {totalPokemon}
-        </p>
+          <div className={classes.detailPokebola}></div>
+        </div>
+
+        <div
+          className={!showMenu ? classes.visibilityMenu : classes.optionsMobile}
+        >
+          <li>Total Pokemon: {totalPokemon}</li>
+          <li>Page: {actualPage}</li>
+          <li>
+            Go to page:{" "}
+            <select
+              data-type="goTo"
+              onChange={(e) => goToPage(e)}
+              value={actualPage}
+            >
+              {" "}
+              {Array.from(Array(totalOfpage).keys()).map((page, i) => {
+                return (
+                  <option key={i} value={page}>
+                    {page}
+                  </option>
+                );
+              })}
+            </select>
+          </li>
+        </div>
+        <div className={classes.buttonsMobileBox}>
+          {prevPage && (
+            <button
+              className={classes.buttonMobile}
+              data-type="prev"
+              onClick={handlerURL}
+            >
+              Prev
+            </button>
+          )}
+          {nextPage && (
+            <button
+              className={classes.buttonMobile}
+              data-type="next"
+              onClick={handlerURL}
+            >
+              Next
+            </button>
+          )}
+        </div>
       </div>
 
-      <div>
-        <p
-          className={`${classes.borderColorPagination} ${classes.familyPokemon}`}
-        >
-          Page: {actualPage}
-        </p>
-      </div>
-
-      <div className={classes.selectContainer}>
-        <p
-          className={`${classes.borderColorPagination} ${classes.familyPokemon}`}
-        >
-          Go to page:
-        </p>
-        <select
-          className={`${classes.familyPokemon} ${classes.selectStyle}`}
-          data-type="goTo"
-          onChange={(e) => goToPage(e)}
-          value={actualPage}
-        >
-          {Array.from(Array(totalOfpage).keys()).map((page, i) => {
-            return (
-              <option key={i} value={page}>
-                {page}
-              </option>
-            );
-          })}
-        </select>
-      </div>
-
-      <div>
-        {prevPage && (
-          <button
-            className={classes.buttonStyle}
-            data-type="prev"
-            onClick={handlerURL}
+      {/* DESKTOP */}
+      <div className={classes.paginationDesktop}>
+        <li>Total Pokemon: {totalPokemon}</li>
+        <li>Page: {actualPage}</li>
+        <li>
+          Go to page:{" "}
+          <select
+            data-type="goTo"
+            onChange={(e) => goToPage(e)}
+            value={actualPage}
           >
-            Prev
-          </button>
-        )}
-        {nextPage && (
-          <button
-            className={classes.buttonStyle}
-            data-type="next"
-            onClick={handlerURL}
-          >
-            Next
-          </button>
-        )}
+            {Array.from(Array(totalOfpage).keys()).map((page, i) => {
+              return (
+                <option key={i} value={page}>
+                  {page}
+                </option>
+              );
+            })}
+          </select>
+        </li>
+        
+          {prevPage && (
+            <button
+              className={classes.buttonsDesktop}
+              data-type="prev"
+              onClick={handlerURL}
+            >
+              Prev
+            </button>
+          )}
+          {nextPage && (
+            <button
+              className={classes.buttonsDesktop}
+              data-type="next"
+              onClick={handlerURL}
+            >
+              Next
+            </button>
+          )}
+        
       </div>
-    </div>
+    </>
   );
 };
 
