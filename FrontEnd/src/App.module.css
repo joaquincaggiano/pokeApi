@@ -1,12 +1,13 @@
-.pokeFondo{
+/* .pokeFondo{
     background-image: url("./img/blackFondo.jpg");
     background-size:cover;  
-}
+} */
 
 main{
     padding-bottom: 50px;
     min-height: 100vh;
-    /* margin-top: 90px; */
+    background-image: url("./img/blackFondo.jpg");
+    background-size:cover;  
 }
 
 .arrowUpContainer{
