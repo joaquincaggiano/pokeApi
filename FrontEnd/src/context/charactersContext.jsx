@@ -17,7 +17,7 @@ export const PokemonContextProvider = ({ children }) => {
   const [nextPage, setNextPage] = useState("");
   const [prevPage, setPrevPage] = useState("");
   const [totalPokemon, setTotalPokemon] = useState(0);
-  const [actualPage, setActualPage] = useState(0);
+  const [actualPage, setActualPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
   // const URL ="https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
