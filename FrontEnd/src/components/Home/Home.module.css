@@ -5,6 +5,7 @@
     justify-content: space-evenly;
     align-items: center;
     padding: 20px;
+    margin-bottom: 50px;
 }
 
 .welcome h1 {
@@ -19,6 +20,8 @@
     align-items: center;
 }
 
+/* SLIDER */
+
 .slider_container{
     margin: 0 auto;
     overflow-x: hidden;
@@ -26,7 +29,7 @@
 
 .slider{
     display: flex;
-    cursor: grab;
+    /* cursor: grab; */
 }
 
 .item{
@@ -36,13 +39,22 @@
 }
 
 .item img {
-    /* height: 100%;
-    width: 100%; */
+    height: 200px;
     width: 300px;
     pointer-events: none;
 }
+/* FIN SLIDER */
 
+/* Slider 2 */
+.imgSlide{
+    max-width: 100%;
+    height: 200px;
+}
 
+.containerImgs{
+   text-align: center;
+}
+/* Fin slider 2 */
 
 @media(min-width: 768px) {
     .welcome h1 {
@@ -52,9 +64,22 @@
     .pikachuGif {
         width: 250px;
     }
+
+    /* .item{
+        height: 700px;
+        max-width: 900px;
+        padding: 4rem;
+    }
     
     .item img {
+        height: 400px;
         width: 600px;
+        pointer-events: none;
+    } */
+
+    .imgSlide{
+        max-width: 100%;
+        height: 500px;
     }
 }
 
@@ -67,7 +92,12 @@
         width: 350px;
     }
 
-    .item img {
-        width: 900px;
+    .imgSlide{
+        max-width: 100%;
+        height: 500px;
     }
+
+    /* .item img {
+        width: 900px;
+    } */
 }
