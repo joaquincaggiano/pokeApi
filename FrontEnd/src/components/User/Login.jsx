@@ -1,8 +1,8 @@
 // Hooks
-import { useContext, useReducer } from "react";
+import { useContext, useReducer, useEffect } from "react";
 
 //  Context
-import { UserContext } from "../../context/userContext";
+import { UserContext} from "../../context/userContext";
 
 // Boostrap
 import { Form, Button, Container, Card } from "react-bootstrap";
@@ -16,16 +16,20 @@ const Login = () => {
     login,
     emailRef,
     passwordRef,
-    // userLogged,
     reducer,
     errorsState,
     ACTIONS,
-    validationLogin
-    // msgErrorLogin
+    validationLogin,
+    getOneImage,
+    onePokeImage
   } = useContext(UserContext);
 
   // Reducer States
   const [state, dispatch] = useReducer(reducer, errorsState);
+
+  useEffect(()=>{
+    getOneImage()
+  }, [])
 
   // Validation reducer
   const onChangeHandler = (e) => {
@@ -55,7 +59,11 @@ const Login = () => {
   return (
     <Container className='pt-5'>
 
-    <Card className={`pt-3 w-75 m-auto rounded`} style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
+    <Card className={`pt-3 w-75 m-auto rounded text-white`} style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
+      
+        <h2>{onePokeImage.name}</h2>
+        <img className={styles.imageFormat} src={onePokeImage.img}/>
+      
       <Form className={`text-white p-3 align-self-center container-fluid `} onSubmit={loginSubmitHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email:</Form.Label>

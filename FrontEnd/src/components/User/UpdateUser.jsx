@@ -12,15 +12,9 @@ import { Form, Button, Container, Card } from "react-bootstrap";
 
 //Styles
 import styles from "./Login.module.css";
+import classes from "./UpdateUser.module.css";
 
-//Assets
-import Starter1 from "../../img/starter-gen1.png";
-import Starter2 from "../../img/starter-gen2.png";
-import Starter3 from "../../img/starter-gen3.png";
-import Starter4 from "../../img/starter-gen4.png";
-import Starter5 from "../../img/starter-gen5.png";
-
-function Register() {
+const UpdateUser = () => {
   // CONTEXT
   const {
     register,
@@ -33,21 +27,14 @@ function Register() {
     setFile,
   } = useContext(UserContext);
 
+  //User Logged
+  let user = JSON.parse(localStorage.getItem("user"));
+
   // Reducer States
   const [state, dispatch] = useReducer(reducer, errorsState);
 
   // useState
   const [formIsValid, setFormIsValid] = useState(false);
-  // const [file, setFile] = useState();
-
-  //Get random image
-  const [starter, setStarter] = useState();
-
-  const starterArray = [Starter1, Starter2, Starter3, Starter4, Starter5];
-
-  Array.prototype.sample = function () {
-    return this[Math.floor(Math.random() * this.length)];
-  };
 
   // useEffect
   useEffect(() => {
@@ -64,10 +51,6 @@ function Register() {
     state.passwordFormat.value,
   ]);
 
-  useEffect(() => {
-    setStarter(starterArray.sample());
-  }, []);
-
   // Navigate
   let navigate = useNavigate();
 
@@ -75,7 +58,7 @@ function Register() {
   function handleOnSubmit(e) {
     e.preventDefault();
     register();
-    return navigate("/user/login");
+    return navigate("/user/profile");
   }
 
   const onChangeHandler = (e) => {
@@ -111,11 +94,31 @@ function Register() {
           backdropFilter: "blur(5px)",
         }}
       >
-        <Card.Img src={starter}></Card.Img>
         <Form
           className="text-white p-3 align-self-center container-fluid"
           onSubmit={(e) => handleOnSubmit(e)}
         >
+          <Form.Group className="mb-3" controlId="avatarUpload">
+            <Form.Label>
+                <div className={classes.imgBox}>
+                    <img
+                        className={`rounded-circle`}
+                        src={`http://localhost:3030/images/${user.file}`}
+                    />
+                    <i class="fa-solid fa-camera"></i>
+                </div>
+            </Form.Label>
+            <Form.Control
+              size="sm"
+              style={{ padding: "9px" }}
+              name="Avatar"
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              placeholder="Avatar"
+              onChange={onChangeFile}
+            />
+          </Form.Group>
+
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>User Name:</Form.Label>
             <Form.Control
@@ -166,20 +169,6 @@ function Register() {
               <span className="text-danger">{state.passwordFormat.msg}</span>
             )}
           </Form.Group>
-          <Form.Group className="mb-3" controlId="avatarUpload">
-            <Form.Label>
-              Avatar - accepts extensions .jpg, .jpeg, .png:
-            </Form.Label>
-            <Form.Control
-              size="sm"
-              style={{ padding: "9px" }}
-              name="Avatar"
-              type="file"
-              accept=".jpg, .jpeg, .png"
-              placeholder="Avatar"
-              onChange={onChangeFile}
-            />
-          </Form.Group>
 
           <Button
             // onClick={onSendHandler}
@@ -188,12 +177,12 @@ function Register() {
             type="submit"
             className={`${styles.buttonRegister}`}
           >
-            Registrarse
+            Actualizar
           </Button>
         </Form>
       </Card>
     </Container>
   );
-}
+};
 
-export default Register;
+export default UpdateUser;

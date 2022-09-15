@@ -87,6 +87,21 @@ const userController = {
       console.error(error);
     }
   },
+  updateUser: async (req, res) => {
+  try {
+    let userToUpdate = await User.findByPk(req.params.id);
+
+    userToUpdate.userName = req.body.userName ? req.body.userName : userToUpdate.userName;
+    userToUpdate.email = req.body.email ? req.body.email : userToUpdate.email;
+    userToUpdate.password = req.body.password ? bcrypt.hashSync(req.body.password, 10) : userToUpdate.password;
+    userToUpdate.file = req.file.file ? req.file.file : userToUpdate.file;
+
+    userToUpdate.save()
+    
+  } catch (error) {
+    console.log(error);
+  }
+  }
 };
 
 module.exports = userController;

@@ -152,7 +152,7 @@ function EachCharacter(props) {
   });
 
   return (
-    <div className="col-xs-1 col-sm-4 col-lg-3 d-flex justify-content-evenly my-3" key={props.id}>
+    <div className="col-xs-1 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-evenly my-3" key={props.id}>
       <div className={`card ${classes.cardStyle}`}>
         <div className={classes.imgStyle}>
           <img src={props.image} className="card-img-top" alt={props.name} />

@@ -20,6 +20,7 @@ export const UserProvider = ({ children }) => {
   const [userLogged, setUserLogged] = useState(false);
   const [validationLogin, setValidationLogin] = useState("");
   const [file, setFile] = useState();
+  const [onePokeImage, setOnePokeImage] = useState({})
 
   // REFERENCIAS DE INPUTS
   const userNameRef = useRef();
@@ -95,6 +96,18 @@ export const UserProvider = ({ children }) => {
   //   }
   // }, [])
 
+  // Pokemon random
+  const pokemonRandom = Math.floor(Math.random()*150)
+
+  function getOneImage (){
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonRandom}`)
+    .then(response => {
+        setOnePokeImage({img: response.data.sprites.other.dream_world.front_default, name: response.data.name.toUpperCase()})
+    })
+  }
+
+
+
   const userDataProvider = {
     register,
     login,
@@ -107,7 +120,9 @@ export const UserProvider = ({ children }) => {
     ACTIONS,
     validationLogin,
     setFile,
-    setUserLogged
+    setUserLogged,
+    getOneImage,
+    onePokeImage
   };
 
   return (

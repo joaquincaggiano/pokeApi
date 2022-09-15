@@ -23,7 +23,6 @@ const Pagination = (ref) => {
   const handlePokebolaMenu = () => {
     setShowMenu(!showMenu);
   };
-  const current = actualPage + 1
 
   return (
     <>
@@ -40,13 +39,13 @@ const Pagination = (ref) => {
           className={!showMenu ? classes.visibilityMenu : classes.optionsMobile}
         >
           <li>Total Pokemon: {totalPokemon}</li>
-          <li>Page: {current}</li>
+          <li>Page: {actualPage}</li>
           <li>
             Go to page:{" "}
             <select
               data-type="goTo"
               onChange={(e) => goToPage(e)}
-              value={current}
+              value={actualPage}
             >
               {" "}
               {Array.from(Array(totalOfpage).keys()).map((page, i) => {

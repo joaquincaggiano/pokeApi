@@ -10,7 +10,8 @@ import style from "./Profile.module.css"
 //Bootstrap 
 import {Card} from 'react-bootstrap'
 // router
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 function Profile() {
   const { setUserLogged } = useContext(UserContext);
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ function Profile() {
       />
       <h2>Welcome {user.userName}!!!</h2>
       <p>Email: {user.email}</p>
-      <button className={`${style.buttonUpdate}`}>Update User</button>
+      <button className={`${style.buttonUpdate}`}><Link to="/user/update">Update User</Link></button>
       <button className={`${style.buttonLogout}`} onClick={handleLogOut}>
         LogOut
       </button>
