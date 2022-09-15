@@ -10,9 +10,6 @@ import { UserContext } from "../../context/userContext";
 // Boostrap
 import { Form, Button, Container, Card } from "react-bootstrap";
 
-//Styles
-import styles from "./Login.module.css";
-
 //Assets
 import Starter1 from "../../img/starter-gen1.png";
 import Starter2 from "../../img/starter-gen2.png";
@@ -111,7 +108,7 @@ function Register() {
           backdropFilter: "blur(5px)",
         }}
       >
-        <Card.Img className="m-auto xs w-25 sm w-50 md-w-75 " src={starter}></Card.Img>
+        <Card.Img className="m-auto xs w-25 sm w-50 md w-75 " src={starter}></Card.Img>
         <Form
           className="text-white p-3 align-self-center container-fluid"
           onSubmit={(e) => handleOnSubmit(e)}
@@ -186,7 +183,7 @@ function Register() {
             disabled={!formIsValid}
             variant="primary"
             type="submit"
-            className={`${styles.buttonRegister}`}
+            className="w-100"
           >
             Registrarse
           </Button>

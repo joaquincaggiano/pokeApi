@@ -8,7 +8,7 @@ import { UserContext} from "../../context/userContext";
 import { Form, Button, Container, Card } from "react-bootstrap";
 
 // Css
-import styles from "./Login.module.css"
+import classes from "./Login.module.css"
 
 const Login = () => {
   // UseContext
@@ -62,7 +62,7 @@ const Login = () => {
     <Card className="pt-3 w-75 m-auto rounded text-white container-fluid" style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
       
         <h2>{onePokeImage.name}</h2>
-        <img className={styles.imageFormat} src={onePokeImage.img}/>
+        <img className={classes.imageFormat} src={onePokeImage.img}/>
       
       <Form className="text-white p-3 align-self-center container-fluid" onSubmit={loginSubmitHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -77,7 +77,7 @@ const Login = () => {
             onBlur={onBlurHandler}
           />
           {state.emailFormat.isValid === false && (
-            <span className="text-danger">{state.emailFormat.msg}</span>
+            <span className={classes.errorMsg}>{state.emailFormat.msg}</span>
           )}
         </Form.Group>
 
@@ -93,14 +93,14 @@ const Login = () => {
             onBlur={onBlurHandler}
           />
           {state.passwordFormat.isValid === false && (
-            <span className="text-danger">{state.passwordFormat.msg}</span>
+            <span className={classes.errorMsg}>{state.passwordFormat.msg}</span>
           )}
         </Form.Group>
 
         {validationLogin && (
-          <div className="text-danger">{validationLogin}</div>
+          <div className={classes.errorMsg}>{validationLogin}</div>
         )}
-        <Button className={styles.buttonUpdate} variant="primary" type="submit">
+        <Button className="w-100" variant="primary" type="submit">
           Login
         </Button>
       </Form>

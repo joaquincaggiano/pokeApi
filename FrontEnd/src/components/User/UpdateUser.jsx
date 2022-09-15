@@ -11,7 +11,6 @@ import { UserContext } from "../../context/userContext";
 import { Form, Button, Container, Card } from "react-bootstrap";
 
 //Styles
-import styles from "./Login.module.css";
 import classes from "./UpdateUser.module.css";
 
 const UpdateUser = () => {
@@ -175,7 +174,7 @@ const UpdateUser = () => {
             disabled={!formIsValid}
             variant="primary"
             type="submit"
-            className={`${styles.buttonRegister}`}
+            className="w-100"
           >
             Actualizar
           </Button>
