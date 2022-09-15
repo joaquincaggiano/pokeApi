@@ -59,12 +59,12 @@ const Login = () => {
   return (
     <Container className='pt-5'>
 
-    <Card className={`pt-3 w-75 m-auto rounded text-white`} style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
+    <Card className="pt-3 w-75 m-auto rounded text-white container-fluid" style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
       
         <h2>{onePokeImage.name}</h2>
         <img className={styles.imageFormat} src={onePokeImage.img}/>
       
-      <Form className={`text-white p-3 align-self-center container-fluid `} onSubmit={loginSubmitHandler}>
+      <Form className="text-white p-3 align-self-center container-fluid" onSubmit={loginSubmitHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email:</Form.Label>
           <Form.Control
@@ -100,7 +100,7 @@ const Login = () => {
         {validationLogin && (
           <div className="text-danger">{validationLogin}</div>
         )}
-        <Button className={`${styles.buttonUpdate} `} variant="primary" type="submit">
+        <Button className={styles.buttonUpdate} variant="primary" type="submit">
           Login
         </Button>
       </Form>

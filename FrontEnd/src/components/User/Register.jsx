@@ -105,13 +105,13 @@ function Register() {
   return (
     <Container className="pt-5">
       <Card
-        className={`pt-3 w-75 m-auto rounded container-fluid`}
+        className="pt-3 w-75 m-auto rounded container-fluid"
         style={{
           background: "rgb(255, 255, 255, 0.3)",
           backdropFilter: "blur(5px)",
         }}
       >
-        <Card.Img src={starter}></Card.Img>
+        <Card.Img className="m-auto xs w-25 sm w-50 md-w-75 " src={starter}></Card.Img>
         <Form
           className="text-white p-3 align-self-center container-fluid"
           onSubmit={(e) => handleOnSubmit(e)}

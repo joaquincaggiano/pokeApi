@@ -1,6 +1,7 @@
 .imgUser {
     margin: 15px 0px;
     width: 150px;
+    border: 1px solid black;
 }
 
 .buttonUpdate {
@@ -9,7 +10,7 @@
     background-color: rgb(255, 208, 0);
     color: #4682B4;
     padding: 5px;
-    width: 50%;
+    width: 70%;
     margin-bottom: 15px;
 }
 
@@ -25,7 +26,7 @@
     background-color: #DC143C;
     color: black;
     padding: 5px;
-    width: 50%;
+    width: 70%;
 }
 
 .buttonLogout:hover {
@@ -34,8 +35,57 @@
     transition: all 0.1s;
 }
 
+.cardStyle {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 20px;
+    margin:auto;
+    background: rgb(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
 @media(min-width: 768px) {
     .imgUser {
         width: 180px;
+    }
+
+    .buttonLogout, .buttonUpdate{
+        width: 60%;
+        font-size: 18px;
+    }
+
+    .cardStyle{
+        width: 70%;
+    }
+
+    .cardStyle h2{
+        font-size: 32px;
+    }
+    
+    .cardStyle p{
+        font-size: 20px;
+    }
+}
+
+@media(min-width: 1200px) {
+
+    .cardStyle{
+        width: 55%;
+    }
+
+    .cardStyle h2{
+        font-size: 36px;
+    }
+    
+    .cardStyle p{
+        font-size: 24px;
+    }
+
+    .buttonLogout, .buttonUpdate{
+        width: 50%;
     }
 }
