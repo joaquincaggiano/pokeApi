@@ -94,17 +94,24 @@ export const UserProvider = ({ children }) => {
   //PROFILE
   const updateProfile = ()=>{
     const userToUpdate = JSON.parse(localStorage.getItem("user"));
+    console.log("USER TO UPDATE", userToUpdate)
     const userUpdated = {
-      userName: userNameRef,
-      email: emailRef,
-      password: passwordRef,
+      userName: userNameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
       file: file
     }
-    axios.put(`http://localhost:3030/api/user/update/:${userToUpdate.id}`, {method: 'PUT', body: userUpdated})
+    axios.put(`http://localhost:3030/api/user/update/${userToUpdate.id}`, userUpdated)
       .then(response => {
-
+        console.log("USUARIO ACTUALIZADO", response);
+        let userUpdated = {
+          id: response.data.user.id,
+          userName: response.data.user.userName,
+          email: response.data.user.email,
+          file: response.data.user.file,
+        };
+        localStorage.setItem("user", JSON.stringify(userUpdated));
       }
-        // console.log("USUARIO ACTUALIZADO", response);
       )
       .catch(error => console.log(error))
   }

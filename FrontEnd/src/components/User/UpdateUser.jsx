@@ -35,7 +35,7 @@ const UpdateUser = () => {
   const [editEmail, setEditEmail] = useState(false);
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
-  const [inputValue, setInputValue] = useState('')
+  // const [inputValue, setInputValue] = useState('')
 
   // useState
   // const [formIsValid, setFormIsValid] = useState(false);
@@ -69,7 +69,7 @@ const UpdateUser = () => {
   }
 
   const onChangeHandler = (e) => {
-    setInputValue(e.target.value)
+    // setInputValue(e.target.value)
     dispatch({
       type: e.target.dataset.type,
       payload: {
