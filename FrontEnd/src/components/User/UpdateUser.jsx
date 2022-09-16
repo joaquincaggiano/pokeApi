@@ -93,20 +93,19 @@ const UpdateUser = () => {
           backdropFilter: "blur(5px)",
         }}
       >
+          <div className={classes.imgBox}>
+            <img
+              className={`rounded-circle`}
+              src={`http://localhost:3030/images/${user.file}`}
+            />
+            <i className="fa-solid fa-camera"></i>
+          </div>
         <Form
           className="text-white p-3 align-self-center container-fluid"
           onSubmit={(e) => handleOnSubmit(e)}
         >
+
           <Form.Group className="mb-3" controlId="avatarUpload">
-            <Form.Label>
-                <div className={classes.imgBox}>
-                    <img
-                        className={`rounded-circle`}
-                        src={`http://localhost:3030/images/${user.file}`}
-                    />
-                    <i class="fa-solid fa-camera"></i>
-                </div>
-            </Form.Label>
             <Form.Control
               size="sm"
               style={{ padding: "9px" }}
@@ -129,9 +128,12 @@ const UpdateUser = () => {
               ref={userNameRef}
               type="text"
               placeholder="Escribí tu nombre de usuario"
+              // value={user.userName}
             />
             {state.usernameLength.isValid === false && (
-              <span className="text-danger">{state.usernameLength.msg}</span>
+              <span className={classes.errorMsg}>
+                {state.usernameLength.msg}
+              </span>
             )}
           </Form.Group>
 
@@ -146,9 +148,10 @@ const UpdateUser = () => {
               onBlur={onBlurHandler}
               type="email"
               placeholder="Escribí tu email"
+              // value={user.email}
             />
             {state.emailFormat.isValid === false && (
-              <span className="text-danger">{state.emailFormat.msg}</span>
+              <span className={classes.errorMsg}>{state.emailFormat.msg}</span>
             )}
           </Form.Group>
 
@@ -165,7 +168,9 @@ const UpdateUser = () => {
               placeholder="Password"
             />
             {state.passwordFormat.isValid === false && (
-              <span className="text-danger">{state.passwordFormat.msg}</span>
+              <span className={classes.errorMsg}>
+                {state.passwordFormat.msg}
+              </span>
             )}
           </Form.Group>
 

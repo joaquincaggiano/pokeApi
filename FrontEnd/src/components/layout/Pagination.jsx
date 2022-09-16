@@ -100,7 +100,7 @@ const Pagination = (ref) => {
             })}
           </select>
         </li>
-        
+        <div className={classes.buttonsDesktopBox}>
           {prevPage && (
             <button
               className={classes.buttonsDesktop}
@@ -119,6 +119,7 @@ const Pagination = (ref) => {
               Next
             </button>
           )}
+        </div>
         
       </div>
     </>

@@ -10,6 +10,9 @@ import { UserContext } from "../../context/userContext";
 // Boostrap
 import { Form, Button, Container, Card } from "react-bootstrap";
 
+// Css
+import classes from "./Register.module.css"
+
 //Assets
 import Starter1 from "../../img/starter-gen1.png";
 import Starter2 from "../../img/starter-gen2.png";
@@ -126,7 +129,7 @@ function Register() {
               placeholder="Escribí tu nombre de usuario"
             />
             {state.usernameLength.isValid === false && (
-              <span className="text-danger">{state.usernameLength.msg}</span>
+              <span className={classes.errorMsg}>{state.usernameLength.msg}</span>
             )}
           </Form.Group>
 
@@ -143,7 +146,7 @@ function Register() {
               placeholder="Escribí tu email"
             />
             {state.emailFormat.isValid === false && (
-              <span className="text-danger">{state.emailFormat.msg}</span>
+              <span className={classes.errorMsg}>{state.emailFormat.msg}</span>
             )}
           </Form.Group>
 
@@ -160,7 +163,7 @@ function Register() {
               placeholder="Password"
             />
             {state.passwordFormat.isValid === false && (
-              <span className="text-danger">{state.passwordFormat.msg}</span>
+              <span className={classes.errorMsg}>{state.passwordFormat.msg}</span>
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="avatarUpload">

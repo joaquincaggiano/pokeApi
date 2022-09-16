@@ -163,6 +163,13 @@
     border: 1px solid #dc143cb2;
   }
 
+  .buttonsDesktopBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 30%;
+  }
+
   .buttonsDesktop{
     width: 80px;
     border-radius: 5px;
@@ -177,5 +184,9 @@
 @media (min-width: 1200px){
   .paginationDesktop{
     font-size: 26px;
+  }
+
+  .buttonsDesktopBox{
+    width: 20%;
   }
 }
