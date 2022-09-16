@@ -38,6 +38,7 @@ function Register() {
 
   // useState
   const [formIsValid, setFormIsValid] = useState(false);
+  const [inputValue, setInputValue] = useState('')
   // const [file, setFile] = useState();
 
   //Get random image
@@ -57,11 +58,14 @@ function Register() {
       state.passwordFormat.isValid
     ) {
       setFormIsValid(true);
+    } else {
+      setFormIsValid(false)
     }
   }, [
-    state.usernameLength.value,
-    state.emailFormat.value,
-    state.passwordFormat.value,
+    inputValue,
+    // state.usernameLength.value,
+    // state.emailFormat.value,
+    // state.passwordFormat.value,
   ]);
 
   useEffect(() => {
@@ -79,6 +83,7 @@ function Register() {
   }
 
   const onChangeHandler = (e) => {
+    setInputValue(e.target.value)
     dispatch({
       type: e.target.dataset.type,
       payload: {

@@ -55,15 +55,19 @@ const userController = {
   },
   processLogin: async (req, res) => {
     try {
+      let passwordCorrect;
+
       let userToLogin = await User.findOne({
         where: {
           email: req.body.email,
         },
       });
-      let passwordCorrect = bcrypt.compareSync(
-        req.body?.password,
-        userToLogin.password
-      );
+      if(userToLogin){
+        passwordCorrect = bcrypt.compareSync(
+          req.body?.password,
+          userToLogin?.password
+        );
+      }
 
       if (!req.body.password || !req.body.email) {
         return res.status(400).json({
@@ -91,12 +95,25 @@ const userController = {
   try {
     let userToUpdate = await User.findByPk(req.params.id);
 
-    userToUpdate.userName = req.body.userName ? req.body.userName : userToUpdate.userName;
-    userToUpdate.email = req.body.email ? req.body.email : userToUpdate.email;
-    userToUpdate.password = req.body.password ? bcrypt.hashSync(req.body.password, 10) : userToUpdate.password;
-    userToUpdate.file = req.file.file ? req.file.file : userToUpdate.file;
+    if(!req.body.email || !req.body.userName) {
+      return res.status(400).json({
+        msg: "BAD REQUEST - COMPLETE USERNAME and EMAIL FIELDS",
+      });
+    } else {
+      
+      userToUpdate.userName = req.body.userName ? req.body.userName : userToUpdate.userName;
+      userToUpdate.email = req.body.email ? req.body.email : userToUpdate.email;
+      userToUpdate.password = req.body.password ? bcrypt.hashSync(req.body.password, 10) : userToUpdate.password;
+      userToUpdate.file = req.file.file ? req.file.file : userToUpdate.file;
+  
+      userToUpdate.save()
 
-    userToUpdate.save()
+      return res.status(200).json({
+        user: userToUpdate,
+        msg: "USER UPDATED SUCCESFULLY",
+      });
+    }
+    
     
   } catch (error) {
     console.log(error);

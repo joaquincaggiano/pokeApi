@@ -63,11 +63,13 @@ export const UserProvider = ({ children }) => {
         if (response.status === 200) {
           console.log("USUARIO LOGEADO", response.data.user);
           let userLogged = {
+            id: response.data.user.id,
             userName: response.data.user.userName,
             email: response.data.user.email,
             file: response.data.user.file,
           };
           localStorage.setItem("user", JSON.stringify(userLogged));
+          setFile(userLogged.file)
           setUserLogged(true)
           navigate("/user/profile");
 
@@ -90,11 +92,22 @@ export const UserProvider = ({ children }) => {
   };
 
   //PROFILE
-  // useEffect(()=>{
-  //   if(localStorage.getItem('user')){
-  //     setUserLogged(true)
-  //   }
-  // }, [])
+  const updateProfile = ()=>{
+    const userToUpdate = JSON.parse(localStorage.getItem("user"));
+    const userUpdated = {
+      userName: userNameRef,
+      email: emailRef,
+      password: passwordRef,
+      file: file
+    }
+    axios.put(`http://localhost:3030/api/user/update/:${userToUpdate.id}`, {method: 'PUT', body: userUpdated})
+      .then(response => {
+
+      }
+        // console.log("USUARIO ACTUALIZADO", response);
+      )
+      .catch(error => console.log(error))
+  }
 
   // Pokemon random
   const pokemonRandom = Math.floor(Math.random()*150)
@@ -122,7 +135,9 @@ export const UserProvider = ({ children }) => {
     setFile,
     setUserLogged,
     getOneImage,
-    onePokeImage
+    onePokeImage,
+    updateProfile,
+    file
   };
 
   return (
