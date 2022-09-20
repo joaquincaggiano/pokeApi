@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
   const [userLogged, setUserLogged] = useState(false);
   const [validationLogin, setValidationLogin] = useState("");
   const [file, setFile] = useState();
-  const [onePokeImage, setOnePokeImage] = useState({})
+  const [onePokeImage, setOnePokeImage] = useState({});
 
   // REFERENCIAS DE INPUTS
   const userNameRef = useRef();
@@ -69,12 +69,9 @@ export const UserProvider = ({ children }) => {
             file: response.data.user.file,
           };
           localStorage.setItem("user", JSON.stringify(userLogged));
-          setFile(userLogged.file)
-          setUserLogged(true)
+          setFile(userLogged.file);
+          setUserLogged(true);
           navigate("/user/profile");
-
-          // setUserLogged({...response.data.user});
-          // console.log("USER LOGGED", userLogged);
         }
       })
       .catch((error) => {
@@ -91,42 +88,58 @@ export const UserProvider = ({ children }) => {
       });
   };
 
-  //PROFILE
-  const updateProfile = ()=>{
-    const userToUpdate = JSON.parse(localStorage.getItem("user"));
-    console.log("USER TO UPDATE", userToUpdate)
-    const userUpdated = {
-      userName: userNameRef.current.value,
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-      file: file
-    }
-    axios.put(`http://localhost:3030/api/user/update/${userToUpdate.id}`, userUpdated)
-      .then(response => {
+  //UPDATE USER
+  async function updateProfile () {
+    try {
+      const userUpdateData = new FormData();
+      userUpdateData.append("userName", userNameRef.current.value);
+      userUpdateData.append("email", emailRef.current.value);
+      userUpdateData.append("password", passwordRef.current.value);
+      userUpdateData.append("file", file);
+
+      const userToUpdate = JSON.parse(localStorage.getItem("user"));
+      // console.log("USER TO UPDATE", userToUpdate);
+  
+      // const actualUser = {
+      //   userName: userNameRef.current.value,
+      //   email: emailRef.current.value,
+      //   password: passwordRef.current.value,
+      //   file: file,
+      // };
+      axios
+      .put(
+        `http://localhost:3030/api/user/update/${userToUpdate.id}`,
+        userUpdateData
+      )
+      .then((response) => {
         console.log("USUARIO ACTUALIZADO", response);
-        let userUpdated = {
+        const userUpdated = {
           id: response.data.user.id,
           userName: response.data.user.userName,
           email: response.data.user.email,
           file: response.data.user.file,
         };
         localStorage.setItem("user", JSON.stringify(userUpdated));
-      }
-      )
-      .catch(error => console.log(error))
-  }
+      })
+      .catch((error) => console.log(error));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // Pokemon random
-  const pokemonRandom = Math.floor(Math.random()*150)
+  const pokemonRandom = Math.floor(Math.random() * 150);
 
-  function getOneImage (){
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonRandom}`)
-    .then(response => {
-        setOnePokeImage({img: response.data.sprites.other.dream_world.front_default, name: response.data.name.toUpperCase()})
-    })
+  function getOneImage() {
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon/${pokemonRandom}`)
+      .then((response) => {
+        setOnePokeImage({
+          img: response.data.sprites.other.dream_world.front_default,
+          name: response.data.name.toUpperCase(),
+        });
+      });
   }
-
-
 
   const userDataProvider = {
     register,

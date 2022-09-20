@@ -16,13 +16,23 @@ const Pagination = (ref) => {
     handlerURL,
     prevPage,
     nextPage,
+    setActualURL
   } = useContext(PokemonContext);
 
   const [showMenu, setShowMenu] = useState(false);
+  const [pokemonToSearch, setPokemonToSearch] = useState("")
 
   const handlePokebolaMenu = () => {
     setShowMenu(!showMenu);
   };
+
+  const searchPokemonHandler = () => {
+    setActualURL(`https://pokeapi.co/api/v2/pokemon/${pokemonToSearch}`)
+  }
+
+  const pokemonToSearchHandler = (e) => {
+    setPokemonToSearch(e.target.value)
+  }
 
   return (
     <>
@@ -82,45 +92,56 @@ const Pagination = (ref) => {
 
       {/* DESKTOP */}
       <div className={classes.paginationDesktop}>
-        <li>Total Pokemon: {totalPokemon}</li>
-        <li>Page: {actualPage}</li>
-        <li>
-          Go to page:{" "}
-          <select
-            data-type="goTo"
-            onChange={(e) => goToPage(e)}
-            value={actualPage}
-          >
-            {Array.from(Array(totalOfpage).keys()).map((page, i) => {
-              return (
-                <option key={i} value={page}>
-                  {page}
-                </option>
-              );
-            })}
-          </select>
-        </li>
-        <div className={classes.buttonsDesktopBox}>
-          {prevPage && (
-            <button
-              className={classes.buttonsDesktop}
-              data-type="prev"
-              onClick={handlerURL}
-            >
-              Prev
-            </button>
-          )}
-          {nextPage && (
-            <button
-              className={classes.buttonsDesktop}
-              data-type="next"
-              onClick={handlerURL}
-            >
-              Next
-            </button>
-          )}
+
+        <div className={classes.rowOne}>
+          <div className={classes.searchBox}>
+            <i onClick={searchPokemonHandler} className={`fa-solid fa-magnifying-glass ${classes.iSearch}`}></i>
+            <input onChange={pokemonToSearchHandler} className={classes.inputSearch} type="search" placeholder="Pokemon name - nº" />
+          </div>
+
+          <div className={classes.buttonsDesktopBox}>
+            {prevPage && (
+              <button
+                className={classes.buttonsDesktop}
+                data-type="prev"
+                onClick={handlerURL}
+              >
+                Prev
+              </button>
+            )}
+            {nextPage && (
+              <button
+                className={classes.buttonsDesktop}
+                data-type="next"
+                onClick={handlerURL}
+              >
+                Next
+              </button>
+            )}
+          </div>
         </div>
-        
+
+        <div className={classes.rowTwo}>
+          <li>Total Pokemon: {totalPokemon}</li>
+          <li>Page: {actualPage}</li>
+          <li>
+            Go to page:{" "}
+            <select
+              data-type="goTo"
+              onChange={(e) => goToPage(e)}
+              value={actualPage}
+            >
+              {Array.from(Array(totalOfpage).keys()).map((page, i) => {
+                return (
+                  <option key={i} value={page}>
+                    {page}
+                  </option>
+                );
+              })}
+            </select>
+          </li>
+        </div>
+
       </div>
     </>
   );

@@ -31,7 +31,7 @@ function Profile() {
       <h2>Welcome {user.userName}!!!</h2>
       <p>Email: {user.email}</p>
       <button className={`${styles.buttonUpdate}`}>
-        <Link className="text-decoration-none" to="/user/update">
+        <Link className="text-decoration-none" to={`/user/update/${user.id}`}>
           Update User
         </Link>
       </button>

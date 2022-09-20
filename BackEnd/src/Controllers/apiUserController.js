@@ -62,7 +62,7 @@ const userController = {
           email: req.body.email,
         },
       });
-      if(userToLogin){
+      if (userToLogin) {
         passwordCorrect = bcrypt.compareSync(
           req.body?.password,
           userToLogin?.password
@@ -92,33 +92,39 @@ const userController = {
     }
   },
   updateUser: async (req, res) => {
-  try {
-    let userToUpdate = await User.findByPk(req.params.id);
+    try {
+      let userToUpdate = await User.findByPk(req.params.id);
+      console.log("USUARIO A ACTUALIZAR BACK", userToUpdate);
 
-    if(!req.body.email || !req.body.userName) {
-      return res.status(400).json({
-        msg: "BAD REQUEST - COMPLETE USERNAME and EMAIL FIELDS",
-      });
-    } else {
-      
-      userToUpdate.userName = req.body.userName ? req.body.userName : userToUpdate.userName;
-      userToUpdate.email = req.body.email ? req.body.email : userToUpdate.email;
-      userToUpdate.password = req.body.password ? bcrypt.hashSync(req.body.password, 10) : userToUpdate.password;
-      userToUpdate.file = req.file.file ? req.file.file : userToUpdate.file;
-  
-      userToUpdate.save()
+      if (!req.body.email || !req.body.userName) {
+        return res.status(400).json({
+          msg: "BAD REQUEST - COMPLETE USERNAME and EMAIL FIELDS",
+        });
+      } else {
+        userToUpdate.dataValues.userName = req.body.userName
+          ? req.body.userName
+          : userToUpdate.dataValues.userName;
+        userToUpdate.dataValues.email = req.body.email
+          ? req.body.email
+          : userToUpdate.dataValues.email;
+        userToUpdate.dataValues.password = req.body.password
+          ? bcrypt.hashSync(req.body.password, 10)
+          : userToUpdate.dataValues.password;
+        userToUpdate.dataValues.file = req.file?.file
+          ? req.file.file
+          : userToUpdate.dataValues.file;
 
-      return res.status(200).json({
-        user: userToUpdate,
-        msg: "USER UPDATED SUCCESFULLY",
-      });
+        userToUpdate.save();
+
+        return res.status(200).json({
+          user: userToUpdate,
+          msg: "USER UPDATED SUCCESFULLY",
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
-    
-    
-  } catch (error) {
-    console.log(error);
-  }
-  }
+  },
 };
 
 module.exports = userController;

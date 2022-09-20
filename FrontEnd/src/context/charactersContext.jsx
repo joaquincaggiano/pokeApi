@@ -18,8 +18,9 @@ export const PokemonContextProvider = ({ children }) => {
   const [prevPage, setPrevPage] = useState("");
   const [totalPokemon, setTotalPokemon] = useState(0);
   const [actualPage, setActualPage] = useState(0);
-  // const [pageNumber, setPageNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingSearch, setLoadingSearch] = useState(true);
+  const [pokemonSearch, setPokemonSearch] = useState({})
 
   // const URL ="https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
 
@@ -54,35 +55,62 @@ export const PokemonContextProvider = ({ children }) => {
         }
 
         const pokemonArray = response.data.results;
-        pokemonArray.forEach(async (pokemon) => {
-          await Axios.get(pokemon.url).then((result) => {
-            // console.log("RESULT", result.data);
-            const nameWithUppercase =
-              result.data.name[0].toUpperCase() + result.data.name.slice(1);
-            if (result.status === 200) {
-              const typePokemon = result.data.types.map(
-                (oneType) => oneType.type.name
-              );
-              // console.log("TYPES", typePokemon)
-              allPokemonArray.push(result.data);
-
-              eachPokemon.push({
-                id: result.data.id,
-                name: nameWithUppercase,
-                image: result.data.sprites.other.home.front_default,
-                // image: result.data.sprites.other.dream_world.front_default,
-                // image: result.data.sprites.front_default,
-                type: typePokemon,
-              });
-            }
-            if (eachPokemon.length >= 20) {
-              eachPokemon.sort((a, b) => a.id - b.id);
-              setDataPokemon(eachPokemon);
-              setIsLoading(false);
-            }
+        if (pokemonArray) {
+          pokemonArray.forEach(async (pokemon) => {
+            await Axios.get(pokemon.url).then((result) => {
+              // console.log("RESULT", result.data);
+              const nameWithUppercase =
+                result.data.name[0].toUpperCase() + result.data.name.slice(1);
+              if (result.status === 200) {
+                const typePokemon = result.data.types.map(
+                  (oneType) => oneType.type.name
+                );
+                // console.log("TYPES", typePokemon)
+                allPokemonArray.push(result.data);
+  
+                eachPokemon.push({
+                  id: result.data.id,
+                  name: nameWithUppercase,
+                  image: result.data.sprites.other.home.front_default,
+                  // image: result.data.sprites.other.dream_world.front_default,
+                  // image: result.data.sprites.front_default,
+                  type: typePokemon,
+                });
+              }
+              if (eachPokemon.length >= 20) {
+                eachPokemon.sort((a, b) => a.id - b.id);
+                setDataPokemon(eachPokemon);
+                setIsLoading(false);
+              }
+            });
           });
-        });
-        setAllPokemones(allPokemonArray);
+          setAllPokemones(allPokemonArray);
+        } else {
+          console.log("POKEMON SEARCH", response.data)
+          const pokemonNameUppercase = response.data.name[0].toUpperCase() + response.data.name.slice(1);
+          const typePokemon = response.data.types;
+          const pokemonNumberId = String(response.data.id).padStart(3, 0);
+          const pokemonMoves = response.data.moves;
+          const pokemonImage = response.data.sprites.other.home.front_default;
+          const pokemonStats = response.data.stats;
+          const height = response.data.height;
+          const weight = response.data.weight;
+          const abilities = response.data.abilities;
+          setPokemonSearch({
+            id: pokemonNumberId,
+            name: pokemonNameUppercase,
+            types: typePokemon,
+            moves: pokemonMoves,
+            image: pokemonImage,
+            stats: pokemonStats,
+            height: height,
+            weight: weight,
+            abilities: abilities
+            
+          })
+          setLoadingSearch(false)
+          setIsLoading(true);
+        }
       });
     };
     const dataArray = data();
@@ -108,6 +136,7 @@ export const PokemonContextProvider = ({ children }) => {
   const valueProvider = {
     dataPokemon,
     isLoading,
+    loadingSearch,
     allPokemones,
     handlerURL,
     prevPage,
@@ -116,6 +145,8 @@ export const PokemonContextProvider = ({ children }) => {
     totalOfpage,
     actualPage,
     goToPage,
+    setActualURL,
+    pokemonSearch
   };
 
   return (

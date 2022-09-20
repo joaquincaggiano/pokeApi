@@ -24,7 +24,6 @@ const UpdateUser = () => {
     ACTIONS,
     setFile,
     updateProfile,
-    // file
   } = useContext(UserContext);
 
   //User Logged
@@ -37,10 +36,10 @@ const UpdateUser = () => {
   const [editPassword, setEditPassword] = useState(false);
   // const [inputValue, setInputValue] = useState('')
 
-  // useState
+  // // useState
   // const [formIsValid, setFormIsValid] = useState(false);
 
-  // useEffect
+  // // useEffect
   // useEffect(() => {
   //   if (
   //     state.usernameLength.isValid &&
@@ -53,9 +52,9 @@ const UpdateUser = () => {
   //   }
   // }, [
   //   inputValue,
-  //   state.usernameLength.value,
-  //   state.emailFormat.value,
-  //   state.passwordFormat.value,
+  // //   state.usernameLength.value,
+  // //   state.emailFormat.value,
+  // //   state.passwordFormat.value,
   // ]);
 
   // Navigate

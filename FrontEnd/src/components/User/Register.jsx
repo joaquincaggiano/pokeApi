@@ -38,8 +38,7 @@ function Register() {
 
   // useState
   const [formIsValid, setFormIsValid] = useState(false);
-  const [inputValue, setInputValue] = useState('')
-  // const [file, setFile] = useState();
+  const [inputValue, setInputValue] = useState('');
 
   //Get random image
   const [starter, setStarter] = useState();

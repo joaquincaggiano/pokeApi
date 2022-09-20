@@ -16,7 +16,7 @@ function PokemonRoutes() {
     <Route path="/user/create" element={<Register/>} />
     <Route path="/user/login" element={<Login/>} />
     <Route path="/user/profile" element={<Profile/>} />
-    <Route path="/user/update" element={<UpdateUser/>} />
+    <Route path="/user/update/:id" element={<UpdateUser/>} />
     <Route path="/characters" element={<Characters/>} />
   </Routes>
   );

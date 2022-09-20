@@ -20,7 +20,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
   const [quotes, setQuotes] = useState([]);
   const [actualQuote, setActualQuote] = useState("");
 
-  // console.log("ALL POKEMONES", ctx.allPokemones);
+  console.log("ALL POKEMONES", ctx.allPokemones);
 
   // useEffect
   useEffect(() => {

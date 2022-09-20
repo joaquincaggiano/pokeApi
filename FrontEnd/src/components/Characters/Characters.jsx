@@ -8,12 +8,13 @@ import { PokemonContext } from "../../context/charactersContext";
 import DetailPokemon from "./DetailPokemon";
 import EachCharacter from "./EachCharacter";
 import Pagination from "../layout/Pagination";
+import SearchPokemon from "./SearchPokemon";
 
 // Css
 import classes from "./Characters.module.css";
 
 const Characters = () => {
-  const ctx = useContext(PokemonContext);
+  const {isLoading, dataPokemon, loadingSearch} = useContext(PokemonContext);
 
   const [showModal, setShowModal] = useState(false);
   const [pokemonId, setPokemonId] = useState(null);
@@ -35,9 +36,9 @@ const Characters = () => {
       <Pagination />
       <div className="container">
         <div className={classes.pokeFondo}>
-          {!ctx.isLoading && (
+          {!isLoading && (
             <div className="row p-4">
-              {ctx.dataPokemon.map((pokemon, i) => {
+              {dataPokemon.map((pokemon, i) => {
                 return (
                   <EachCharacter
                     key={i}
@@ -60,6 +61,8 @@ const Characters = () => {
               onCloseModal={CloseModalHandler}
             />
           )}
+
+          {!loadingSearch && <SearchPokemon />}
         </div>
       </div>
     </>
