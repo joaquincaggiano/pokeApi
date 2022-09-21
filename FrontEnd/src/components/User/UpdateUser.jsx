@@ -25,7 +25,8 @@ const UpdateUser = () => {
     setFile,
     updateProfile,
     isLoadingUpdate,
-    setIsLoadingUpdate
+    setIsLoadingUpdate,
+    deleteUser,
   } = useContext(UserContext);
 
   //User Logged
@@ -63,11 +64,11 @@ const UpdateUser = () => {
   let navigate = useNavigate();
 
   // Submit function
- function handleOnSubmit(e) {
+  function handleOnSubmit(e) {
     e.preventDefault();
     updateProfile();
-    if (!isLoadingUpdate){
-      setIsLoadingUpdate(true)
+    if (!isLoadingUpdate) {
+      setIsLoadingUpdate(true);
       return navigate("/user/profile");
     }
   }
@@ -104,6 +105,15 @@ const UpdateUser = () => {
       setEditUsername((current) => !current);
     } else {
       setEditPassword((current) => !current);
+    }
+  }
+
+  function handleDelete() {
+    let confirmDelete = confirm(
+      "Are you sure you want to delete your profile?"
+    );
+    if (confirmDelete) {
+      deleteUser();
     }
   }
 
@@ -231,12 +241,20 @@ const UpdateUser = () => {
 
           <Button
             // disabled={!formIsValid}
-            // onClick={onSendHandler}
             variant="primary"
             type="submit"
             className="w-100"
           >
             Actualizar
+          </Button>
+
+          <Button
+            onClick={handleDelete}
+            variant="primary"
+            type="submit"
+            className="w-100"
+          >
+            Delete profile
           </Button>
         </Form>
       </Card>

@@ -18,4 +18,7 @@ router.post("/user/login", userController.processLogin);
 // Update
 router.put("/user/update/:id", upload.single("file"), userController.updateUser)
 
+// Delete
+router.delete("/user/delete/:id", userController.delete)
+
 module.exports = router;

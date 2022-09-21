@@ -96,17 +96,25 @@ const userController = {
       let userToUpdate = await User.findByPk(req.params.id);
       console.log("USUARIO A ACTUALIZAR BACK", userToUpdate);
       // console.log("REQBODY",req.body)
-      console.log("REQFILE",req.file)
+      console.log("REQFILE", req.file);
 
       if (!req.body.email || !req.body.userName) {
         return res.status(400).json({
           msg: "BAD REQUEST - COMPLETE USERNAME and EMAIL FIELDS",
         });
       } else {
-        userToUpdate.userName = req.body.userName ? req.body.userName : userToUpdate.userName;
-        userToUpdate.email = req.body.email ? req.body.email : userToUpdate.email;
-        userToUpdate.password = req.body.password ? bcrypt.hashSync(req.body.password, 10) : userToUpdate.password;
-        userToUpdate.file = req.file?.filename ? req.file.filename : userToUpdate.file;
+        userToUpdate.userName = req.body.userName
+          ? req.body.userName
+          : userToUpdate.userName;
+        userToUpdate.email = req.body.email
+          ? req.body.email
+          : userToUpdate.email;
+        userToUpdate.password = req.body.password
+          ? bcrypt.hashSync(req.body.password, 10)
+          : userToUpdate.password;
+        userToUpdate.file = req.file?.filename
+          ? req.file.filename
+          : userToUpdate.file;
 
         userToUpdate.save();
 
@@ -115,6 +123,15 @@ const userController = {
           msg: "USER UPDATED SUCCESFULLY",
         });
       }
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  delete: async (req, res) => {
+    try {
+      await User.destroy({
+        where: { id: req.params.id },
+      });
     } catch (error) {
       console.log(error);
     }

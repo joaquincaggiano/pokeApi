@@ -63,14 +63,14 @@ export const UserProvider = ({ children }) => {
         console.log("response", response);
         if (response.status === 200) {
           console.log("USUARIO LOGEADO", response.data.user);
-          let userLogged = {
+          let userLoggedObject = {
             id: response.data.user.id,
             userName: response.data.user.userName,
             email: response.data.user.email,
             file: response.data.user.file,
           };
-          localStorage.setItem("user", JSON.stringify(userLogged));
-          setFile(userLogged.file);
+          localStorage.setItem("user", JSON.stringify(userLoggedObject));
+          setFile(userLoggedObject.file);
           setUserLogged(true);
           navigate("/user/profile");
         }
@@ -133,6 +133,27 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  //DELETE USER
+  function deleteUser(){
+    const userToDelete = JSON.parse(localStorage.getItem("user"));
+    axios
+    .delete(
+      `http://localhost:3030/api/user/delete/${userToDelete.id}`
+    )
+    .then((response) => {
+      if (response.status === 200){
+        localStorage.remove('user')
+        console.log("USER DELETED")
+        setUserLogged(false)
+        setTimeout(() => {
+          navigate('/user/create')
+          
+        }, 1000);
+      }
+    })
+    .catch(error => console.log(error))
+  }
+
   // Pokemon random
   const pokemonRandom = Math.floor(Math.random() * 150);
 
@@ -165,7 +186,8 @@ export const UserProvider = ({ children }) => {
     updateProfile,
     file,
     isLoadingUpdate,
-    setIsLoadingUpdate
+    setIsLoadingUpdate,
+    deleteUser
   };
 
   return (
