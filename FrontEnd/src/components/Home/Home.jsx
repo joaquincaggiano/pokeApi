@@ -11,11 +11,7 @@ import Slide from "./Slide";
 //Bootstrap
 import { Carousel } from "react-bootstrap";
 
-// Motion
-import { motion } from "framer-motion";
-
 function Home() {
-  // const carouselArray = []
 
   return (
     <>
