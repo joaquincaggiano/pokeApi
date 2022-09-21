@@ -1,68 +1,231 @@
-.cardStyle{
-    background-color: white;
-    width: 80vw;
-    border-radius: 10px;
-    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+.cardStyle {
+  background-color: white;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .cardStyle span {
-    color: #616161;
+  color: #616161;
+}
+
+.titlesStyles {
+  margin-bottom: 10px;
 }
 
 .rowOne {
-    width: 100%;
+  width: 100%;
 }
 
-.rowOne img {
-    width: 100%;
+.imgStyle {
+  width: 100%;
+  /* text-align: center; */
 }
 
-.pokemonFeatures{
-    padding: 10px;
-    background-color: #FFA500;
-    border-radius: 10px;
-    font-size: 18px;
+.pokemonFeatures {
+  padding: 10px;
+  background-color: #ffa500;
+  border-radius: 10px;
+  font-size: 18px;
 }
-/* .pokemonFeatures li {
-    color: white;
-} */
 
 .rowTwo {
-    width: 100%;
+  width: 100%;
 }
 
 .stats {
-    padding: 10px;
-    background-color: #87CEFA;
-    border-radius: 10px;
-    font-size: 18px;
+  background-color: #87cefa;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 18px;
 }
 
-.rowThree{
-    width: 100%;
-    max-height: 300px;
-    overflow-y: scroll;
+.pokemonType {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100px;
+  font-size: 22px;
 }
 
-@media(min-width: 768px) {
-    .cardStyle{
-        width: 84vw ;
-    }
-
-    .rowOne img {
-        width: 60%;
-        margin-left: 130px;
-    }
+.pokemonMoves {
+  background-color: #00ff7f;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 18px;
+  height: 182px;
+  overflow-y: scroll;
 }
 
-@media(min-width: 1200px) {
-    .cardStyle{
-        width: 88vw ;
+.pokemonFeatures,
+.stats,
+.pokemonType,
+.pokemonMoves {
+  margin-bottom: 20px;
+}
+
+/* Section type */
+.typePoison,
+.typeGrass,
+.typeFire,
+.typeWater,
+.typeFlying,
+.typeElectric,
+.typeBug,
+.typeNormal,
+.typeGround,
+.typeFairy,
+.typeFighting,
+.typePsychic,
+.typeRock,
+.typeSteel,
+.typeIce,
+.typeGhost,
+.typeDragon,
+.typeDark {
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  /* font-size: 20px; */
+  border: 1px solid black;
+}
+
+.typePoison,
+.typeFire,
+.typeWater,
+.typeBug,
+.typeFighting,
+.typePsychic,
+.typeRock,
+.typeGhost,
+.typeDragon,
+.typeDark {
+  color: white;
+}
+
+.typeFlying,
+.typeElectric,
+.typeNormal,
+.typeGround,
+.typeFairy,
+.typeSteel,
+.typeIce,
+.typeGrass {
+  color: black;
+}
+
+.typePoison {
+  background-color: #b97fc9;
+}
+
+.typeGrass {
+  background-color: #9bcc50;
+}
+
+.typeFire {
+  background-color: orangered;
+}
+
+.typeWater {
+  background-color: #4592c4;
+}
+
+.typeFlying {
+  background: linear-gradient(
+    90deg,
+    rgba(189, 185, 184, 1) 48%,
+    rgba(61, 199, 239, 1) 52%
+  );
+}
+
+.typeElectric {
+  background-color: yellow;
+}
+
+.typeBug {
+  background-color: #729f3f;
+}
+
+.typeNormal {
+  background-color: rgb(178, 178, 178);
+}
+
+.typeGround {
+  background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+}
+
+.typeFairy {
+  background: linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
+}
+
+.typeFighting {
+  background-color: #d56723;
+}
+
+.typePsychic {
+  background-color: #f366b9;
+}
+
+.typeRock {
+  background-color: #a38c21;
+}
+
+.typeSteel {
+  background-color: #9eb7b8;
+}
+
+.typeIce {
+  background-color: #51c4e7;
+}
+
+.typeGhost {
+  background-color: #7b62a3;
+}
+
+.typeDragon {
+  background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+}
+
+.typeDark {
+  background-color: #707070;
+}
+
+/* Fin Section Type */
+
+@media (min-width: 768px) {
+  .imgStyle {
+    width: 60%;
+  }
+
+  .stats, .pokemonFeatures{
+    font-size: 22px;
+  }
+
+  .pokemonMoves {
+    height: 218px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .imgStyle {
+    width: 40%;
+  }
+
+  .rowOne, .rowTwo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: baseline;
+  }
+    .pokemonInfoBoxes {
+        width: 45%;
     }
 }

@@ -14,7 +14,7 @@ import SearchPokemon from "./SearchPokemon";
 import classes from "./Characters.module.css";
 
 const Characters = () => {
-  const {isLoading, dataPokemon, loadingSearch} = useContext(PokemonContext);
+  const { isLoading, dataPokemon, loadingSearch } = useContext(PokemonContext);
 
   const [showModal, setShowModal] = useState(false);
   const [pokemonId, setPokemonId] = useState(null);
@@ -34,9 +34,9 @@ const Characters = () => {
   return (
     <>
       <Pagination />
-      <div className="container">
-        <div className={classes.pokeFondo}>
-          {!isLoading && (
+      {!isLoading && (
+        <div className="container">
+          <div className={classes.pokeFondo}>
             <div className="row p-4">
               {dataPokemon.map((pokemon, i) => {
                 return (
@@ -52,19 +52,25 @@ const Characters = () => {
                 );
               })}
             </div>
-          )}
+            {showModal && (
+              <DetailPokemon
+                ref={modalPositionRef}
+                pokemonId={pokemonId}
+                onCloseModal={CloseModalHandler}
+              />
+            )}
 
-          {showModal && (
-            <DetailPokemon
-              ref={modalPositionRef}
-              pokemonId={pokemonId}
-              onCloseModal={CloseModalHandler}
-            />
-          )}
-
-          {!loadingSearch && <SearchPokemon />}
+            {/* {!loadingSearch && <SearchPokemon />} */}
+          </div>
         </div>
-      </div>
+      )}
+      {!loadingSearch && isLoading && (
+        <div className="container">
+          <div className={`${classes.pokeFondo} p-4`}>
+            <SearchPokemon />
+          </div>
+        </div>
+      )}
     </>
   );
 };

@@ -97,6 +97,8 @@ export const UserProvider = ({ children }) => {
       userUpdateData.append("password", passwordRef.current.value);
       userUpdateData.append("file", file);
 
+      // userUpdateData.append("body", "bodyPrueba");
+
       const userToUpdate = JSON.parse(localStorage.getItem("user"));
       // console.log("USER TO UPDATE", userToUpdate);
   

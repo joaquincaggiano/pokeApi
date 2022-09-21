@@ -67,6 +67,10 @@ const Pagination = (ref) => {
               })}
             </select>
           </li>
+          <div className={classes.searchBox}>
+            <i onClick={searchPokemonHandler} className={`fa-solid fa-magnifying-glass ${classes.iSearch}`}></i>
+            <input onChange={pokemonToSearchHandler} className={classes.inputSearch} type="search" placeholder="Pokemon name - nº" />
+          </div>
         </div>
         <div className={classes.buttonsMobileBox}>
           {prevPage && (

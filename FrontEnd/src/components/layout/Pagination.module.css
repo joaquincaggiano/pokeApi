@@ -137,6 +137,29 @@
   display: none;
 }
 
+/* .searchBox{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+} */
+
+.inputSearch{
+  padding: 2px;
+  border-radius: 5px;
+  color: #dc143c;
+  border: 1px solid #dc143cb2;
+  margin-left: 3px;
+}
+
+.iSearch{
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .paginationMobile {
     display: none;
@@ -186,7 +209,7 @@
     align-items: baseline;
   }
 
-  .inputSearch{
+  /* .inputSearch{
     padding: 2px;
     border-radius: 5px;
     color: #dc143c;
@@ -200,7 +223,7 @@
     border-radius: 5px;
     border: 1px solid white;
     cursor: pointer;
-  }
+  } */
 
   .buttonsDesktopBox {
     display: flex;

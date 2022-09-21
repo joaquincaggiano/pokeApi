@@ -176,7 +176,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
                 <br />
                 <strong>Type:</strong>{" "}
                 {pokemonType.map((type, i) => {
-                  return <b key={i}>{`${type.type.name} - `}</b>;
+                  return <b key={i}>{`${type.type.name} / `}</b>;
                 })}
                 <br />
                 <strong>Height:</strong> {onePokemon.height}''

@@ -94,7 +94,8 @@ const userController = {
   updateUser: async (req, res) => {
     try {
       let userToUpdate = await User.findByPk(req.params.id);
-      console.log("USUARIO A ACTUALIZAR BACK", userToUpdate);
+      // console.log("USUARIO A ACTUALIZAR BACK", userToUpdate);
+      console.log("REQBODY",req.body)
 
       if (!req.body.email || !req.body.userName) {
         return res.status(400).json({
