@@ -24,6 +24,8 @@ const UpdateUser = () => {
     ACTIONS,
     setFile,
     updateProfile,
+    isLoadingUpdate,
+    setIsLoadingUpdate
   } = useContext(UserContext);
 
   //User Logged
@@ -61,10 +63,13 @@ const UpdateUser = () => {
   let navigate = useNavigate();
 
   // Submit function
-  function handleOnSubmit(e) {
+ function handleOnSubmit(e) {
     e.preventDefault();
     updateProfile();
-    return navigate("/user/profile");
+    if (!isLoadingUpdate){
+      setIsLoadingUpdate(true)
+      return navigate("/user/profile");
+    }
   }
 
   const onChangeHandler = (e) => {

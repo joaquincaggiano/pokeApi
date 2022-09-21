@@ -81,6 +81,7 @@ export const PokemonContextProvider = ({ children }) => {
                 eachPokemon.sort((a, b) => a.id - b.id);
                 setDataPokemon(eachPokemon);
                 setIsLoading(false);
+                setLoadingSearch(true)
               }
             });
           });

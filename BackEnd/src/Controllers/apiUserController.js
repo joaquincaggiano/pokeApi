@@ -94,26 +94,19 @@ const userController = {
   updateUser: async (req, res) => {
     try {
       let userToUpdate = await User.findByPk(req.params.id);
-      // console.log("USUARIO A ACTUALIZAR BACK", userToUpdate);
-      console.log("REQBODY",req.body)
+      console.log("USUARIO A ACTUALIZAR BACK", userToUpdate);
+      // console.log("REQBODY",req.body)
+      console.log("REQFILE",req.file)
 
       if (!req.body.email || !req.body.userName) {
         return res.status(400).json({
           msg: "BAD REQUEST - COMPLETE USERNAME and EMAIL FIELDS",
         });
       } else {
-        userToUpdate.dataValues.userName = req.body.userName
-          ? req.body.userName
-          : userToUpdate.dataValues.userName;
-        userToUpdate.dataValues.email = req.body.email
-          ? req.body.email
-          : userToUpdate.dataValues.email;
-        userToUpdate.dataValues.password = req.body.password
-          ? bcrypt.hashSync(req.body.password, 10)
-          : userToUpdate.dataValues.password;
-        userToUpdate.dataValues.file = req.file?.file
-          ? req.file.file
-          : userToUpdate.dataValues.file;
+        userToUpdate.userName = req.body.userName ? req.body.userName : userToUpdate.userName;
+        userToUpdate.email = req.body.email ? req.body.email : userToUpdate.email;
+        userToUpdate.password = req.body.password ? bcrypt.hashSync(req.body.password, 10) : userToUpdate.password;
+        userToUpdate.file = req.file?.filename ? req.file.filename : userToUpdate.file;
 
         userToUpdate.save();
 

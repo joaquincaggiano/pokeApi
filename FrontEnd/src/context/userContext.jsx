@@ -21,6 +21,7 @@ export const UserProvider = ({ children }) => {
   const [validationLogin, setValidationLogin] = useState("");
   const [file, setFile] = useState();
   const [onePokeImage, setOnePokeImage] = useState({});
+  const [isLoadingUpdate, setIsLoadingUpdate] = useState(true);
 
   // REFERENCIAS DE INPUTS
   const userNameRef = useRef();
@@ -115,13 +116,16 @@ export const UserProvider = ({ children }) => {
       )
       .then((response) => {
         console.log("USUARIO ACTUALIZADO", response);
-        const userUpdated = {
-          id: response.data.user.id,
-          userName: response.data.user.userName,
-          email: response.data.user.email,
-          file: response.data.user.file,
-        };
-        localStorage.setItem("user", JSON.stringify(userUpdated));
+        if(response.status === 200) {
+          const userUpdated = {
+            id: response.data.user.id,
+            userName: response.data.user.userName,
+            email: response.data.user.email,
+            file: response.data.user.file,
+          };
+          localStorage.setItem("user", JSON.stringify(userUpdated));
+          setIsLoadingUpdate(false)
+        }
       })
       .catch((error) => console.log(error));
     } catch (error) {
@@ -159,7 +163,9 @@ export const UserProvider = ({ children }) => {
     getOneImage,
     onePokeImage,
     updateProfile,
-    file
+    file,
+    isLoadingUpdate,
+    setIsLoadingUpdate
   };
 
   return (

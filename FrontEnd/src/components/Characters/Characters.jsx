@@ -34,7 +34,7 @@ const Characters = () => {
   return (
     <>
       <Pagination />
-      {!isLoading && (
+      {loadingSearch && !isLoading && (
         <div className="container">
           <div className={classes.pokeFondo}>
             <div className="row p-4">
