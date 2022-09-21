@@ -4,6 +4,8 @@ import { useContext, useReducer, useEffect } from "react";
 //  Context
 import { UserContext} from "../../context/userContext";
 
+import { useNavigate } from "react-router-dom";
+
 // Boostrap
 import { Form, Button, Container, Card } from "react-bootstrap";
 
@@ -11,6 +13,9 @@ import { Form, Button, Container, Card } from "react-bootstrap";
 import classes from "./Login.module.css"
 
 const Login = () => {
+  // Navigate
+  const navigate =  useNavigate();
+
   // UseContext
   const {
     login,
@@ -21,7 +26,9 @@ const Login = () => {
     ACTIONS,
     validationLogin,
     getOneImage,
-    onePokeImage
+    onePokeImage,
+    isLoading,
+    setIsLoading
   } = useContext(UserContext);
 
   // Reducer States
@@ -54,6 +61,10 @@ const Login = () => {
   const loginSubmitHandler = (e) => {
     e.preventDefault();
     login();
+    if(!isLoading){
+      setIsLoading(true)
+      navigate('/user/profile')
+    }
   };
  
   return (

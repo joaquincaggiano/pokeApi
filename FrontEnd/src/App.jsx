@@ -15,8 +15,8 @@ import { UserProvider } from "./context/userContext";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <UserProvider>
+    <UserProvider>
+      <BrowserRouter>
         <PokemonContextProvider>
           <Header />
           <main>
@@ -27,8 +27,8 @@ const App = () => {
           </main>
         </PokemonContextProvider>
         <Footer />
-      </UserProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </UserProvider>
   );
 };
 

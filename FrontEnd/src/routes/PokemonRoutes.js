@@ -8,7 +8,7 @@ import Characters from "../components/Characters/Characters";
 import Login from "../components/User/Login";
 import Profile from "../components/User/Profile";
 import UpdateUser from "../components/User/UpdateUser";
-import GuestRoutes from "./GuestsRoutes";
+// import GuestRoutes from "./GuestsRoutes";
 
 function PokemonRoutes() {
   return (
@@ -18,7 +18,7 @@ function PokemonRoutes() {
         path="/user/create"
         element={
           // <GuestRoutes>
-            <Register />
+          <Register />
           // {/* // </GuestRoutes> */}
         }
       />
@@ -26,7 +26,7 @@ function PokemonRoutes() {
         path="/user/login"
         element={
           // <GuestRoutes>
-            <Login />
+          <Login />
           // {/* </GuestRoutes> */}
         }
       />

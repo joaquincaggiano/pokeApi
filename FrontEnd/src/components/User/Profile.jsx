@@ -11,7 +11,7 @@ import styles from "./Profile.module.css";
 import { useNavigate, Link } from "react-router-dom";
 
 function Profile() {
-  const { setUserLogged } = useContext(UserContext);
+  const { setUserLogged, userLogged, isLoading } = useContext(UserContext);
   const navigate = useNavigate();
   let user = JSON.parse(localStorage.getItem("user"));
   console.log("parsed user", user);
@@ -22,8 +22,9 @@ function Profile() {
     navigate("/user/login");
   }
 
-  return (
-    <div className={styles.cardStyle}>
+  return ( 
+    <>
+    {userLogged && <div className={styles.cardStyle}>
       <img
         className={`rounded-circle ${styles.imgUser}`}
         src={`http://localhost:3030/images/${user.file}`}
@@ -38,7 +39,8 @@ function Profile() {
       <button className={`${styles.buttonLogout}`} onClick={handleLogOut}>
         LogOut
       </button>
-    </div>
+    </div>}
+    </>  
   );
 }
 

@@ -8,7 +8,7 @@ import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
 //navigate
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 //validation
 import { reducer, errorsState, ACTIONS } from "../reducer/validationReducer";
@@ -22,13 +22,13 @@ export const UserProvider = ({ children }) => {
   const [file, setFile] = useState();
   const [onePokeImage, setOnePokeImage] = useState({});
   const [isLoadingUpdate, setIsLoadingUpdate] = useState(true);
-
+  const [isLoading, setIsLoading] = useState(true)
   // REFERENCIAS DE INPUTS
   const userNameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // REGISTER
   async function register() {
@@ -71,8 +71,9 @@ export const UserProvider = ({ children }) => {
           };
           localStorage.setItem("user", JSON.stringify(userLoggedObject));
           setFile(userLoggedObject.file);
+          setIsLoading(false)
           setUserLogged(true);
-          navigate("/user/profile");
+          // navigate("/user/profile");
         }
       })
       .catch((error) => {
@@ -145,10 +146,8 @@ export const UserProvider = ({ children }) => {
         localStorage.remove('user')
         console.log("USER DELETED")
         setUserLogged(false)
-        setTimeout(() => {
-          navigate('/user/create')
-          
-        }, 1000);
+        // navigate('/user/create')   
+      
       }
     })
     .catch(error => console.log(error))
@@ -187,7 +186,9 @@ export const UserProvider = ({ children }) => {
     file,
     isLoadingUpdate,
     setIsLoadingUpdate,
-    deleteUser
+    deleteUser,
+    isLoading,
+    setIsLoading
   };
 
   return (

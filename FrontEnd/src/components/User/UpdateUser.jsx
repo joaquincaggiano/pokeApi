@@ -252,7 +252,7 @@ const UpdateUser = () => {
             onClick={handleDelete}
             variant="primary"
             type="submit"
-            className="w-100"
+            className="w-100 mt-3"
           >
             Delete profile
           </Button>
