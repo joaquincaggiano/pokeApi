@@ -30,6 +30,12 @@ const Pagination = (ref) => {
     setActualURL(`https://pokeapi.co/api/v2/pokemon/${pokemonToSearch}`)
   }
 
+  const searchKeyHandler = (e) => {
+    if(e.key === "Enter"){
+      setActualURL(`https://pokeapi.co/api/v2/pokemon/${pokemonToSearch}`)
+    }
+  }
+
   const pokemonToSearchHandler = (e) => {
     setPokemonToSearch(e.target.value)
   }
@@ -69,7 +75,7 @@ const Pagination = (ref) => {
           </li>
           <div className={classes.searchBox}>
             <i onClick={searchPokemonHandler} className={`fa-solid fa-magnifying-glass ${classes.iSearch}`}></i>
-            <input onChange={pokemonToSearchHandler} className={classes.inputSearch} type="search" placeholder="Pokemon name - nº" />
+            <input onKeyDown={searchKeyHandler} onChange={pokemonToSearchHandler} className={classes.inputSearch} type="search" placeholder="Pokemon name - nº" />
           </div>
         </div>
         <div className={classes.buttonsMobileBox}>
@@ -100,7 +106,7 @@ const Pagination = (ref) => {
         <div className={classes.rowOne}>
           <div className={classes.searchBox}>
             <i onClick={searchPokemonHandler} className={`fa-solid fa-magnifying-glass ${classes.iSearch}`}></i>
-            <input onChange={pokemonToSearchHandler} className={classes.inputSearch} type="search" placeholder="Pokemon name - nº" />
+            <input onKeyDown={searchKeyHandler} onChange={pokemonToSearchHandler} className={classes.inputSearch} type="search" placeholder="Pokemon name - nº" />
           </div>
 
           <div className={classes.buttonsDesktopBox}>
