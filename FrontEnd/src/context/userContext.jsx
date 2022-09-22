@@ -71,8 +71,8 @@ export const UserProvider = ({ children }) => {
           };
           localStorage.setItem("user", JSON.stringify(userLoggedObject));
           setFile(userLoggedObject.file);
-          setIsLoading(false)
           setUserLogged(true);
+          setIsLoading(false);
           // navigate("/user/profile");
         }
       })

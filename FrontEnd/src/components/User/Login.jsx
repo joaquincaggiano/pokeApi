@@ -61,10 +61,10 @@ const Login = () => {
   const loginSubmitHandler = (e) => {
     e.preventDefault();
     login();
-    if(!isLoading){
-      setIsLoading(true)
+    // if(!isLoading){
+    //   setIsLoading(true)
       navigate('/user/profile')
-    }
+    // }
   };
  
   return (
