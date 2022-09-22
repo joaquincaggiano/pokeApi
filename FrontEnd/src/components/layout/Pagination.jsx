@@ -85,7 +85,7 @@ const Pagination = (ref) => {
               data-type="prev"
               onClick={handlerURL}
             >
-              Prev
+              Prev Page
             </button>
           )}
           {nextPage && (
@@ -94,7 +94,7 @@ const Pagination = (ref) => {
               data-type="next"
               onClick={handlerURL}
             >
-              Next
+              Next Page
             </button>
           )}
         </div>
@@ -116,7 +116,7 @@ const Pagination = (ref) => {
                 data-type="prev"
                 onClick={handlerURL}
               >
-                Prev
+                Prev Page
               </button>
             )}
             {nextPage && (
@@ -125,7 +125,7 @@ const Pagination = (ref) => {
                 data-type="next"
                 onClick={handlerURL}
               >
-                Next
+                Next Page
               </button>
             )}
           </div>
