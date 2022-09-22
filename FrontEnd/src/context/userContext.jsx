@@ -7,9 +7,6 @@ import { useRef, useState, useEffect } from "react";
 // Axios
 import axios from "axios";
 
-//navigate
-// import { useNavigate } from "react-router-dom";
-
 //validation
 import { reducer, errorsState, ACTIONS } from "../reducer/validationReducer";
 
@@ -28,7 +25,6 @@ export const UserProvider = ({ children }) => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  // const navigate = useNavigate();
 
   // REGISTER
   async function register() {
@@ -73,7 +69,6 @@ export const UserProvider = ({ children }) => {
           setFile(userLoggedObject.file);
           setUserLogged(true);
           setIsLoading(false);
-          // navigate("/user/profile");
         }
       })
       .catch((error) => {
@@ -99,17 +94,7 @@ export const UserProvider = ({ children }) => {
       userUpdateData.append("password", passwordRef.current.value);
       userUpdateData.append("file", file);
 
-      // userUpdateData.append("body", "bodyPrueba");
-
       const userToUpdate = JSON.parse(localStorage.getItem("user"));
-      // console.log("USER TO UPDATE", userToUpdate);
-  
-      // const actualUser = {
-      //   userName: userNameRef.current.value,
-      //   email: emailRef.current.value,
-      //   password: passwordRef.current.value,
-      //   file: file,
-      // };
       axios
       .put(
         `http://localhost:3030/api/user/update/${userToUpdate.id}`,
@@ -141,15 +126,7 @@ export const UserProvider = ({ children }) => {
     .delete(
       `http://localhost:3030/api/user/delete/${userToDelete.id}`
     )
-    .then((response) => {
-      if (response.status === 200){
-        localStorage.remove('user')
-        console.log("USER DELETED")
-        setUserLogged(false)
-        // navigate('/user/create')   
-      
-      }
-    })
+    .then((response) => {console.log("response delete",response)})
     .catch(error => console.log(error))
   }
 

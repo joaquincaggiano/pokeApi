@@ -27,6 +27,7 @@ const UpdateUser = () => {
     isLoadingUpdate,
     setIsLoadingUpdate,
     deleteUser,
+    setUserLogged
   } = useContext(UserContext);
 
   //User Logged
@@ -114,6 +115,9 @@ const UpdateUser = () => {
     );
     if (confirmDelete) {
       deleteUser();
+      localStorage.removeItem("user")
+      setUserLogged(false)
+      navigate('/')
     }
   }
 
