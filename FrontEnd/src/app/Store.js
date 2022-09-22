@@ -1,8 +1,10 @@
-// import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 
-// // Reducers
+// Reducers
+import favPokeSlice from '../features/favPokeSlice/favPokeSlice'
 
-
-// export const store = configureStore({
-//   reducer: {},
-// })
+export const store = configureStore({
+  reducer: {
+    pokeFav: favPokeSlice,
+  },
+})
