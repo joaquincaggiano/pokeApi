@@ -145,6 +145,17 @@ const SearchPokemon = () => {
     }
   });
 
+  // const dataPointValue = pokemonSearch.stats.map(dataPoint => {
+  //   return dataPoint.base_stat
+  // }); 
+  // const totalMaximum = Math.max(...dataPointValue);
+  // let barFillWidth = "0%";
+  // pokemonSearch.stats.map((stat) => {
+  //   // if(totalMaximum > 0) {
+  //     barFillWidth = Math.round((stat.base_stat / 300) * 100) + "%"
+  //   // } 
+  // })
+
   return (
     <div className={classes.cardStyle}>
       <h1>
@@ -184,7 +195,7 @@ const SearchPokemon = () => {
       <div className={classes.rowTwo}>
         <div className={classes.pokemonInfoBoxes}>
           <h2 className={classes.titlesStyles}>Stats points</h2>
-          <div className={classes.stats}>
+          {/* <div className={classes.stats}>
             {pokemonSearch.stats.map((stat, i) => {
               return (
                 <li key={i}>
@@ -193,7 +204,25 @@ const SearchPokemon = () => {
                 </li>
               );
             })}
+          </div> */}
+
+          
+          <div className={classes.stats}>
+            {pokemonSearch.stats.map((stat, i) => {
+              return (
+                <div key={i} className={classes.barStat}>
+                  <div className={classes.barLabel}>
+                    {stat.stat.name[0].toUpperCase() + stat.stat.name.slice(1)} - {stat.base_stat}
+                  </div>
+                  <div className={classes.barInner}>
+                    <div className={classes.barFill} style={{width: `${stat.base_stat}px`}}></div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
+
+
         </div>
         <div className={classes.pokemonInfoBoxes}>
           <h2 className={classes.titlesStyles}>Moves</h2>

@@ -200,6 +200,39 @@
 
 /* Fin Section Type */
 
+/* chart bar */
+
+.stats {
+  background-color: #87cefa;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 18px;
+  width: 100%;
+}
+
+.barStat{
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+}
+
+.barInner{
+    height: 20px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 12px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.barFill{
+  background-color: #4169E1;
+  height: 100%;
+  transition: all 0.3s ease-out;
+}
+
+/* fin chart bar */
+
 @media (min-width: 768px) {
   .imgStyle {
     width: 60%;
@@ -210,7 +243,20 @@
   }
 
   .pokemonMoves {
-    height: 218px;
+    height: 250px;
+  }
+
+  .barStat{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items:center;
+  }
+
+  .barInner{
+    width: 80%;
+    /* margin: auto; */
   }
 }
 
@@ -227,5 +273,9 @@
   }
     .pokemonInfoBoxes {
         width: 45%;
+    }
+
+    .pokemonMoves {
+      height: 338px;
     }
 }
