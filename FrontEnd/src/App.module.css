@@ -16,20 +16,33 @@ main{
     background: rgb(255, 208, 0);
     z-index: 1000000;
     bottom: 10%;
-    left: 92%;
-    padding: 20px;
+    left: 80%;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border: 2px solid #4682B4;
     cursor: pointer;
 }
 
 .arrowUpContainer i {
     position: absolute;
-    bottom: 15px;
-    right: 17.5px;
-    font-size: 28px;
+    top: 8px;
+    right: 14px;
+    font-size: 24px;
     font-weight: bold;
     color: #4682B4;
+}
+
+@media(min-width: 768px){
+    .arrowUpContainer{
+        width: 60px;
+        height: 60px;
+        left: 85%;
+    }
+    
+    .arrowUpContainer i {
+        font-size: 28px;
+        right: 17px;
+        top: 12px;
+    }
 }
