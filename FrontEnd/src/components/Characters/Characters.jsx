@@ -21,7 +21,7 @@ const Characters = () => {
 
   const modalPositionRef = useRef();
 
-  const CloseModalHandler = () => {
+  const closeModalHandler = () => {
     setShowModal(false);
   };
 
@@ -56,7 +56,7 @@ const Characters = () => {
               <DetailPokemon
                 ref={modalPositionRef}
                 pokemonId={pokemonId}
-                onCloseModal={CloseModalHandler}
+                onCloseModal={closeModalHandler}
               />
             )}
 

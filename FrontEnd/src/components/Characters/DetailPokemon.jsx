@@ -12,7 +12,7 @@ import classes from "./DetailPokemon.module.css";
 
 const DetailPokemon = React.forwardRef((props, ref) => {
   // Context
-  const ctx = useContext(PokemonContext);
+  const {allPokemones, setActualURL} = useContext(PokemonContext)
 
   // UseState
   const [onePokemon, setOnePokemon] = useState("");
@@ -20,11 +20,11 @@ const DetailPokemon = React.forwardRef((props, ref) => {
   const [quotes, setQuotes] = useState([]);
   const [actualQuote, setActualQuote] = useState("");
 
-  console.log("ALL POKEMONES", ctx.allPokemones);
+  // console.log("ALL POKEMONES", allPokemones);
 
   // useEffect
   useEffect(() => {
-    const unPokemon = ctx.allPokemones.find((pokemon) => {
+    const unPokemon = allPokemones.find((pokemon) => {
       return pokemon.id === props.pokemonId;
     });
     setOnePokemon(unPokemon);
@@ -68,7 +68,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
 
   // Handlers
   const leftHandlerPokemon = () => {
-    const unPokemon = ctx.allPokemones.find((pokemon) => {
+    const unPokemon = allPokemones.find((pokemon) => {
       return pokemon.id === onePokemon.id - 1;
     })
     if(unPokemon){
@@ -78,7 +78,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
   };
 
   const rightHandlerPokemon = () => {
-    const unPokemon = ctx.allPokemones.find((pokemon) => {
+    const unPokemon = allPokemones.find((pokemon) => {
       return pokemon.id === onePokemon.id + 1;
     })
     if(unPokemon){
@@ -104,6 +104,11 @@ const DetailPokemon = React.forwardRef((props, ref) => {
       </div>
     );
   });
+
+  const onePokemonDetailHandler = () => {
+    setActualURL(`https://pokeapi.co/api/v2/pokemon/${onePokemon.id}`);
+    props.onCloseModal();
+  }
 
   return (
     <>
@@ -199,7 +204,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
               <div id={classes.miniButtonGlass5}></div>
               <div id={classes.barbutton3}></div>
               <div id={classes.barbutton4}></div>
-              <button id={classes.yellowBox1}>See more</button>
+              <button id={classes.yellowBox1} onClick={onePokemonDetailHandler}>See more</button>
               <button id={classes.yellowBox2} onClick={props.onCloseModal}>
                 Close
               </button>
