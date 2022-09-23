@@ -13,6 +13,7 @@ import Characters from "../components/Characters/Characters";
 import Login from "../components/User/Login";
 import Profile from "../components/User/Profile";
 import UpdateUser from "../components/User/UpdateUser";
+import ModalQuestion from '../components/Characters/ModalQuestion.jsx'
 import GuestRoutes from "./GuestsRoutes";
 import PrivateRoutes from "./PrivateRoutes";
 
@@ -35,6 +36,8 @@ function PokemonRoutes() {
       <Route path="/user/profile" element={<PrivateRoutes><Profile /></PrivateRoutes>} />
       <Route path="/user/update/:id" element={<PrivateRoutes><UpdateUser /></PrivateRoutes>} />
       <Route path="/characters" element={<Characters />} />
+      <Route path="/trivia" element={<ModalQuestion />} />
+
     </Routes>
   );
 }
