@@ -13,6 +13,7 @@ import { Form, Button, Container, Card } from "react-bootstrap";
 // Css
 import classes from "./Register.module.css"
 
+
 //Assets
 import Starter1 from "../../img/starter-gen1.png";
 import Starter2 from "../../img/starter-gen2.png";
@@ -31,6 +32,8 @@ function Register() {
     errorsState,
     ACTIONS,
     setFile,
+    onePokeImage,
+    getOneImage
   } = useContext(UserContext);
 
   // Reducer States
@@ -40,14 +43,9 @@ function Register() {
   const [formIsValid, setFormIsValid] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
-  //Get random image
-  const [starter, setStarter] = useState();
-
-  const starterArray = [Starter1, Starter2, Starter3, Starter4, Starter5];
-
-  Array.prototype.sample = function () {
-    return this[Math.floor(Math.random() * this.length)];
-  };
+  useEffect(()=>{
+    getOneImage()
+  }, [])
 
   // useEffect
   useEffect(() => {
@@ -62,14 +60,7 @@ function Register() {
     }
   }, [
     inputValue,
-    // state.usernameLength.value,
-    // state.emailFormat.value,
-    // state.passwordFormat.value,
   ]);
-
-  useEffect(() => {
-    setStarter(starterArray.sample());
-  }, []);
 
   // Navigate
   let navigate = useNavigate();
@@ -115,7 +106,8 @@ function Register() {
           backdropFilter: "blur(5px)",
         }}
       >
-        <Card.Img className="m-auto xs w-25 sm w-50 md w-75 " src={starter}></Card.Img>
+        <h2>{onePokeImage.name}</h2>
+        <img className={classes.imageFormat} src={onePokeImage.img}/>
         <Form
           className="text-white p-3 align-self-center container-fluid"
           onSubmit={(e) => handleOnSubmit(e)}

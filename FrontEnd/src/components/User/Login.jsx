@@ -1,5 +1,5 @@
 // Hooks
-import { useContext, useReducer, useEffect } from "react";
+import { useContext, useReducer, useEffect, useState } from "react";
 
 //  Context
 import { UserContext} from "../../context/userContext";
@@ -11,6 +11,14 @@ import { Form, Button, Container, Card } from "react-bootstrap";
 
 // Css
 import classes from "./Login.module.css"
+
+
+//Assets
+import Starter1 from "../../img/starter-gen1.png";
+import Starter2 from "../../img/starter-gen2.png";
+import Starter3 from "../../img/starter-gen3.png";
+import Starter4 from "../../img/starter-gen4.png";
+import Starter5 from "../../img/starter-gen5.png";
 
 const Login = () => {
   // Navigate
@@ -24,19 +32,22 @@ const Login = () => {
     reducer,
     errorsState,
     ACTIONS,
-    validationLogin,
-    getOneImage,
-    onePokeImage,
-    isLoading,
-    setIsLoading
+    validationLogin
   } = useContext(UserContext);
 
   // Reducer States
   const [state, dispatch] = useReducer(reducer, errorsState);
+   //Get random image for card.img
+   const [starter, setStarter] = useState();
 
-  useEffect(()=>{
-    getOneImage()
-  }, [])
+   const starterArray = [Starter1, Starter2, Starter3, Starter4, Starter5];
+ 
+   Array.prototype.sample = function () {
+    return this[Math.floor(Math.random() * this.length)];
+  };
+  useEffect(() => {
+    setStarter(starterArray.sample());
+  }, []);
 
   // Validation reducer
   const onChangeHandler = (e) => {
@@ -61,19 +72,16 @@ const Login = () => {
   const loginSubmitHandler = (e) => {
     e.preventDefault();
     login();
-    // if(!isLoading){
-    //   setIsLoading(true)
       navigate('/user/profile')
-    // }
   };
- 
+
+
+
   return (
     <Container className='pt-5'>
 
     <Card className="pt-3 w-75 m-auto rounded text-white container-fluid" style={{background: 'rgb(255, 255, 255, 0.3)', backdropFilter: 'blur(5px)'}}>
-      
-        <h2>{onePokeImage.name}</h2>
-        <img className={classes.imageFormat} src={onePokeImage.img}/>
+    <Card.Img className="m-auto xs w-25 sm w-50 md w-75 " src={starter}></Card.Img>
       
       <Form className="text-white p-3 align-self-center container-fluid" onSubmit={loginSubmitHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

@@ -110,9 +110,7 @@ const UpdateUser = () => {
   }
 
   function handleDelete() {
-    let confirmDelete = confirm(
-      "Are you sure you want to delete your profile?"
-    );
+    let confirmDelete = window.confirm("Are you sure you want to delete your profile?");
     if (confirmDelete) {
       deleteUser();
       localStorage.removeItem("user")
