@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import {InputGroup, Form } from 'react-bootstrap'
 import axios from 'axios'
 
 const ModalQuestion = () => {
@@ -185,6 +186,7 @@ const ModalQuestion = () => {
     //     },
     // ]
     const [question, setQuestion ] = useState()
+    const [answer, setAnswer] = useState()
 useEffect(() => {
     axios.get('http://localhost:3030/triviaApi/random')
     .then(response =>
@@ -194,14 +196,31 @@ useEffect(() => {
         })
     .catch(error => console.log(error))
 }, [])
+function handleOnClick(){
+    if(answer === question.correctAnswer){
+        console.log("CORRECT!!!")
+    }else{
+        console.log("INCORRECT")
+    }
+}
+
   return (
-    <div className='text-white'>ModalQuestion
+    <div className='text-white'>
     <ul>
-        <li>Question: {question.question}</li>
-        <li>Answer 1: {question.answer1}</li>
-        <li>Answer 2: {question.answer2}</li>
-        <li>Answer 3: {question.answer3}</li>
-        <li>Answer 4: {question.answer4}</li>
+        <li>{question?.question}</li>
+        <li><input className='form-check-input' type='radio' name='trivia-question' value={question?.answer1} onClick={(e)=>setAnswer(e.target.value)}/>
+        <label className='form-check-label'>{question?.answer1}</label> 
+        </li>
+        <li><input className='form-check-input' type='radio' name='trivia-question' value={question?.answer2} onClick={(e)=>setAnswer(e.target.value)}/>
+        <label className='form-check-label'>{question?.answer2}</label> 
+        </li>
+        <li><input className='form-check-input' type='radio' name='trivia-question' value={question?.answer3} onClick={(e)=>setAnswer(e.target.value)}/>
+        <label className='form-check-label'>{question?.answer3}</label>
+         </li>
+        <li><input className='form-check-input' type='radio'name='trivia-question'  value={question?.answer4} onClick={(e)=>setAnswer(e.target.value)}/>
+        <label className='form-check-label'>{question?.answer4}</label> 
+        </li>
+        <button className='btn btn-primary' onClick={handleOnClick}>Submit Answer</button>
     </ul>
     
     </div>
