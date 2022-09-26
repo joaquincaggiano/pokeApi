@@ -12,7 +12,7 @@ import classes from "./DetailPokemon.module.css";
 
 const DetailPokemon = React.forwardRef((props, ref) => {
   // Context
-  const {allPokemones, setActualURL} = useContext(PokemonContext)
+  const { allPokemones, setActualURL } = useContext(PokemonContext);
 
   // UseState
   const [onePokemon, setOnePokemon] = useState("");
@@ -30,7 +30,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
     setOnePokemon(unPokemon);
     setIsLoading(false);
   }, []);
-  // console.log("ONE POKEMON", onePokemon);
+  console.log("ONE POKEMON", onePokemon);
 
   useEffect(() => {
     const data = async () => {
@@ -61,17 +61,14 @@ const DetailPokemon = React.forwardRef((props, ref) => {
     data();
   }, [onePokemon]);
 
-  // console.log("QUOTES", quotes)
-
   const pokemonType = onePokemon?.types;
-  // const pokemonMoves = onePokemon?.moves;
 
   // Handlers
   const leftHandlerPokemon = () => {
     const unPokemon = allPokemones.find((pokemon) => {
       return pokemon.id === onePokemon.id - 1;
-    })
-    if(unPokemon){
+    });
+    if (unPokemon) {
       setOnePokemon(unPokemon);
     }
     setActualQuote("Choose a quote below");
@@ -80,8 +77,8 @@ const DetailPokemon = React.forwardRef((props, ref) => {
   const rightHandlerPokemon = () => {
     const unPokemon = allPokemones.find((pokemon) => {
       return pokemon.id === onePokemon.id + 1;
-    })
-    if(unPokemon){
+    });
+    if (unPokemon) {
       setOnePokemon(unPokemon);
     }
     setActualQuote("Choose a quote below");
@@ -95,7 +92,8 @@ const DetailPokemon = React.forwardRef((props, ref) => {
   // Element div button
   const divElement = Array.from({ length: 10 }, (_, i) => {
     return (
-      <div key={i}
+      <div
+        key={i}
         className={classes.blueButton}
         data-type={i}
         onClick={changeQuoteHandler}
@@ -108,12 +106,178 @@ const DetailPokemon = React.forwardRef((props, ref) => {
   const onePokemonDetailHandler = () => {
     setActualURL(`https://pokeapi.co/api/v2/pokemon/${onePokemon.id}`);
     props.onCloseModal();
-  }
+  };
+
+  // CSS para cada TYPE
+  const classType = onePokemon?.types?.map((type, i) => {
+    if (type.type.name === "poison") {
+      return (
+        <div className={classes.typePoison} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+
+    if (type.type.name === "grass") {
+      return (
+        <div className={classes.typeGrass} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+
+    if (type.type.name === "fire") {
+      return (
+        <div className={classes.typeFire} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+
+    if (type.type.name === "water") {
+      return (
+        <div className={classes.typeWater} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+
+    if (type.type.name === "flying") {
+      return (
+        <div className={classes.typeFlying} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+
+    if (type.type.name === "electric") {
+      return (
+        <div className={classes.typeElectric} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+
+    if (type.type.name === "bug") {
+      return (
+        <div className={classes.typeBug} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+    if (type.type.name === "normal") {
+      return (
+        <div className={classes.typeNormal} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+    if (type.type.name === "ground") {
+      return (
+        <div className={classes.typeGround} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+    if (type.type.name === "fairy") {
+      return (
+        <div className={classes.typeFairy} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+    if (type.type.name === "fighting") {
+      return (
+        <div className={classes.typeFighting} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+    if (type.type.name === "psychic") {
+      return (
+        <div className={classes.typePsychic} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+    if (type.type.name === "rock") {
+      return (
+        <div className={classes.typeRock} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+    if (type.type.name === "steel") {
+      return (
+        <div className={classes.typeSteel} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+    if (type.type.name === "ice") {
+      return (
+        <div className={classes.typeIce} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+    if (type.type.name === "ghost") {
+      return (
+        <div className={classes.typeGhost} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+    if (type.type.name === "dragon") {
+      return (
+        <div className={classes.typeDragon} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+    if (type.type.name === "dark") {
+      return (
+        <div className={classes.typeDark} key={i}>
+          <span>{type.type.name}</span>
+        </div>
+      );
+    }
+  });
 
   return (
     <>
       {!isLoading && (
-        <div>
+        <div className={classes.detailMobile}>
+          <div className={classes.backdrop} onClick={props.onCloseModal} />
+          <div className={classes.cardPokemon}>
+            <div className={classes.headerCard}>
+              <h2>{onePokemon.name[0].toUpperCase() + onePokemon.name.slice(1)}</h2>
+              <span>{onePokemon.stats[0].stat.name.toUpperCase()} - {onePokemon.stats[0].base_stat}</span>
+            </div>
+            <img src={onePokemon.sprites.other.dream_world.front_default} alt="" />
+            <div className={classes.bodyCard1}>
+              <span>Nº {String(onePokemon.id).padStart(3, 0)}</span>
+              <span>Height: {onePokemon.height}</span>
+              <span>Weight: {onePokemon.weight}</span>
+            </div>
+            <div className={classes.bodyCard2}>
+              {classType}
+            </div>
+            <div className={classes.bodyCard3}>
+              <h3>Moves</h3>
+              <div className={classes.movesPokemon}>
+                {onePokemon.moves.map((movePokemon, i) => {
+                  return (
+                    <p key={i}>{movePokemon.move.name[0].toUpperCase() + movePokemon.move.name.slice(1)}</p>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {!isLoading && (
+        <div className={classes.detailDesktop}>
           <div className={classes.backdrop} onClick={props.onCloseModal} />
           <div id={classes.pokedex} ref={ref}>
             <div id={classes.left}>
@@ -124,7 +288,10 @@ const DetailPokemon = React.forwardRef((props, ref) => {
                 <div id={classes.buttonGlass}>
                   <div id={classes.reflect}> </div>
                 </div>
-                <div id={classes.miniButtonGlass1} onClick={props.onCloseModal}></div>
+                <div
+                  id={classes.miniButtonGlass1}
+                  onClick={props.onCloseModal}
+                ></div>
                 <div id={classes.miniButtonGlass2}></div>
                 <div id={classes.miniButtonGlass3}></div>
               </div>
@@ -197,14 +364,16 @@ const DetailPokemon = React.forwardRef((props, ref) => {
               </div>
               <div id={classes.blueButtons1}>
                 {divElement.map((div, i) => {
-                  return div
+                  return div;
                 })}
               </div>
               <div id={classes.miniButtonGlass4}></div>
               <div id={classes.miniButtonGlass5}></div>
               <div id={classes.barbutton3}></div>
               <div id={classes.barbutton4}></div>
-              <button id={classes.yellowBox1} onClick={onePokemonDetailHandler}>See more</button>
+              <button id={classes.yellowBox1} onClick={onePokemonDetailHandler}>
+                See more
+              </button>
               <button id={classes.yellowBox2} onClick={props.onCloseModal}>
                 Close
               </button>
