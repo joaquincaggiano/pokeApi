@@ -23,7 +23,7 @@ function handleOnClick(){
     }else{
         console.log("INCORRECT")
     }
-}
+  }
 
   return (
     <div className={styles.backdrop}>
@@ -49,7 +49,7 @@ function handleOnClick(){
         </div>
     
     </div>
-  )
-}
+  );
+};
 
-export default ModalQuestion
+export default ModalQuestion;
