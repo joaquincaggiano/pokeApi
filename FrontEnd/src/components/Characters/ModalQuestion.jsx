@@ -30,16 +30,16 @@ function handleOnClick(){
         <div className={styles.cardPokemon}> 
     <ul>
         <div>{question?.question}</div>
-        <div><input className='form-check-input' type='radio' name='trivia-question' value={question?.answer1} onCdivck={(e)=>setAnswer(e.target.value)}/>
+        <div><input className='form-check-input' type='radio' name='trivia-question' value={question?.answer1} onClick={(e)=>setAnswer(e.target.value)}/>
         <label className='form-check-label'>{question?.answer1}</label> 
         </div>
-        <div><input className='form-check-input' type='radio' name='trivia-question' value={question?.answer2} onCdivck={(e)=>setAnswer(e.target.value)}/>
+        <div><input className='form-check-input' type='radio' name='trivia-question' value={question?.answer2} onClick={(e)=>setAnswer(e.target.value)}/>
         <label className='form-check-label'>{question?.answer2}</label> 
         </div>
-        <div><input className='form-check-input' type='radio' name='trivia-question' value={question?.answer3} onCdivck={(e)=>setAnswer(e.target.value)}/>
+        <div><input className='form-check-input' type='radio' name='trivia-question' value={question?.answer3} onClick={(e)=>setAnswer(e.target.value)}/>
         <label className='form-check-label'>{question?.answer3}</label>
          </div>
-        <div><input className='form-check-input' type='radio'name='trivia-question'  value={question?.answer4} onCdivck={(e)=>setAnswer(e.target.value)}/>
+        <div><input className='form-check-input' type='radio'name='trivia-question'  value={question?.answer4} onClick={(e)=>setAnswer(e.target.value)}/>
         <label className='form-check-label'>{question?.answer4}</label> 
         </div>
         <button className='btn btn-primary' onClick={handleOnClick}>Submit Answer</button>
