@@ -16,6 +16,12 @@ function EachCharacter(props) {
 
   const pokemonNumber = String(props.id);
 
+  const handlePokeFav = ()=>{
+    props.setPokeFromTrivia(props.id)
+    props.setOpenTrivia(true)
+  }
+  
+  
   // CSS para cada TYPE
   const classType = props.typePokemon.map((type, i) => {
     if (type === "poison") {
@@ -165,7 +171,7 @@ function EachCharacter(props) {
           <div className={classes.orderNamePokebola}>
             <h4 className="card-title">{props.name}</h4>
 
-            <div className={classes.pokebola} onClick={()=>props.setOpenTrivia(true)}>
+            <div className={classes.pokebola} onClick={handlePokeFav}>
               <div className={classes.detailPokebola}></div>
             </div>
           </div>

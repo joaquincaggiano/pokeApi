@@ -6,6 +6,11 @@ const upload = require("../../multer/multer")
 const userController = require("../Controllers/apiUserController");
 
 // Rutas
+
+// PokeFavs
+router.get("/user/:id/favs", userController.pokeUserFavs);
+router.post("/user/:id/favs", userController.saveUserFavs);
+
 // Profile
 router.get("/user/:id", userController.profile);
 

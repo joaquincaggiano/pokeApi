@@ -18,7 +18,8 @@ const Characters = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [pokemonId, setPokemonId] = useState(null);
-  const [openTrivia, setOpenTrivia] = useState(false)
+  const [openTrivia, setOpenTrivia] = useState(false);
+  const [pokeFromTrivia, setPokeFromTrivia] = useState();
 
   const modalPositionRef = useRef();
 
@@ -27,8 +28,8 @@ const Characters = () => {
   };
 
   const closeTrivia = () => {
-    setOpenTrivia(false)
-  }
+    setOpenTrivia(false);
+  };
 
   useEffect(() => {
     if (modalPositionRef != undefined) {
@@ -54,6 +55,7 @@ const Characters = () => {
                     setShowModal={setShowModal}
                     setPokemonId={setPokemonId}
                     setOpenTrivia={setOpenTrivia}
+                    setPokeFromTrivia={setPokeFromTrivia}
                   />
                 );
               })}
@@ -68,11 +70,13 @@ const Characters = () => {
 
             {/* {!loadingSearch && <SearchPokemon />} */}
           </div>
-          {openTrivia && 
-          <ModalQuestion
-          setOpenTrivia={setOpenTrivia}
-          onCloseModal={closeTrivia}
-          />}
+          {openTrivia && (
+            <ModalQuestion
+              setOpenTrivia={setOpenTrivia}
+              onCloseModal={closeTrivia}
+              pokeFromTrivia={pokeFromTrivia}
+            />
+          )}
         </div>
       )}
       {!loadingSearch && isLoading && (

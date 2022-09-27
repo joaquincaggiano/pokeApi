@@ -1,5 +1,5 @@
 // Requiero base de datos
-const { User } = require("../../database/models");
+const { User, PokeFavorite } = require("../../database/models");
 
 // bcrypt
 const bcrypt = require("bcryptjs");
@@ -136,6 +136,29 @@ const userController = {
       console.log(error);
     }
   },
+  pokeUserFavs: async (req, res) => {
+    try {
+     const allPokeFav = await PokeFavorite.findAll({
+        where: {
+          userId: req.params.id,
+        }
+      });
+      res.status(200).json(allPokeFav)
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  saveUserFavs: async (req, res) => {
+    try {
+      console.log("req body favs", req.body.id)
+      const pokemonToSave = await PokeFavorite.create({
+        pokemon: req.body.id
+      })
+      pokemonToSave.addUser(req.params.id)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 };
 
 module.exports = userController;

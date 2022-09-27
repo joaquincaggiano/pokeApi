@@ -6,6 +6,11 @@ module.exports = (sequelize, DataTypes) => {
         pokemon: DataTypes.STRING
     }, {
         tableName: 'pokefavorites',
+        paranoid: true,
+        timestamps: true,
+        createdAt: "createdAt",
+        updatedAt: "updatedAt",
+        deletedAt: "deletedAt",
     });
 
     PokeFavorite.associate = function (models) {
