@@ -1,11 +1,12 @@
 // Hook
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 // Css
 import classes from "./EachCharacter.module.css";
 
 function EachCharacter(props) {
   const viewPokemonButtonRef = useRef();
+  
 
   const showModalHandler = (e) => {
     //   console.log(e.target)
@@ -164,7 +165,7 @@ function EachCharacter(props) {
           <div className={classes.orderNamePokebola}>
             <h4 className="card-title">{props.name}</h4>
 
-            <div className={classes.pokebola}>
+            <div className={classes.pokebola} onClick={()=>props.setOpenTrivia(true)}>
               <div className={classes.detailPokebola}></div>
             </div>
           </div>

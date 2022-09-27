@@ -9,7 +9,7 @@ import DetailPokemon from "./DetailPokemon";
 import EachCharacter from "./EachCharacter";
 import Pagination from "../layout/Pagination";
 import SearchPokemon from "./SearchPokemon";
-
+import ModalQuestion from "./ModalQuestion";
 // Css
 import classes from "./Characters.module.css";
 
@@ -18,12 +18,17 @@ const Characters = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [pokemonId, setPokemonId] = useState(null);
+  const [openTrivia, setOpenTrivia] = useState(false)
 
   const modalPositionRef = useRef();
 
   const closeModalHandler = () => {
     setShowModal(false);
   };
+
+  const closeTrivia = () => {
+    setOpenTrivia(false)
+  }
 
   useEffect(() => {
     if (modalPositionRef != undefined) {
@@ -48,6 +53,7 @@ const Characters = () => {
                     typePokemon={pokemon.type}
                     setShowModal={setShowModal}
                     setPokemonId={setPokemonId}
+                    setOpenTrivia={setOpenTrivia}
                   />
                 );
               })}
@@ -62,6 +68,11 @@ const Characters = () => {
 
             {/* {!loadingSearch && <SearchPokemon />} */}
           </div>
+          {openTrivia && 
+          <ModalQuestion
+          setOpenTrivia={setOpenTrivia}
+          onCloseModal={closeTrivia}
+          />}
         </div>
       )}
       {!loadingSearch && isLoading && (

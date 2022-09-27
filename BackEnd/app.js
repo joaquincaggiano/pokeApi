@@ -30,3 +30,6 @@ app.use(express.static(path.resolve(__dirname, "./public")))
 // Rutas de APIs
 const userApiRoute = require("./src/Routes/userApiRoute");
 app.use("/api", userApiRoute);
+
+const triviaApiRoute = require('./src/Routes/triviaApiRoute')
+app.use('/triviaApi', triviaApiRoute)
