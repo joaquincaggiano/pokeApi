@@ -154,7 +154,7 @@ const userController = {
       const pokemonToSave = await PokeFavorite.create({
         pokemon: req.body.id
       })
-      pokemonToSave.addUser(req.params.id)
+       await pokemonToSave.addUser(req.params.id)
     } catch (error) {
       console.log(error)
     }

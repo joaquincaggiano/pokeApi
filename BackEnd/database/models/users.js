@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.associate = function (models) {
     User.belongsToMany(models.PokeFavorite, {
-      as: "users",
-      through: "pokeFavorites_users",
+      as: "pokefavorites",
+      through: "pokefavorites_users",
       foreignKey: "userId",
       otherKey: "pokemonId",
     });
