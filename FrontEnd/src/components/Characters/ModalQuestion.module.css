@@ -101,3 +101,10 @@
     margin-left: 50px;
   }
 }
+
+@media (min-width: 1920px) {
+  .cardPokemon {
+    width: 60%;
+    right: 20%;
+  }
+}
