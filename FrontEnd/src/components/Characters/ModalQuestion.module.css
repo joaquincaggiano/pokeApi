@@ -18,13 +18,86 @@
   border-radius: 10px;
   position: fixed;
   z-index: 100;
-  width: 60vw;
-  bottom: 40vh;
-  right: 30px;
-  padding: 20px;
+  width: 80%;
+  /* min-height: 250px; */
+  bottom: 30vh;
+  right: 10%;
+  padding: 10px;
+  /* display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; */
+}
+
+.answerBox {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.answerBox input {
+  min-width: 10px;
+  margin-right: 5px;
+}
+
+.answerBox label {
+  font-size: 18px;
+}
+
+.cardPokemon h4 {
+  text-align: center;
+}
+
+.buttonsBox {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-around;
-  /* align-items: center; */
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.buttonsBox button {
+  width: 40%;
+}
+
+.buttonCatch, .buttonClose {
+  border-radius: 10px;
+  padding: 5px;
+  border: 1px solid black;
+  font-size: 18px;
+}
+
+.buttonCatch {
+  background-color: #FFD700;
+}
+
+.buttonClose {
+  background-color: #D3D3D3;
+}
+
+.buttonCatch:hover, .buttonClose:hover{
+  border: 2px solid black;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .cardPokemon h4 {
+    font-size: 28px;
+  }
+
+  .answerBox {
+    margin-left: 30px;
+  }
+
+  .answerBox label {
+    font-size: 24px;
+  }
+
+  .buttonCatch, .buttonClose {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .answerBox {
+    margin-left: 50px;
+  }
 }
