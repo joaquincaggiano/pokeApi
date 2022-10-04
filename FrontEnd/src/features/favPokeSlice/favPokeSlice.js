@@ -4,7 +4,7 @@ const initialState = {
   totalPokemonFav: 0,
   pokemonFavList: [],
 }
-
+console.log('pokefav', initialState.pokemonFavList)
 export const favPokeSlice = createSlice({
   name: 'pokeFav',
   initialState: initialState,
@@ -13,6 +13,8 @@ export const favPokeSlice = createSlice({
       state.pokemonFavList = action.payload;
     },
     addPokeToFav: (state, action) => {
+      console.log('action payload', action.payload)
+      // console.log('states', state.pokemonFavList)
         state.pokemonFavList = [...state.pokemonFavList, action.payload];
         state.totalPokemonFav += 1;
     },

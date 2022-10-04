@@ -1,6 +1,9 @@
 // React
 import { useContext, useState, useRef, useEffect } from "react";
 
+//Redux
+import { useSelector } from "react-redux";
+
 // Context
 import { PokemonContext } from "../../context/charactersContext";
 
@@ -16,10 +19,14 @@ import classes from "./Characters.module.css";
 const Characters = () => {
   const { isLoading, dataPokemon, loadingSearch } = useContext(PokemonContext);
 
+  const { pokemonFavList } = useSelector((state) => state.pokeFav);
+
+
   const [showModal, setShowModal] = useState(false);
   const [pokemonId, setPokemonId] = useState(null);
   const [openTrivia, setOpenTrivia] = useState(false);
   const [pokeFromTrivia, setPokeFromTrivia] = useState();
+  const [catchedPoke, setCatchedPoke] = useState(false)
 
   const modalPositionRef = useRef();
 
