@@ -33,9 +33,9 @@ function Profile() {
       <p>Email: {user.email}</p>
 
       <button className={styles.buttonCatch}>
-        {/* <Link className="text-decoration-none text-black" to={`/user/update/${user.id}`}> */}
+        <Link className="text-decoration-none text-black" to={"/user/caught-pokemons"}>
           Caught Pokemons
-        {/* </Link> */}
+        </Link>
       </button>
 
       <button className={styles.buttonUpdate}>

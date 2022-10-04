@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import axios from "axios";
 
 const initialState = {
   totalPokemonFav: 0,
@@ -10,15 +9,19 @@ export const favPokeSlice = createSlice({
   name: 'pokeFav',
   initialState: initialState,
   reducers: {
+    initialStateFunction: (state, action) => {
+      state.pokemonFavList = action.payload;
+      // console.log("EN EL SLICE DE INITIAL", action.payload)
+      // state.totalPokemonFav = [...state.pokemonFavList].length 
+    },
     addPokeToFav: (state, action) => {
-        console.log("action redux",action.payload)
-        const userId = JSON.parse(localStorage.getItem('user'))
-        const pokeToSave = {id: action.payload}
+        // console.log("action redux",action.payload)
+        // const pokeToSave = {id: action.payload}
         state.pokemonFavList = [...state.pokemonFavList, action.payload];
         state.totalPokemonFav += 1;
-        axios.post(`http://localhost:3030/api/user/${userId.id}/favs`, pokeToSave)
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+        // axios.post(`http://localhost:3030/api/user/${userId.id}/favs`, pokeToSave)
+        // .then(response => console.log(response))
+        // .catch(error => console.log(error))
         // localStorage.setItem("pokeCatch", JSON.stringify(state))
     },
     removePokeFromFav: (state, action) => {
@@ -29,6 +32,6 @@ export const favPokeSlice = createSlice({
   },
 })
 
-export const { addPokeToFav, removePokeFromFav } = favPokeSlice.actions;
+export const { addPokeToFav, removePokeFromFav, initialStateFunction } = favPokeSlice.actions;
 
 export default favPokeSlice.reducer;

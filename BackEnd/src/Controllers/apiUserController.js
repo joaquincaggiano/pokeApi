@@ -138,12 +138,17 @@ const userController = {
   },
   pokeUserFavs: async (req, res) => {
     try {
-     const allPokeFav = await PokeFavorite.findAll({
-        where: {
-          userId: req.params.id,
-        }
-      });
-      res.status(200).json(allPokeFav)
+      const allPokeFav = await PokeFavorite.findAll({include: ['users']});
+      const mapPokemon = allPokeFav.map((onePokemon) => {
+        return onePokemon.dataValues.users
+      })
+      console.log("MAP POKEMON", mapPokemon)
+      const filtered = mapPokemon.filter((onePokemonMap) => {
+        console.log('onePokemonMap', onePokemonMap)
+        return onePokemonMap[0].dataValues.id == req.params.id
+      })
+      console.log("FILTERED", filtered)
+      res.status(200).json(filtered)
     } catch (error) {
       console.log(error)
     }

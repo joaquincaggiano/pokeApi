@@ -24,6 +24,9 @@ const ModalQuestion = (props) => {
   const [answer, setAnswer] = useState();
   const [wrongAnswer, setWrongAnswer] = useState(false);
 
+  // User ID
+  const userId = JSON.parse(localStorage.getItem('user'))
+
   useEffect(() => {
     axios
       .get("http://localhost:3030/triviaApi/random")
@@ -40,6 +43,9 @@ const ModalQuestion = (props) => {
     if (answer === question.correctAnswer) {
       console.log("CORRECT!!!", props.pokeFromTrivia);
       dispatch(addPokeToFav(props.pokeFromTrivia));
+      axios.post(`http://localhost:3030/api/user/${userId.id}/favs`, {id: props.pokeFromTrivia})
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
       props.onCloseModal();
       alert("Pokemon atrapado");
     } else {
@@ -57,47 +63,6 @@ const ModalQuestion = (props) => {
         <InputQuestion answer={question?.answer2} setAnswer={setAnswer}/>
         <InputQuestion answer={question?.answer3} setAnswer={setAnswer}/>
         <InputQuestion answer={question?.answer4} setAnswer={setAnswer}/>
-        {/* <div className={styles.answerBox}>
-          <input
-            className="form-check-input"
-            type="radio"
-            name="trivia-question"
-            value={question?.answer1}
-            onClick={(e) => setAnswer(e.target.value)}
-          />
-          <label className="form-check-label">{question?.answer1}</label>
-        </div>
-        <div className={styles.answerBox}>
-          <input
-            className="form-check-input"
-            type="radio"
-            name="trivia-question"
-            value={question?.answer2}
-            onClick={(e) => setAnswer(e.target.value)}
-          />
-          <label className="form-check-label">{question?.answer2}</label>
-        </div>
-        <div className={styles.answerBox}>
-          <input
-            className="form-check-input"
-            type="radio"
-            name="trivia-question"
-            value={question?.answer3}
-            onClick={(e) => setAnswer(e.target.value)}
-          />
-          <label className="form-check-label">{question?.answer3}</label>
-        </div>
-        <div className={styles.answerBox}>
-          <input
-            className="form-check-input"
-            type="radio"
-            name="trivia-question"
-            value={question?.answer4}
-            onClick={(e) => setAnswer(e.target.value)}
-          />
-          <label className="form-check-label">{question?.answer4}</label>
-        </div> */}
-
         <div className={styles.buttonsBox}>
           <button className={styles.buttonCatch} onClick={handleOnClick}>
             Catch

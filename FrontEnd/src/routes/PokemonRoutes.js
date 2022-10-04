@@ -16,6 +16,7 @@ import UpdateUser from "../components/User/UpdateUser";
 import ModalQuestion from '../components/Characters/ModalQuestion.jsx'
 import GuestRoutes from "./GuestsRoutes";
 import PrivateRoutes from "./PrivateRoutes";
+import CaughtPokemons from "../components/User/CaughtPokemons";
 
 
 function PokemonRoutes() {
@@ -37,7 +38,8 @@ function PokemonRoutes() {
       <Route path="/user/update/:id" element={<PrivateRoutes><UpdateUser /></PrivateRoutes>} />
       <Route path="/characters" element={<Characters />} />
       <Route path="/trivia" element={<ModalQuestion />} />
-
+      {/* <Route path="/user/caught-pokemons" element={<PrivateRoutes><CaughtPokemons /></PrivateRoutes>} /> */}
+      <Route path="/user/caught-pokemons" element={<CaughtPokemons />} />
     </Routes>
   );
 }
