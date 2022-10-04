@@ -11,7 +11,7 @@ import styles from "./Profile.module.css";
 import { useNavigate, Link } from "react-router-dom";
 
 function Profile() {
-  const { setUserLogged, userLogged, isLoading } = useContext(UserContext);
+  const { setUserLogged, userLogged } = useContext(UserContext);
   const navigate = useNavigate();
   let user = JSON.parse(localStorage.getItem("user"));
   console.log("parsed user", user);
@@ -31,12 +31,20 @@ function Profile() {
       />
       <h2>Welcome {user.userName}!!!</h2>
       <p>Email: {user.email}</p>
-      <button className={`${styles.buttonUpdate}`}>
+
+      <button className={styles.buttonCatch}>
+        {/* <Link className="text-decoration-none text-black" to={`/user/update/${user.id}`}> */}
+          Caught Pokemons
+        {/* </Link> */}
+      </button>
+
+      <button className={styles.buttonUpdate}>
         <Link className="text-decoration-none" to={`/user/update/${user.id}`}>
           Update User
         </Link>
       </button>
-      <button className={`${styles.buttonLogout}`} onClick={handleLogOut}>
+
+      <button className={styles.buttonLogout} onClick={handleLogOut}>
         LogOut
       </button>
     </div>}

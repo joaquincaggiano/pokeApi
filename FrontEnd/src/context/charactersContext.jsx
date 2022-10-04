@@ -45,13 +45,14 @@ export const PokemonContextProvider = ({ children }) => {
       await Axios.get(actualURL).then((response) => {
         // console.log("TODA LA DATA", response.data);
         if (response.status === 200) {
-          if(response.data.next === "https://pokeapi.co/api/v2/pokemon?offset=920&limit=20") {
+          if(response.data.next === "https://pokeapi.co/api/v2/pokemon?offset=900&limit=20") {
             setNextPage(null)
           } else {
             setNextPage(response.data.next);
           }         
           setPrevPage(response.data.previous);
-          setTotalPokemon(920);
+          // setTotalPokemon(920);
+          setTotalPokemon(900);
         }
 
         const pokemonArray = response.data.results;
