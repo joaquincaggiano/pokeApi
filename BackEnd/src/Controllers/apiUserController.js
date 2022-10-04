@@ -139,15 +139,9 @@ const userController = {
   pokeUserFavs: async (req, res) => {
     try {
       const allPokeFav = await PokeFavorite.findAll({include: ['users']});
-      const mapPokemon = allPokeFav.map((onePokemon) => {
-        return onePokemon.dataValues.users
+      const filtered = allPokeFav.filter((onePokeFav) => {
+        return onePokeFav.users[0].dataValues.id == req.params.id
       })
-      console.log("MAP POKEMON", mapPokemon)
-      const filtered = mapPokemon.filter((onePokemonMap) => {
-        console.log('onePokemonMap', onePokemonMap)
-        return onePokemonMap[0].dataValues.id == req.params.id
-      })
-      console.log("FILTERED", filtered)
       res.status(200).json(filtered)
     } catch (error) {
       console.log(error)

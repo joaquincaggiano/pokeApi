@@ -35,7 +35,6 @@ function CaughtPokemons() {
     axios
       .get(`http://localhost:3030/api/user/${userId.id}/favs`)
       .then((response) => {
-        // console.log("totalPokemons", response.data);
         dispatch(initialStateFunction(response.data));
       })
       .catch((error) => console.log(error));
@@ -47,18 +46,11 @@ function CaughtPokemons() {
       {pokeFavs.map((onePoke, i) =>{
        return <EachFavPokemon 
         key={i}
-        pokemonId={onePoke[0].pokefavorites_users.pokemonId}/>
-      })}
-      {/* <EachFavPokemon 
-    pokemonId={pokemonFavList[0][0].pokefavorites_users.pokemonId}/> */}
-      {/* {pokemonFavList.map((onePokemon) => {
-        return onePokemon
-      }).map((pokeFav, i) => {
-        <EachFavPokemon
-          key={i}
-          pokemonId={pokeFav[0].pokefavorites_users.pokemonId}
-        />;
-      })} */}
+        pokemonId={onePoke.pokemon}
+        />
+      }
+      )
+      }
     </div>
   );
 }
