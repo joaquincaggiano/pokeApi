@@ -7,7 +7,7 @@ main{
     padding-bottom: 50px;
     min-height: 100vh;
     background-image: url("./img/blackFondo.jpg");
-    background-size:cover;  
+    /* background-size:cover;   */
 }
 
 .arrowUpContainer{

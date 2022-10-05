@@ -1,7 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+// Hooks
+import { useEffect, useState } from "react";
+
+// Axios
 import axios from "axios";
 
+// Css
+import classes from "./CaughAndEachFav.module.css";
+
+// router
+import { Link } from "react-router-dom";
 
 function EachFavPokemon({ pokemonId }) {
   const [pokemon, setPokemon] = useState();
@@ -19,15 +26,19 @@ function EachFavPokemon({ pokemonId }) {
   }, []);
 
   return (
-    <>
-    {pokemon && 
-    <Card>
-      <h1>{pokemon.name}</h1>
-      <p>Pokemon Nº{String(pokemon.id).padStart(3, 0)}</p>
-      <img src={pokemon.image}/>
-    </Card>
-    }
-    </>
+    <div className="row p-1">
+      {pokemon && (
+        <div
+          className={`${classes.cardFavPokemon} col-xs-1 col-sm-6 col-md-4 col-lg-3`}
+        >
+          <img src={pokemon.image} />
+          <div className={classes.descriptionCard}>
+            <h2>{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}</h2>
+            <p>N.º {String(pokemon.id).padStart(3, 0)}</p>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
