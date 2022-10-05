@@ -37,6 +37,7 @@ function PokemonRoutes() {
       <Route path="/user/profile" element={<PrivateRoutes><Profile /></PrivateRoutes>} />
       <Route path="/user/update/:id" element={<PrivateRoutes><UpdateUser /></PrivateRoutes>} />
       <Route path="/characters" element={<Characters />} />
+      <Route path="/characters/:id" element={<Characters />} />
       <Route path="/trivia" element={<ModalQuestion />} />
       {/* <Route path="/user/caught-pokemons" element={<PrivateRoutes><CaughtPokemons /></PrivateRoutes>} /> */}
       <Route path="/user/caught-pokemons" element={<CaughtPokemons />} />

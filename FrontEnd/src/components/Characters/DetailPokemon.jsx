@@ -7,6 +7,9 @@ import Axios from "axios";
 // Context
 import { PokemonContext } from "../../context/charactersContext";
 
+// router
+import { Link } from "react-router-dom";
+
 // Css
 import classes from "./DetailPokemon.module.css";
 
@@ -372,7 +375,9 @@ const DetailPokemon = React.forwardRef((props, ref) => {
               <div id={classes.barbutton3}></div>
               <div id={classes.barbutton4}></div>
               <button id={classes.yellowBox1} onClick={onePokemonDetailHandler}>
-                See more
+                <Link className="text-decoration-none text-black" to={`/characters/${onePokemon.name}`}>
+                  See more
+                </Link>
               </button>
               <button id={classes.yellowBox2} onClick={props.onCloseModal}>
                 Close

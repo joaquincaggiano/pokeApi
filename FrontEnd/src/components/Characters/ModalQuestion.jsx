@@ -23,9 +23,9 @@ const ModalQuestion = (props) => {
   const [question, setQuestion] = useState();
   const [answer, setAnswer] = useState();
   const [wrongAnswer, setWrongAnswer] = useState(false);
-console.log("POKE FAV LIST ON MODAL", pokemonFavList);
+  console.log("POKE FAV LIST ON MODAL", pokemonFavList);
   // User ID
-  const userId = JSON.parse(localStorage.getItem('user'))
+  const userId = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     axios
@@ -43,9 +43,12 @@ console.log("POKE FAV LIST ON MODAL", pokemonFavList);
     if (answer === question.correctAnswer) {
       console.log("CORRECT!!!", props.pokeFromTrivia);
       dispatch(addPokeToFav(props.pokeFromTrivia));
-      axios.post(`http://localhost:3030/api/user/${userId.id}/favs`, {id: props.pokeFromTrivia})
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+      axios
+        .post(`http://localhost:3030/api/user/${userId.id}/favs`, {
+          id: props.pokeFromTrivia,
+        })
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
       props.onCloseModal();
       alert("Pokemon atrapado");
     } else {
@@ -59,16 +62,16 @@ console.log("POKE FAV LIST ON MODAL", pokemonFavList);
       <div className={styles.backdrop} onClick={props.onCloseModal}></div>
       <div className={styles.cardPokemon}>
         <h4>{question?.question}</h4>
-        <InputQuestion answer={question?.answer1} setAnswer={setAnswer}/>
-        <InputQuestion answer={question?.answer2} setAnswer={setAnswer}/>
-        <InputQuestion answer={question?.answer3} setAnswer={setAnswer}/>
-        <InputQuestion answer={question?.answer4} setAnswer={setAnswer}/>
+        <InputQuestion answer={question?.answer1} setAnswer={setAnswer} />
+        <InputQuestion answer={question?.answer2} setAnswer={setAnswer} />
+        <InputQuestion answer={question?.answer3} setAnswer={setAnswer} />
+        <InputQuestion answer={question?.answer4} setAnswer={setAnswer} />
         <div className={styles.buttonsBox}>
           <button className={styles.buttonCatch} onClick={handleOnClick}>
             Catch
           </button>
           <button
-          className={styles.buttonClose}
+            className={styles.buttonClose}
             onClick={() => props.setOpenTrivia(false)}
           >
             Close
