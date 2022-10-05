@@ -23,7 +23,7 @@ const ModalQuestion = (props) => {
   const [question, setQuestion] = useState();
   const [answer, setAnswer] = useState();
   const [wrongAnswer, setWrongAnswer] = useState(false);
-
+console.log("POKE FAV LIST ON MODAL", pokemonFavList);
   // User ID
   const userId = JSON.parse(localStorage.getItem('user'))
 

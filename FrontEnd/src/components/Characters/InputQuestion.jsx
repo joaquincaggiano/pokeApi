@@ -10,7 +10,7 @@ function InputQuestion(props) {
         value={props.answer}
         onClick={(e) => props.setAnswer(e.target.value)}
       />
-      <label className="form-check-label">{props.answer}</label>
+      <label className="form-check-label" name="trivia-question">{props.answer}</label>
     </div>
   );
 }
