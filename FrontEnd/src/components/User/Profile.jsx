@@ -14,7 +14,7 @@ function Profile() {
   const { setUserLogged, userLogged } = useContext(UserContext);
   const navigate = useNavigate();
   let user = JSON.parse(localStorage.getItem("user"));
-  console.log("parsed user", user);
+  // console.log("parsed user", user);
 
   function handleLogOut() {
     localStorage.removeItem("user");

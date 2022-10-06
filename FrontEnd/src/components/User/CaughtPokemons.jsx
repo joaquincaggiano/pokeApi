@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 // Functions de redux slice
 import {
-  removePokeFromFav,
   initialStateFunction,
 } from "../../features/favPokeSlice/favPokeSlice";
 
@@ -28,7 +27,6 @@ function CaughtPokemons() {
   // console.log("PokemonfavList", pokemonFavList);
 
   const pokeFavs = pokemonFavList.map((onePoke) => onePoke);
-  // const [totalPokemons, setTotalPokemons] = useState([]);
   // console.log("POKE FAVSSSS", pokeFavs);
 
   // User ID
@@ -46,7 +44,7 @@ function CaughtPokemons() {
   // Show pokemons
   const [showPokemonFavs, setShowPokemonFavs] = useState(false);
   
-  const divAllPokemons = useRef();
+  // const divAllPokemons = useRef();
 
   const showPokemonHandler = () => {
     setShowPokemonFavs(!showPokemonFavs);
@@ -65,7 +63,8 @@ function CaughtPokemons() {
         // <div ref={divAllPokemons} className={`${classes.cardsContainer} ${classes.visibilityHidden} container`}>
         <div className={`${classes.cardsContainer} container`}>
           {pokeFavs.map((onePoke, i) => {
-            return <EachFavPokemon key={i} pokemonId={onePoke.pokemon} />;
+            // console.log("onePoke",onePoke)
+            return <EachFavPokemon key={i} pokemonId={onePoke.pokemon} pokeFavoriteId={onePoke.id}/>;
           })}
         </div>
       )}

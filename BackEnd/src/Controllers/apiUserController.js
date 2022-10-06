@@ -157,6 +157,15 @@ const userController = {
     } catch (error) {
       console.log(error)
     }
+  },
+  deletePokeFav: async (req, res) => {
+    try {
+      await PokeFavorite.destroy({
+        where: { id: req.params.id },
+      });
+    } catch (error) {
+      console.log(error)
+    }
   }
 };
 

@@ -32,7 +32,7 @@ const ModalQuestion = (props) => {
       .get("http://localhost:3030/triviaApi/random")
       .then((response) => {
         if (response.status === 200) {
-          console.log("response trivia", response.data);
+          // console.log("response trivia", response.data);
           setQuestion(response.data);
         }
       })
@@ -41,7 +41,7 @@ const ModalQuestion = (props) => {
 
   function handleOnClick() {
     if (answer === question.correctAnswer) {
-      console.log("CORRECT!!!", props.pokeFromTrivia);
+      // console.log("CORRECT!!!", props.pokeFromTrivia);
       dispatch(addPokeToFav(props.pokeFromTrivia));
       axios
         .post(`http://localhost:3030/api/user/${userId.id}/favs`, {

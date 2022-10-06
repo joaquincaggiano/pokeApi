@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 
 // UseContext
 import { UserContext } from "../../context/userContext";
+import { PokemonContext } from "../../context/charactersContext";
 import { useContext } from "react";
 
 // Css
@@ -18,6 +19,7 @@ import classes from "./Header.module.css";
 function Header() {
   // Context
   const { userLogged } = useContext(UserContext);
+  const { setActualURL } = useContext(PokemonContext)
 
   // useState
   const [showMenu, setShowMenu] = useState(false);
@@ -25,6 +27,10 @@ function Header() {
   const handleMenuMobile = () => {
     setShowMenu(!showMenu);
   };
+
+  const showAllPokemonHandler = () => {
+    setActualURL("https://pokeapi.co/api/v2/pokemon");
+  }
 
   return (
     <header>
@@ -54,7 +60,7 @@ function Header() {
                   Home
                 </Link>
               </li>
-              <li className={classes.liMobile}>
+              <li onClick={showAllPokemonHandler} className={classes.liMobile}>
                 <Link className={classes.linkStyle} to="/characters">
                   Pokemones
                 </Link>
@@ -82,7 +88,7 @@ function Header() {
                   Home
                 </Link>
               </li>
-              <li className={classes.liMobile}>
+              <li onClick={showAllPokemonHandler} className={classes.liMobile}>
                 <Link className={classes.linkStyle} to="/characters">
                   Pokemones
                 </Link>
@@ -109,7 +115,7 @@ function Header() {
                 Home
               </Link>
             </li>
-            <li className={classes.visibilityNav}>
+            <li onClick={showAllPokemonHandler} className={classes.visibilityNav}>
               <Link className={classes.linkStyle} to="/characters">
                 Pokemones
               </Link>
@@ -127,7 +133,7 @@ function Header() {
                 Home
               </Link>
             </li>
-            <li className={classes.visibilityNav}>
+            <li onClick={showAllPokemonHandler} className={classes.visibilityNav}>
               <Link className={classes.linkStyle} to="/characters">
                 Pokemones
               </Link>
