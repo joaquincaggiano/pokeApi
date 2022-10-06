@@ -23,13 +23,13 @@ function CaughtPokemons() {
   const dispatch = useDispatch();
 
   // Redux state
-  const { pokemonFavList } = useSelector((state) => state.pokeFav);
+  const { pokemonFavList, totalPokemonFav } = useSelector((state) => state.pokeFav);
   // console.log("PokemonfavList", pokemonFavList);
 
   const pokeFavs = pokemonFavList.map((onePoke) => onePoke);
   // console.log("POKE FAVSSSS", pokeFavs);
 
-  // User ID
+   // User ID
   const userId = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
@@ -55,10 +55,11 @@ function CaughtPokemons() {
 
   return (
     <div>
-      <h1 className={classes.caughtPokemonTitle}>CaughtPokemons</h1>
+      <h1 className={classes.caughtPokemonTitle}>My Pokemon Team</h1>
       <div className={classes.pokebola} onClick={showPokemonHandler}>
         <div className={classes.detailPokebola}></div>
       </div>
+      <h3 className={classes.amountPokeball}>Amount inside pokeball: {totalPokemonFav}</h3>
       {showPokemonFavs && (
         // <div ref={divAllPokemons} className={`${classes.cardsContainer} ${classes.visibilityHidden} container`}>
         <div className={`${classes.cardsContainer} container`}>

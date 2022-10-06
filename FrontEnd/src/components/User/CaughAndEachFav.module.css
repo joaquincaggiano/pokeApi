@@ -4,6 +4,13 @@
     visibility: hidden;
 }
 
+.amountPokeball {
+  color: white;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .caughtPokemonTitle {
   text-align: center;
   font-family: "Pokemon Solid", sans-serif;
@@ -141,5 +148,8 @@
   }
   .cardsContainer {
     flex-direction: row;
+  }
+  .amountPokeball {
+    font-size: 28px;
   }
 }

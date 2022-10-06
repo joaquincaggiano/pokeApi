@@ -22,33 +22,31 @@ function Profile() {
     navigate("/user/login");
   }
 
-  return ( 
+  return (
     <>
-    {userLogged && <div className={styles.cardStyle}>
-      <img
-        className={`rounded-circle ${styles.imgUser}`}
-        src={`http://localhost:3030/images/${user.file}`}
-      />
-      <h2>Welcome {user.userName}!!!</h2>
-      <p>Email: {user.email}</p>
+      {userLogged && (
+        <div className={styles.cardStyle}>
+          <img
+            className={`rounded-circle ${styles.imgUser}`}
+            src={`http://localhost:3030/images/${user.file}`}
+          />
+          <h2>Welcome {user.userName}!!!</h2>
+          <p>Email: {user.email}</p>
 
-      <button className={styles.buttonCatch}>
-        <Link className="text-decoration-none text-black" to={"/user/caught-pokemons"}>
-          Caught Pokemons
-        </Link>
-      </button>
+          <Link className={styles.buttonCatch} to={"/user/caught-pokemons"}>
+            Caught Pokemons
+          </Link>
 
-      <button className={styles.buttonUpdate}>
-        <Link className="text-decoration-none" to={`/user/update/${user.id}`}>
-          Update User
-        </Link>
-      </button>
+          <Link className={styles.buttonUpdate} to={`/user/update/${user.id}`}>
+            Update User
+          </Link>
 
-      <button className={styles.buttonLogout} onClick={handleLogOut}>
-        LogOut
-      </button>
-    </div>}
-    </>  
+          <button className={styles.buttonLogout} onClick={handleLogOut}>
+            LogOut
+          </button>
+        </div>
+      )}
+    </>
   );
 }
 

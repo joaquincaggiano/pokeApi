@@ -10,7 +10,7 @@ const userController = require("../Controllers/apiUserController");
 // PokeFavs
 router.get("/user/:id/favs", userController.pokeUserFavs);
 router.post("/user/:id/favs", userController.saveUserFavs);
-router.delete("/user/:id/favs/:id", userController.deletePokeFav);
+router.delete("/user/:id/favs/:pokeid", userController.deletePokeFav);
 
 // Profile
 router.get("/user/:id", userController.profile);

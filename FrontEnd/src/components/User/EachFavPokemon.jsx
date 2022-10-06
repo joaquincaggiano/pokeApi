@@ -1,5 +1,5 @@
 // Hook de redux
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // Hooks
 import { useEffect, useState, useContext } from "react";

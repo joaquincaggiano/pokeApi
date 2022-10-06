@@ -1,6 +1,9 @@
 // React
 import { useContext, useState, useRef, useEffect } from "react";
 
+// Router
+import { useNavigate } from "react-router-dom";
+
 //Redux
 import { useSelector } from "react-redux";
 
@@ -17,32 +20,37 @@ import ModalQuestion from "./ModalQuestion";
 import classes from "./Characters.module.css";
 
 const Characters = () => {
+  const navigate = useNavigate();
+
   const { isLoading, dataPokemon, loadingSearch } = useContext(PokemonContext);
 
   const { pokemonFavList } = useSelector((state) => state.pokeFav);
 
-
   const [showModal, setShowModal] = useState(false);
   const [pokemonId, setPokemonId] = useState(null);
   const [openTrivia, setOpenTrivia] = useState(false);
-  const [pokeFromTrivia, setPokeFromTrivia] = useState();
-  const [catchedPoke, setCatchedPoke] = useState(false)
 
-  const modalPositionRef = useRef();
+  // const modalPositionRef = useRef();
 
   const closeModalHandler = () => {
     setShowModal(false);
   };
 
   const closeTrivia = () => {
+    navigate('/user/caught-pokemons')
     setOpenTrivia(false);
   };
 
-  useEffect(() => {
-    if (modalPositionRef != undefined) {
-      modalPositionRef?.current?.scrollIntoView({ behaviour: "smooth" });
-    }
-  }, [showModal]);
+  // useEffect(() => {
+  //   if (modalPositionRef != undefined) {
+  //     modalPositionRef?.current?.scrollIntoView({ behaviour: "smooth" });
+  //   }
+  // }, [showModal]);
+
+  
+  useEffect(()=>{
+    // window.location.reload()
+  },[])
 
   return (
     <>
@@ -62,14 +70,15 @@ const Characters = () => {
                     setShowModal={setShowModal}
                     setPokemonId={setPokemonId}
                     setOpenTrivia={setOpenTrivia}
-                    setPokeFromTrivia={setPokeFromTrivia}
+                    pokeFavClass={pokemonFavList.some(poke => { 
+                    return poke.pokemon == pokemon.id})}
                   />
                 );
               })}
             </div>
             {showModal && (
               <DetailPokemon
-                ref={modalPositionRef}
+                // ref={modalPositionRef}
                 pokemonId={pokemonId}
                 onCloseModal={closeModalHandler}
               />
@@ -81,7 +90,7 @@ const Characters = () => {
             <ModalQuestion
               setOpenTrivia={setOpenTrivia}
               onCloseModal={closeTrivia}
-              pokeFromTrivia={pokeFromTrivia}
+              pokemonId={pokemonId}
             />
           )}
         </div>

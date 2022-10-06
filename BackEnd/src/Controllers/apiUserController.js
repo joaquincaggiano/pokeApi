@@ -161,7 +161,7 @@ const userController = {
   deletePokeFav: async (req, res) => {
     try {
       await PokeFavorite.destroy({
-        where: { id: req.params.id },
+        where: { id: req.params.pokeid },
       });
     } catch (error) {
       console.log(error)

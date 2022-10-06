@@ -41,11 +41,11 @@ const ModalQuestion = (props) => {
 
   function handleOnClick() {
     if (answer === question.correctAnswer) {
-      // console.log("CORRECT!!!", props.pokeFromTrivia);
-      dispatch(addPokeToFav(props.pokeFromTrivia));
+      // console.log("CORRECT!!!", props.pokemonId);
+      dispatch(addPokeToFav(props.pokemonId));
       axios
         .post(`http://localhost:3030/api/user/${userId.id}/favs`, {
-          id: props.pokeFromTrivia,
+          id: props.pokemonId,
         })
         .then((response) => console.log(response))
         .catch((error) => console.log(error));

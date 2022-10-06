@@ -1,27 +1,43 @@
-// Hook
-import { useRef, useState } from "react";
+// Redux hooks
+import { useSelector } from "react-redux";
+
+// React Hook
+import { useEffect, useState } from "react";
 
 // Css
 import classes from "./EachCharacter.module.css";
 
 function EachCharacter(props) {
-  const viewPokemonButtonRef = useRef();
-  
+  // Redux state
+  const { pokemonFavList } = useSelector((state) => state.pokeFav);
+
 
   const showModalHandler = (e) => {
-    //   console.log(e.target)
     props.setPokemonId(props.id);
     props.setShowModal(true);
   };
 
   const pokemonNumber = String(props.id);
 
-  const handlePokeFav = ()=>{
-    props.setPokeFromTrivia(props.id)
-    props.setOpenTrivia(true)
-  }
-  
-  
+  const handlePokeFav = () => {
+    if(!props.pokeFavClass){
+      props.setPokemonId(props.id);
+      props.setOpenTrivia(true);
+    }else{
+      alert('This Pokemon is already in your team!')
+    }
+  };
+
+  // useEffect(() => {
+  //   const foundPoke = pokemonFavList.some((onePokemon) => {
+  //     return onePokemon.pokemon === props.id;
+  //   });
+  //   setFavedPoke(foundPoke);
+  //   console.log("found", foundPoke)
+  // }, []);
+  // console.log('favedpoke', favedPoke)
+
+  console.log('props poke fav', props.pokeFavClass)
   // CSS para cada TYPE
   const classType = props.typePokemon.map((type, i) => {
     if (type === "poison") {
@@ -159,7 +175,10 @@ function EachCharacter(props) {
   });
 
   return (
-    <div className="col-xs-1 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-evenly my-3" key={props.id}>
+    <div
+      className="col-xs-1 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-evenly my-3"
+      key={props.id}
+    >
       <div className={`card ${classes.cardStyle}`}>
         <div className={classes.imgStyle}>
           <img src={props.image} className="card-img-top" alt={props.name} />
@@ -171,8 +190,8 @@ function EachCharacter(props) {
           <div className={classes.orderNamePokebola}>
             <h4 className="card-title">{props.name}</h4>
 
-            <div className={classes.pokebola} onClick={handlePokeFav}>
-              <div className={classes.detailPokebola}></div>
+            <div className={!props.pokeFavClass ? classes.pokebola : classes.pokebolaCatch} onClick={handlePokeFav}>
+              <div className={props.pokeFavClass ? classes.detailPokebolaCatch : classes.detailPokebola}></div>
             </div>
           </div>
 

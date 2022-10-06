@@ -247,6 +247,51 @@
   transition: all 300ms;
 }
 
+/* PokebolaCatch */
+
+.pokebolaCatch {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border: 3px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.pokebolaCatch::before {
+  content: "";
+  position: absolute;
+  background: #ff1c1c;
+  width: 100%;
+  height: 50%;
+}
+
+.pokebolaCatch::after {
+  content: ""; 
+  position: absolute;
+  top: calc(50% - 1.5px);
+  width: 100%;
+  height: 50%;
+  background: white;
+  border-top: 3px solid;
+}
+
+.detailPokebolaCatch {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid;
+  border-radius: 50%;
+  top: calc(50% - 1px - 4px);
+  left: calc(50% - 1px - 4px);
+  z-index: 10;
+  background:white;
+}
+
+/* FIN PokebolaCatch */
+
 /* Efecto shake pokebola */
 .pokebola:hover {
   cursor: pointer;
