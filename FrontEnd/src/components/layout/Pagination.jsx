@@ -16,7 +16,8 @@ const Pagination = (ref) => {
     handlerURL,
     prevPage,
     nextPage,
-    setActualURL
+    setActualURL,
+    isLoading
   } = useContext(PokemonContext);
 
   const [showMenu, setShowMenu] = useState(false);
@@ -55,7 +56,7 @@ const Pagination = (ref) => {
           className={!showMenu ? classes.visibilityMenu : classes.optionsMobile}
         >
           <li>Total Pokemon: {totalPokemon}</li>
-          <li>Page: {actualPage}</li>
+          <li>Page: {actualPage + 1}</li>
           <li>
             Go to page:{" "}
             <select
@@ -67,7 +68,7 @@ const Pagination = (ref) => {
               {Array.from(Array(totalOfpage).keys()).map((page, i) => {
                 return (
                   <option key={i} value={page}>
-                    {page}
+                    {page + 1}
                   </option>
                 );
               })}
@@ -84,6 +85,8 @@ const Pagination = (ref) => {
               className={classes.buttonMobile}
               data-type="prev"
               onClick={handlerURL}
+              disabled={isLoading}
+
             >
               Prev Page
             </button>
@@ -93,6 +96,8 @@ const Pagination = (ref) => {
               className={classes.buttonMobile}
               data-type="next"
               onClick={handlerURL}
+              disabled={isLoading}
+
             >
               Next Page
             </button>
@@ -104,36 +109,42 @@ const Pagination = (ref) => {
       <div className={classes.paginationDesktop}>
 
         <div className={classes.rowOne}>
-          <div className={classes.searchBox}>
+
+          {/* <div className={classes.searchBox}>
             <i onClick={searchPokemonHandler} className={`fa-solid fa-magnifying-glass ${classes.iSearch}`}></i>
             <input onKeyDown={searchKeyHandler} onChange={pokemonToSearchHandler} className={classes.inputSearch} type="search" placeholder="Pokemon name - nº" />
-          </div>
+          </div> */}
 
           <div className={classes.buttonsDesktopBox}>
-            {prevPage && (
+            
               <button
-                className={classes.buttonsDesktop}
+                className={prevPage ? classes.buttonsDesktop : classes.hiddenButton}
                 data-type="prev"
                 onClick={handlerURL}
+                disabled={isLoading}
               >
                 Prev Page
               </button>
-            )}
-            {nextPage && (
+            
+            <div className={classes.searchBox}>
+              <i onClick={searchPokemonHandler} className={`fa-solid fa-magnifying-glass ${classes.iSearch}`}></i>
+              <input onKeyDown={searchKeyHandler} onChange={pokemonToSearchHandler} className={classes.inputSearch} type="search" placeholder="Pokemon name - nº" />
+            </div>
               <button
-                className={classes.buttonsDesktop}
+              className={nextPage ? classes.buttonsDesktop : classes.hiddenButton}
                 data-type="next"
                 onClick={handlerURL}
+                disabled={isLoading}
+
               >
                 Next Page
               </button>
-            )}
           </div>
         </div>
 
         <div className={classes.rowTwo}>
           <li>Total Pokemon: {totalPokemon}</li>
-          <li>Page: {actualPage}</li>
+          <li>Page: {actualPage + 1}</li>
           <li>
             Go to page:{" "}
             <select
@@ -144,7 +155,7 @@ const Pagination = (ref) => {
               {Array.from(Array(totalOfpage).keys()).map((page, i) => {
                 return (
                   <option key={i} value={page}>
-                    {page}
+                    {page + 1}
                   </option>
                 );
               })}

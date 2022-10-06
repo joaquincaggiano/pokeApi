@@ -23,7 +23,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
   const [quotes, setQuotes] = useState([]);
   const [actualQuote, setActualQuote] = useState("");
 
-  // console.log("ALL POKEMONES", allPokemones);
+  console.log("ALL POKEMONES", allPokemones);
 
   // useEffect
   useEffect(() => {
@@ -84,6 +84,9 @@ const DetailPokemon = React.forwardRef((props, ref) => {
     if (unPokemon) {
       setOnePokemon(unPokemon);
     }
+    // else{
+    //   setActualURL(``)
+    // }
     setActualQuote("Choose a quote below");
   };
 

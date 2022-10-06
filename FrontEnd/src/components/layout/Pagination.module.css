@@ -161,6 +161,10 @@
 }
 
 @media (min-width: 768px) {
+  .hiddenButton {
+    visibility: hidden;
+  }
+
   .paginationMobile {
     display: none;
   }
@@ -229,11 +233,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    width: 50%;
+    width: 100%;
+    margin-bottom: 10px;
   }
 
   .buttonsDesktop{
-    width: 120px;
+    width: 150px;
     border-radius: 5px;
     color: #dc143c;
     border: 1px solid #dc143cb2;

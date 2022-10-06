@@ -29,10 +29,12 @@ export const PokemonContextProvider = ({ children }) => {
     const type = e.target.dataset.type;
 
     if (type === "next") {
+      setIsLoading(true)
       setActualURL(nextPage);
       setActualPage(actualPage + 1);
     }
     if (type === "prev") {
+      setIsLoading(true)
       setActualURL(prevPage);
       setActualPage(actualPage - 1);
     }
@@ -45,6 +47,7 @@ export const PokemonContextProvider = ({ children }) => {
       await Axios.get(actualURL).then((response) => {
         // console.log("TODA LA DATA", response.data);
         if (response.status === 200) {
+          setIsLoading(false)
           if(response.data.next === "https://pokeapi.co/api/v2/pokemon?offset=900&limit=20") {
             setNextPage(null)
           } else {

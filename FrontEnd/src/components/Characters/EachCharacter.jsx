@@ -1,17 +1,8 @@
-// Redux hooks
-import { useSelector } from "react-redux";
-
-// React Hook
-import { useEffect, useState } from "react";
-
 // Css
 import classes from "./EachCharacter.module.css";
 
 function EachCharacter(props) {
-  // Redux state
-  const { pokemonFavList } = useSelector((state) => state.pokeFav);
-
-
+  
   const showModalHandler = (e) => {
     props.setPokemonId(props.id);
     props.setShowModal(true);
@@ -28,16 +19,7 @@ function EachCharacter(props) {
     }
   };
 
-  // useEffect(() => {
-  //   const foundPoke = pokemonFavList.some((onePokemon) => {
-  //     return onePokemon.pokemon === props.id;
-  //   });
-  //   setFavedPoke(foundPoke);
-  //   console.log("found", foundPoke)
-  // }, []);
-  // console.log('favedpoke', favedPoke)
-
-  console.log('props poke fav', props.pokeFavClass)
+  // console.log('props poke fav', props.pokeFavClass)
   // CSS para cada TYPE
   const classType = props.typePokemon.map((type, i) => {
     if (type === "poison") {
