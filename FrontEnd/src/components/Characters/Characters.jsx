@@ -14,7 +14,6 @@ import { PokemonContext } from "../../context/charactersContext";
 import DetailPokemon from "./DetailPokemon";
 import EachCharacter from "./EachCharacter";
 import Pagination from "../layout/Pagination";
-import SearchPokemon from "./SearchPokemon";
 import ModalQuestion from "./ModalQuestion";
 // Css
 import classes from "./Characters.module.css";
@@ -22,7 +21,7 @@ import classes from "./Characters.module.css";
 const Characters = () => {
   const navigate = useNavigate();
 
-  const { isLoading, dataPokemon, loadingSearch } = useContext(PokemonContext);
+  const { isLoading, dataPokemon} = useContext(PokemonContext);
 
   const { pokemonFavList } = useSelector((state) => state.pokeFav);
 
@@ -48,9 +47,9 @@ const Characters = () => {
   // }, [showModal]);
 
   
-  useEffect(()=>{
-    // window.location.reload()
-  },[])
+  // useEffect(()=>{
+  //   // window.location.reload()
+  // },[])
 
   return (
     <>

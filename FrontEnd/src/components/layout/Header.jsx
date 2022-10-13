@@ -3,10 +3,18 @@ import React from "react";
 import logoPokemon from "../../img/footer.jpg";
 
 // Hook
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 // Router
 import { Link } from "react-router-dom";
+
+// Axios
+import axios from "axios";
+
+// Hook redux
+import { useDispatch } from "react-redux";
+// Function Redux
+import { initialStateFunction } from "../../features/favPokeSlice/favPokeSlice";
 
 // UseContext
 import { UserContext } from "../../context/userContext";
@@ -21,6 +29,7 @@ function Header() {
   const { userLogged } = useContext(UserContext);
   const { setActualURL } = useContext(PokemonContext)
 
+  const dispatchRedux = useDispatch()
   // useState
   const [showMenu, setShowMenu] = useState(false);
 
@@ -28,7 +37,21 @@ function Header() {
     setShowMenu(!showMenu);
   };
 
+  // User ID
+  const userId = JSON.parse(localStorage.getItem("user"));
+
+  const apicall = async ()=>{
+    await axios
+     .get(`http://localhost:3030/api/user/${userId?.id}/favs`)
+     .then((response) => {
+      dispatchRedux(initialStateFunction(response.data));
+     })
+     .catch((error) => console.log(error));
+     
+   } 
+
   const showAllPokemonHandler = () => {
+    apicall();
     setActualURL("https://pokeapi.co/api/v2/pokemon");
   }
 

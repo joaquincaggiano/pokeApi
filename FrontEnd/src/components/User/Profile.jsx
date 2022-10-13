@@ -1,3 +1,8 @@
+// Hook redux
+import { useDispatch } from "react-redux";
+// Function Redux
+import { initialStateFunction } from "../../features/favPokeSlice/favPokeSlice";
+
 // Hook
 import { useContext } from "react";
 
@@ -11,6 +16,9 @@ import styles from "./Profile.module.css";
 import { useNavigate, Link } from "react-router-dom";
 
 function Profile() {
+  // dispatch redux
+  const dispatch = useDispatch()
+
   const { setUserLogged, userLogged } = useContext(UserContext);
   const navigate = useNavigate();
   let user = JSON.parse(localStorage.getItem("user"));
@@ -19,6 +27,7 @@ function Profile() {
   function handleLogOut() {
     localStorage.removeItem("user");
     setUserLogged(false);
+    dispatch(initialStateFunction([]))
     navigate("/user/login");
   }
 

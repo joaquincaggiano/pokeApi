@@ -2,7 +2,7 @@
 import { BrowserRouter } from "react-router-dom";
 
 // Hook de redux
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // Functions de redux slice
 import { initialStateFunction } from "./features/favPokeSlice/favPokeSlice";
@@ -23,7 +23,7 @@ import { PokemonContextProvider } from "./context/charactersContext";
 import { UserProvider } from "./context/userContext";
 
 // Hook
-import { useRef, useEffect } from "react";
+import { useRef, useEffect} from "react";
 
 
 const App = () => {
