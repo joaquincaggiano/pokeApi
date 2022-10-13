@@ -44,9 +44,14 @@ function Profile() {
           <p>Email: {user.email}</p>
 
           {isAdmin && 
+          <>
           <Link className={styles.buttonUpdate} to={`/trivia/create`}>
           Create Trivia Question
-        </Link>}
+        </Link>
+        <Link className={styles.buttonUpdate} to={`/trivia/viewAll`}>
+          View all Trivia Question
+        </Link>
+        </>}
 
           <Link className={styles.buttonCatch} to={"/user/caught-pokemons"}>
             Caught Pokemons

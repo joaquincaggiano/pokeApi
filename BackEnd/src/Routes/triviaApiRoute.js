@@ -7,10 +7,13 @@ const triviaController = require("../Controllers/apiTriviaController");
 
 // Rutas
 // Get question
+//one random
 router.get("/random", triviaController.getQuestion);
+//all questions
+router.get("/all", triviaController.seeAllQuestions);
 
-// Register
-// router.post("/create", upload.single("file"), triviaController.createQuestion);
+// Create
+router.post("/create", upload.single("image"), triviaController.createQuestion);
 
 // Update
 // router.put("/update/:id", upload.single("file"), triviaController.updateQuestion)
