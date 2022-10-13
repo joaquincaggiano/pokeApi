@@ -11,139 +11,14 @@ const SearchPokemon = () => {
   const { pokemonSearch, loadingSearch } = useContext(PokemonContext);
 
   const classType = pokemonSearch?.types?.map((type, i) => {
-    if (type.type.name === "poison") {
+    const typeUppercase = type.type.name[0].toUpperCase() + type.type.name.slice(1)
+    const typeNameClass = `type${typeUppercase}`;
+    const classType = classes[typeNameClass];
       return (
-        <div className={classes.typePoison} key={i}>
+        <div className={classType} key={i}>
           <p>{type.type.name}</p>
         </div>
-      );
-    }
-
-    if (type.type.name === "grass") {
-      return (
-        <div className={classes.typeGrass} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-
-    if (type.type.name === "fire") {
-      return (
-        <div className={classes.typeFire} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-
-    if (type.type.name === "water") {
-      return (
-        <div className={classes.typeWater} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-
-    if (type.type.name === "flying") {
-      return (
-        <div className={classes.typeFlying} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-
-    if (type.type.name === "electric") {
-      return (
-        <div className={classes.typeElectric} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-
-    if (type.type.name === "bug") {
-      return (
-        <div className={classes.typeBug} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-    if (type.type.name === "normal") {
-      return (
-        <div className={classes.typeNormal} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-    if (type.type.name === "ground") {
-      return (
-        <div className={classes.typeGround} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-    if (type.type.name === "fairy") {
-      return (
-        <div className={classes.typeFairy} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-    if (type.type.name === "fighting") {
-      return (
-        <div className={classes.typeFighting} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-    if (type.type.name === "psychic") {
-      return (
-        <div className={classes.typePsychic} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-    if (type.type.name === "rock") {
-      return (
-        <div className={classes.typeRock} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-    if (type.type.name === "steel") {
-      return (
-        <div className={classes.typeSteel} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-    if (type.type.name === "ice") {
-      return (
-        <div className={classes.typeIce} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-    if (type.type.name === "ghost") {
-      return (
-        <div className={classes.typeGhost} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-    if (type.type.name === "dragon") {
-      return (
-        <div className={classes.typeDragon} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-    if (type.type.name === "dark") {
-      return (
-        <div className={classes.typeDark} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      );
-    }
-  });
+      )})
 
   return (
     <>
