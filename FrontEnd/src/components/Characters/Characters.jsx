@@ -55,7 +55,7 @@ const Characters = () => {
   return (
     <>
       <Pagination />
-      {loadingSearch && !isLoading && (
+      {/*loadingSearch &&*/ !isLoading && (
         <div className="container">
           <div className={classes.pokeFondo}>
             <div className="row p-4">
@@ -95,13 +95,13 @@ const Characters = () => {
           )}
         </div>
       )}
-      {!loadingSearch && isLoading && (
+      {/* {!loadingSearch && isLoading && (
         <div className="container">
           <div className={`${classes.pokeFondo} p-4`}>
             <SearchPokemon />
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 };

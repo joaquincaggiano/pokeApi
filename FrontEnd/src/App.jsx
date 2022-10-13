@@ -35,7 +35,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3030/api/user/${userId.id}/favs`)
+      .get(`http://localhost:3030/api/user/${userId?.id}/favs`)
       .then((response) => {
         dispatch(initialStateFunction(response.data));
       })

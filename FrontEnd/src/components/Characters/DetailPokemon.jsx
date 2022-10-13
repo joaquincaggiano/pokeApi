@@ -8,7 +8,7 @@ import Axios from "axios";
 import { PokemonContext } from "../../context/charactersContext";
 
 // router
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Css
 import classes from "./DetailPokemon.module.css";
@@ -16,6 +16,8 @@ import classes from "./DetailPokemon.module.css";
 const DetailPokemon = React.forwardRef((props, ref) => {
   // Context
   const { allPokemones, setActualURL } = useContext(PokemonContext);
+    // Navigate
+    const navigate = useNavigate()
 
   // UseState
   const [onePokemon, setOnePokemon] = useState("");
@@ -111,6 +113,7 @@ const DetailPokemon = React.forwardRef((props, ref) => {
 
   const onePokemonDetailHandler = () => {
     setActualURL(`https://pokeapi.co/api/v2/pokemon/${onePokemon.id}`);
+    navigate(`/search/${onePokemon.name}`)
     props.onCloseModal();
   };
 

@@ -7,6 +7,9 @@ import { PokemonContext } from "../../context/charactersContext";
 // Css
 import classes from "./Pagination.module.css";
 
+// Router
+import { useNavigate } from "react-router-dom";
+
 const Pagination = (ref) => {
   const {
     totalPokemon,
@@ -19,6 +22,8 @@ const Pagination = (ref) => {
     setActualURL,
     isLoading
   } = useContext(PokemonContext);
+    // Navigate
+    const navigate = useNavigate()
 
   const [showMenu, setShowMenu] = useState(false);
   const [pokemonToSearch, setPokemonToSearch] = useState("")
@@ -29,11 +34,13 @@ const Pagination = (ref) => {
 
   const searchPokemonHandler = () => {
     setActualURL(`https://pokeapi.co/api/v2/pokemon/${pokemonToSearch}`)
+    navigate(`/search/${pokemonToSearch}`)
   }
 
   const searchKeyHandler = (e) => {
     if(e.key === "Enter"){
       setActualURL(`https://pokeapi.co/api/v2/pokemon/${pokemonToSearch}`)
+      navigate(`/search/${pokemonToSearch}`)
     }
   }
 

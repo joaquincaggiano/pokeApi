@@ -1,6 +1,8 @@
 // React
 import { createContext, useEffect, useState } from "react";
 
+
+
 // Axios
 import Axios from "axios";
 
@@ -9,6 +11,8 @@ export const PokemonContext = createContext();
 export const PokemonContextProvider = ({ children }) => {
   // URL
   const URL = "https://pokeapi.co/api/v2/pokemon";
+
+
 
   // useState
   const [dataPokemon, setDataPokemon] = useState([]);
@@ -91,6 +95,7 @@ export const PokemonContextProvider = ({ children }) => {
           });
           setAllPokemones(allPokemonArray);
         } else {
+          setLoadingSearch(true)
           console.log("POKEMON SEARCH", response.data)
           const pokemonNameUppercase = response.data.name[0].toUpperCase() + response.data.name.slice(1);
           const typePokemon = response.data.types;
@@ -110,11 +115,11 @@ export const PokemonContextProvider = ({ children }) => {
             stats: pokemonStats,
             height: height,
             weight: weight,
-            abilities: abilities
-            
+            abilities: abilities   
           })
+          // navigate(`/search/${pokemonSearch.id || pokemonSearch.name}`)
           setLoadingSearch(false)
-          setIsLoading(true);
+          // setIsLoading(true);
         }
       });
     };

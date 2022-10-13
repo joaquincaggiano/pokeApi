@@ -19,8 +19,6 @@ function EachCharacter(props) {
     }
   };
 
-  // console.log('props poke fav', props.pokeFavClass)
-  // CSS para cada TYPE
   const classType = props.typePokemon.map((type, i) => {
     if (type === "poison") {
       return (
