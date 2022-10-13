@@ -20,6 +20,7 @@ export const UserProvider = ({ children }) => {
   const [onePokeImage, setOnePokeImage] = useState({});
   const [isLoadingUpdate, setIsLoadingUpdate] = useState(true);
   const [isLoading, setIsLoading] = useState(true)
+  const [isAdmin, setIsAdmin] = useState(false)
   // REFERENCIAS DE INPUTS
   const userNameRef = useRef();
   const emailRef = useRef();
@@ -64,6 +65,7 @@ export const UserProvider = ({ children }) => {
             userName: response.data.user.userName,
             email: response.data.user.email,
             file: response.data.user.file,
+            role: response.data.user.role
           };
           localStorage.setItem("user", JSON.stringify(userLoggedObject));
           setFile(userLoggedObject.file);
@@ -165,7 +167,9 @@ export const UserProvider = ({ children }) => {
     setIsLoadingUpdate,
     deleteUser,
     isLoading,
-    setIsLoading
+    setIsLoading,
+    setIsAdmin,
+    isAdmin
   };
 
   return (

@@ -35,7 +35,7 @@ const userController = {
       const userToCreate = await User.create({
         ...req.body,
         password: hashPassword,
-        file: req.file ? req.file.filename : "default_image.jpeg",
+        file: req.file ? req.file.filename : "default_image.jpeg"
       });
       console.log("usuario creado: ", userToCreate);
       if (userToCreate === null) {

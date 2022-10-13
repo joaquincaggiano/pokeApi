@@ -18,14 +18,20 @@ import GuestRoutes from "./GuestsRoutes";
 import PrivateRoutes from "./PrivateRoutes";
 import CaughtPokemons from "../components/User/CaughtPokemons";
 import SearchPokemon from "../components/Characters/SearchPokemon";
+import TriviaForm from '../components/Trivia/TriviaForm'
 
 
 function PokemonRoutes() {
-  const { setUserLogged } = useContext(UserContext);
+  const { setUserLogged, setIsAdmin, isAdmin } = useContext(UserContext);
   useEffect(()=>{
     let userInLocalStorage = JSON.parse(localStorage.getItem('user'))
     if (userInLocalStorage !== null){
       setUserLogged(true)
+      if(userInLocalStorage.role === 'ADMIN'){
+        setIsAdmin(true)
+      }else{
+        isAdmin(false)
+      }
     }else{
       setUserLogged(false)
     }
@@ -40,6 +46,7 @@ function PokemonRoutes() {
       <Route path="/characters" element={<Characters />} />
       <Route path="/characters/:id" element={<Characters />} />
       <Route path="/trivia" element={<ModalQuestion />} />
+      <Route path="/trivia/create" element={<TriviaForm />} />
       <Route path="/search/:id" element={<SearchPokemon />} />
       {/* <Route path="/user/caught-pokemons" element={<PrivateRoutes><CaughtPokemons /></PrivateRoutes>} /> */}
       <Route path="/user/caught-pokemons" element={<CaughtPokemons />} />
