@@ -4,7 +4,8 @@ const { PokeTrivia } = require("../../database/models");
 // console.log("poketrivia", PokeTrivia)
 const triviaController = {
   getQuestion: async (req, res) => {
-    const randomNumber = Math.ceil(Math.random() * 24);
+    const allTrivias = await PokeTrivia.findAll(); 
+    const randomNumber = Math.ceil(Math.random() * allTrivias.length);
     try {
       const oneQuestion = await PokeTrivia.findByPk(randomNumber);
       return res.status(200).json(oneQuestion);
