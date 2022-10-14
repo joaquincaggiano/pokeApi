@@ -40,8 +40,8 @@ function TriviaForm() {
           backdropFilter: "blur(5px)",
         }}
       >
-        <h1>Create a trivia question</h1>
-        <p>
+        <h1 className="text-black text-center">Create a trivia question</h1>
+        <p className="text-white text-center border-bottom">
           Make it hard but not that hard! Remember that we want our users to
           have fun!
         </p>

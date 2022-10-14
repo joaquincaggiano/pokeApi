@@ -7,6 +7,7 @@
   padding: 10px;
   margin: auto;
   background: rgb(255, 255, 255, 0.3);
+  /* background: rgba(255, 0, 0, 0.3); */
   backdrop-filter: blur(5px);
   border-radius: 8px;
   width: 90%;
@@ -83,7 +84,7 @@
 
 .row_options a:hover,
 .buttonLogout:hover {
-  font-weight: bold;
+  /* font-weight: bold; */
   color: black;
   background: rgb(255, 217, 0);
   backdrop-filter: blur(5px);
@@ -122,5 +123,9 @@
 @media (min-width: 1920px) {
     .cardStyle {
         width: 50%;
+        min-height: 80vh;
+      }
+      .cardStyle p {
+        margin-bottom: 80px;
       }
 }

@@ -1,6 +1,7 @@
 import { Container, Row, Col, Table } from "react-bootstrap";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import classes from "./TriviaQuestion.module.css"
 
 function TriviaQuestions() {
   const [questionsArray, setQuestionsArray] = useState();
@@ -19,7 +20,7 @@ function TriviaQuestions() {
     <>
       {questionsArray && (
         <Container>
-          <h1 className="text-white">Questions on DB</h1>
+          <h1 className="text-white text-center p-3">Questions on DB</h1>
           <Table
             bordered
             hover
@@ -30,7 +31,7 @@ function TriviaQuestions() {
             }}
           >
             <thead>
-              <tr>
+              <tr className="text-center">
                 <th>Question</th>
                 <th>Correct Answer</th>
                 <th>Image</th>
@@ -38,7 +39,7 @@ function TriviaQuestions() {
                 <th>Delete</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-white">
               {questionsArray.map((oneQuestion) => {
                 return (
                   <>
@@ -54,10 +55,10 @@ function TriviaQuestions() {
                         )}
                       </td>
                       <td>
-                        <button>Update question</button>
+                        <button className={classes.buttonUpdate}>Update</button>
                       </td>
                       <td>
-                        <button>Delete question</button>
+                        <button className={classes.buttonDelete}>Delete</button>
                       </td>
                     </tr>
                   </>

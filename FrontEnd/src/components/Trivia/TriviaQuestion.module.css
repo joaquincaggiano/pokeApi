@@ -1,0 +1,20 @@
+@media(min-width: 768px) {
+    .buttonUpdate, .buttonDelete {
+        padding: 5px;
+        width: 100px;
+        color: #ffff;
+    }
+    
+    .buttonUpdate {
+        background-color: 	#4682B4;
+    }
+    
+    .buttonDelete {
+        background-color: #DC143C;
+    }
+
+    .buttonUpdate:hover, .buttonDelete:hover {
+        border-radius: 20px;
+        transition: all 0.3s;
+    }
+}
