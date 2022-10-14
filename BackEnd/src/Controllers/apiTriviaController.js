@@ -4,7 +4,7 @@ const { PokeTrivia } = require("../../database/models");
 // console.log("poketrivia", PokeTrivia)
 const triviaController = {
   getQuestion: async (req, res) => {
-    const randomNumber = Math.ceil(Math.random() * 20);
+    const randomNumber = Math.ceil(Math.random() * 24);
     try {
       const oneQuestion = await PokeTrivia.findByPk(randomNumber);
       return res.status(200).json(oneQuestion);
@@ -25,7 +25,7 @@ const triviaController = {
        { ...req.body,
       image: req.file?.filename}
       );
-      console.log('req file', req.file)
+      // console.log('req file', req.file)
       if (createTrivia === null){
         return res.json({
           status: 400,

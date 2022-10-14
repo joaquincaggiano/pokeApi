@@ -8,22 +8,28 @@ import axios from "axios";
 import InputQuestion from "./InputQuestion";
 
 // Hook redux
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // Reducers functions
 import { addPokeToFav } from "../../features/favPokeSlice/favPokeSlice";
 
+// Router
+import { useNavigate } from "react-router-dom";
+
+// Css
 import styles from "./ModalQuestion.module.css";
 
 const ModalQuestion = (props) => {
-  // Redux functions
+  // Dispatch redux
   const dispatch = useDispatch();
-  const { pokemonFavList } = useSelector((state) => state.pokeFav);
 
   const [question, setQuestion] = useState();
   const [answer, setAnswer] = useState();
   const [wrongAnswer, setWrongAnswer] = useState(false);
-  console.log("POKE FAV LIST ON MODAL", pokemonFavList);
+
+  // Navigate
+  const navigate = useNavigate();
+
   // User ID
   const userId = JSON.parse(localStorage.getItem("user"));
 
@@ -49,17 +55,23 @@ const ModalQuestion = (props) => {
         .catch((error) => console.log(error));
       props.onCloseModal();
       alert("Pokemon atrapado");
-    } else {
+      navigate('/user/caught-pokemons')
+    } else if(answer === undefined) {
+      props.onCloseModal();
+    }else {
       setWrongAnswer(!wrongAnswer);
       alert("Respuesta Incorrecta");
     }
   }
+
+  console.log("QUESTION", question)
 
   return (
     <div>
       <div className={styles.backdrop} onClick={props.onCloseModal}></div>
       <div className={styles.cardPokemon}>
         <h4>{question?.question}</h4>
+        {question?.image != null ? <img className={styles.whoIsThatPokemon} src={`http://localhost:3030/triviaImages/${question.image}`} alt="who's that pokemon?" /> : ""}
         <InputQuestion answer={question?.answer1} setAnswer={setAnswer} />
         <InputQuestion answer={question?.answer2} setAnswer={setAnswer} />
         <InputQuestion answer={question?.answer3} setAnswer={setAnswer} />

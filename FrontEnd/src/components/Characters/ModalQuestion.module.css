@@ -28,6 +28,12 @@
   flex-direction: column; */
 }
 
+.whoIsThatPokemon {
+  width: 100%;
+  margin: 10px 0px;
+  box-shadow: 5px 4px 5px 0px rgba(0,0,0,0.75);
+}
+
 .answerBox {
   display: flex;
   align-items: baseline;
@@ -79,6 +85,10 @@
 }
 
 @media (min-width: 768px) {
+  
+  .cardPokemon {
+    bottom: 20vh;
+  }
   .cardPokemon h4 {
     font-size: 28px;
   }
@@ -97,6 +107,11 @@
 }
 
 @media (min-width: 1200px) {
+  .whoIsThatPokemon {
+    width: 70%;
+    margin-left: 120px;
+  }
+
   .answerBox {
     margin-left: 50px;
   }
@@ -106,5 +121,6 @@
   .cardPokemon {
     width: 60%;
     right: 20%;
+    bottom: 15vh;
   }
 }
