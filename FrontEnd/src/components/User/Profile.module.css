@@ -1,113 +1,126 @@
-.imgUser {
-    margin: 15px 0px;
-    width: 150px;
-    border: 1px solid black;
-}
-
-.buttonCatch {
-    border: 2px solid black;
-    border-radius: 20px;
-    background-color: #32CD32;
-    padding: 5px;
-    width: 70%;
-    margin-bottom: 15px;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-}
-
-.buttonCatch:hover {
-    color: black;
-    font-weight: bold;
-    border: 3px solid black;
-    transition: all 0.1s;
-}
-
-.buttonUpdate {
-    border: 2px solid #4682B4;
-    border-radius: 20px;
-    background-color: rgb(255, 208, 0);
-    font-weight: 500;
-    color: #4682B4;
-    padding: 5px;
-    width: 70%;
-    margin-bottom: 15px;
-    text-align: center;
-    text-decoration: none;
-}
-
-.buttonUpdate:hover {
-    font-weight: bold;
-    border: 3px solid #4682B4;
-    transition: all 0.1s;
-}
-
-.buttonLogout {
-    border: 2px solid black;
-    border-radius: 20px;
-    background-color: #DC143C;
-    color: black;
-    padding: 5px;
-    width: 70%;
-}
-
-.buttonLogout:hover {
-    font-weight: bold;
-    border: 3px solid black;
-    transition: all 0.1s;
+.containerProfile {
+    padding: 10px;
 }
 
 .cardStyle {
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    padding: 20px;
-    margin:auto;
-    background: rgb(255, 255, 255, 0.3);
-    backdrop-filter: blur(5px);
+  color: white;
+  padding: 10px;
+  margin: auto;
+  background: rgb(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  width: 90%;
 }
 
-@media(min-width: 768px) {
-    .imgUser {
-        width: 180px;
-    }
+.cardContent {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-    .buttonLogout, .buttonUpdate, .buttonCatch{
-        width: 60%;
-        font-size: 18px;
-    }
+.welcomeTitle {
+  font-size: 26px;
+}
 
-    .cardStyle{
+.cardStyle p {
+  font-size: 20px;
+}
+
+.row_image {
+  text-align: center;
+}
+
+.row_image img {
+  width: 60%;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.row_options {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.row_options a,
+.buttonLogout {
+  font-size: 18px;
+  margin: 15px 0px;
+  text-decoration: none;
+  background: radial-gradient(
+        circle at 100% 100%,
+        #ffffff 0,
+        #ffffff 3px,
+        transparent 3px
+      )
+      0% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 3px, transparent 3px)
+      100% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 3px, transparent 3px)
+      0% 100%/8px 8px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 3px, transparent 3px) 100%
+      100%/8px 8px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 10px)
+      calc(100% - 16px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
+      calc(100% - 10px) no-repeat,
+    linear-gradient(90deg, #ffd700 0%, #4682b4 100%);
+  /* border-radius: 4px; */
+  padding: 14px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  color: black;
+}
+
+.buttonLogout {
+  border: none;
+}
+
+.row_options a:hover,
+.buttonLogout:hover {
+  font-weight: bold;
+  color: black;
+  background: rgb(255, 217, 0);
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+@media (min-width: 768px) {
+    .containerProfile {
+        padding: 20px;
+    }
+  .cardContent {
+    flex-direction: row;
+    /* justify-content: space-evenly; */
+  }
+
+  .welcomeTitle {
+    font-size: 36px;
+  }
+
+  .cardStyle p {
+    font-size: 26px;
+  }
+  .row_options a,
+  .buttonLogout {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+    .cardStyle {
         width: 70%;
-    }
-
-    .cardStyle h2{
-        font-size: 32px;
-    }
-    
-    .cardStyle p{
-        font-size: 20px;
-    }
+      }
 }
 
-@media(min-width: 1200px) {
-
-    .cardStyle{
-        width: 55%;
-    }
-
-    .cardStyle h2{
-        font-size: 36px;
-    }
-    
-    .cardStyle p{
-        font-size: 24px;
-    }
-
-    .buttonLogout, .buttonUpdate, .buttonCatch{
+@media (min-width: 1920px) {
+    .cardStyle {
         width: 50%;
-    }
+      }
 }
