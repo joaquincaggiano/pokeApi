@@ -116,10 +116,8 @@ export const PokemonContextProvider = ({ children }) => {
             height: height,
             weight: weight,
             abilities: abilities   
-          })
-          // navigate(`/search/${pokemonSearch.id || pokemonSearch.name}`)
+          })      
           setLoadingSearch(false)
-          // setIsLoading(true);
         }
       });
     };

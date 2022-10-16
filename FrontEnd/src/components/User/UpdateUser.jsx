@@ -38,28 +38,6 @@ const UpdateUser = () => {
   const [editEmail, setEditEmail] = useState(false);
   const [editUsername, setEditUsername] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
-  // const [inputValue, setInputValue] = useState('')
-
-  // // useState
-  // const [formIsValid, setFormIsValid] = useState(false);
-
-  // // useEffect
-  // useEffect(() => {
-  //   if (
-  //     state.usernameLength.isValid &&
-  //     state.emailFormat.isValid &&
-  //     state.passwordFormat.isValid
-  //   ) {
-  //     setFormIsValid(true);
-  //   }else {
-  //     setFormIsValid(false)
-  //   }
-  // }, [
-  //   inputValue,
-  // //   state.usernameLength.value,
-  // //   state.emailFormat.value,
-  // //   state.passwordFormat.value,
-  // ]);
 
   // Navigate
   let navigate = useNavigate();
@@ -75,7 +53,6 @@ const UpdateUser = () => {
   }
 
   const onChangeHandler = (e) => {
-    // setInputValue(e.target.value)
     dispatch({
       type: e.target.dataset.type,
       payload: {

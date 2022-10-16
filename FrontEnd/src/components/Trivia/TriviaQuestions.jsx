@@ -1,21 +1,41 @@
-import { Container, Row, Col, Table } from "react-bootstrap";
+// Boostrap
+import { Container, Table } from "react-bootstrap";
+
+// Axios
 import axios from "axios";
+
+// Hooks
 import { useEffect, useState } from "react";
+
+// Router
+import { useNavigate } from "react-router-dom";
+
+// Css
 import classes from "./TriviaQuestion.module.css"
 
 function TriviaQuestions() {
-  const [questionsArray, setQuestionsArray] = useState();
+  const navigate = useNavigate();
+
+  const [questionsArray, setQuestionsArray] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:3030/triviaApi/all")
       .then((response) => {
         setQuestionsArray(response.data);
+        // localStorage.setItem("triviaQuestions", JSON.stringify(response.data));
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  console.log("questions array", questionsArray);
+
+  // console.log("questions array", questionsArray);
+
+  // const goToUpdate = () => {
+  //   navigate(`/trivia/update/${oneQuestion.id}`)
+  // }
+
   return (
     <>
       {questionsArray && (
@@ -40,10 +60,9 @@ function TriviaQuestions() {
               </tr>
             </thead>
             <tbody className="text-white">
-              {questionsArray.map((oneQuestion) => {
+              {questionsArray.map((oneQuestion, i) => {
                 return (
-                  <>
-                    <tr>
+                    <tr key={i}>
                       <td>{oneQuestion.question}</td>
                       <td>{oneQuestion.correctAnswer}</td>
                       <td>
@@ -55,27 +74,20 @@ function TriviaQuestions() {
                         )}
                       </td>
                       <td>
-                        <button className={classes.buttonUpdate}>Update</button>
+                        <button onClick={() => {
+                          localStorage.setItem("triviaQuestion", JSON.stringify(oneQuestion));
+                          navigate(`/trivia/update/${oneQuestion.id}`)
+                          }} 
+                          className={classes.buttonUpdate}>Update</button>
                       </td>
                       <td>
                         <button className={classes.buttonDelete}>Delete</button>
                       </td>
                     </tr>
-                  </>
                 );
               })}
             </tbody>
           </Table>
-          {/* <Row className='border'>
-         <Col className="text-white border">
-            <p>{oneQuestion.question}</p>
-            </Col>
-            <Col className="text-white border"><p>{oneQuestion.correctAnswer}</p></Col>
-         <Col className="text-white border">{oneQuestion.image && 
-         <img className='w-50' src={`http://localhost:3030/triviaImages/${oneQuestion.image}`}/>
-         }</Col>
-         <Col><button>Update question</button></Col>
-        </Row> */}
         </Container>
       )}
     </>

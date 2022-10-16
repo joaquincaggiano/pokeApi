@@ -39,6 +39,13 @@ const triviaController = {
         })
       }
   },
+  updateQuestion: async (req, res) => {
+    // try {
+    //   let triviaToUpdate = PokeTrivia.findByPk(req.params.id)
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  }
 };
 
 module.exports = triviaController;

@@ -20,6 +20,7 @@ import CaughtPokemons from "../components/User/CaughtPokemons";
 import SearchPokemon from "../components/Characters/SearchPokemon";
 import TriviaForm from '../components/Trivia/TriviaForm'
 import TriviaQuestions from '../components/Trivia/TriviaQuestions'
+import TriviaEditForm from "../components/Trivia/TriviaEditForm";
 
 
 function PokemonRoutes() {
@@ -49,6 +50,7 @@ function PokemonRoutes() {
       <Route path="/trivia" element={<ModalQuestion />} />
       <Route path="/trivia/create" element={<TriviaForm />} />
       <Route path="/trivia/viewAll" element={<TriviaQuestions />} />
+      <Route path="/trivia/update/:id" element={<TriviaEditForm />} />
       <Route path="/search/:id" element={<SearchPokemon />} />
       {/* <Route path="/user/caught-pokemons" element={<PrivateRoutes><CaughtPokemons /></PrivateRoutes>} /> */}
       <Route path="/user/caught-pokemons" element={<CaughtPokemons />} />

@@ -64,7 +64,7 @@ const ModalQuestion = (props) => {
     }
   }
 
-  console.log("QUESTION", question)
+  // console.log("QUESTION", question)
 
   return (
     <div>

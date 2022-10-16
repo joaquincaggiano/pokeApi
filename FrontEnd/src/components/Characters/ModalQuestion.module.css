@@ -107,9 +107,10 @@
 }
 
 @media (min-width: 1200px) {
+
   .whoIsThatPokemon {
-    width: 70%;
-    margin-left: 120px;
+    width: 50%;
+    margin-left: 220px;
   }
 
   .answerBox {
@@ -122,5 +123,9 @@
     width: 60%;
     right: 20%;
     bottom: 15vh;
+  }
+
+  .whoIsThatPokemon {
+    margin-left: 260px;
   }
 }
