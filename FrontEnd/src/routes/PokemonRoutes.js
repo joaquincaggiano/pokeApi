@@ -21,6 +21,8 @@ import SearchPokemon from "../components/Characters/SearchPokemon";
 import TriviaForm from '../components/Trivia/TriviaForm'
 import TriviaQuestions from '../components/Trivia/TriviaQuestions'
 import TriviaEditForm from "../components/Trivia/TriviaEditForm";
+import NotFound from "../components/layout/NotFound";
+
 
 
 function PokemonRoutes() {
@@ -42,6 +44,8 @@ function PokemonRoutes() {
     <Routes>
       {/* Home */}
       <Route path="/" element={<Home />} />
+      {/* NOT FOUND*/}
+      <Route path="/404" element={<NotFound />} />
 
       {/* User */}
       <Route path="/user/create" element={<GuestRoutes><Register /></GuestRoutes>} />
