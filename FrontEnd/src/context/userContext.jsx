@@ -68,6 +68,12 @@ export const UserProvider = ({ children }) => {
             role: response.data.user.role
           };
           localStorage.setItem("user", JSON.stringify(userLoggedObject));
+    let userInLocalStorage = JSON.parse(localStorage.getItem('user'))
+          if(userInLocalStorage.role === 'ADMIN'){
+            setIsAdmin(true)
+          }else{
+            setIsAdmin(false)
+          }
           setFile(userLoggedObject.file);
           setUserLogged(true);
           setIsLoading(false);
