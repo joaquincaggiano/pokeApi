@@ -67,7 +67,7 @@ function EachFavPokemon({ pokemonId, pokeFavoriteId }) {
         <div
           className={`${classes.cardFavPokemon} col-xs-1 col-sm-6 col-md-4 col-lg-3`}
         >
-          <Link to={`/characters/${pokemon.name}`}>
+          <Link to={`/search/${pokemon.name}`}>
             <img onClick={showDetailPokemonHandler} src={pokemon.image} />
           </Link>
           <div className={classes.descriptionCard}>
