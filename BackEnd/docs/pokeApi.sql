@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:8889
--- Tiempo de generación: 13-10-2022 a las 19:52:43
--- Versión del servidor: 5.7.34
--- Versión de PHP: 7.4.21
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 17-10-2022 a las 18:05:22
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,10 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `pokeApi`
+-- Base de datos: `pokeapi`
 --
-CREATE DATABASE IF NOT EXISTS `pokeApi` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `pokeApi`;
 
 -- --------------------------------------------------------
 
@@ -29,11 +27,10 @@ USE `pokeApi`;
 -- Estructura de tabla para la tabla `pokefavorites`
 --
 
-DROP TABLE IF EXISTS `pokefavorites`;
 CREATE TABLE `pokefavorites` (
   `id` int(11) NOT NULL,
   `pokemon` varchar(100) NOT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
   `updatedAt` date DEFAULT NULL,
   `deletedAt` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -53,7 +50,9 @@ INSERT INTO `pokefavorites` (`id`, `pokemon`, `createdAt`, `updatedAt`, `deleted
 (20, '19', '2022-10-04 20:30:21', '2022-10-04', '2022-10-06'),
 (21, '3', '2022-10-04 20:31:03', '2022-10-04', '2022-10-06'),
 (22, '1', '2022-10-04 20:31:33', '2022-10-04', '2022-10-06'),
-(23, '1', '2022-10-13 19:38:33', '2022-10-13', NULL);
+(23, '1', '2022-10-13 19:38:33', '2022-10-13', NULL),
+(24, '1', '2022-10-17 15:57:26', '2022-10-17', NULL),
+(25, '4', '2022-10-17 15:57:57', '2022-10-17', NULL);
 
 -- --------------------------------------------------------
 
@@ -61,12 +60,11 @@ INSERT INTO `pokefavorites` (`id`, `pokemon`, `createdAt`, `updatedAt`, `deleted
 -- Estructura de tabla para la tabla `pokefavorites_users`
 --
 
-DROP TABLE IF EXISTS `pokefavorites_users`;
 CREATE TABLE `pokefavorites_users` (
   `id` int(11) NOT NULL,
   `pokemonId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
   `updatedAt` date DEFAULT NULL,
   `deletedAt` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -86,7 +84,9 @@ INSERT INTO `pokefavorites_users` (`id`, `pokemonId`, `userId`, `createdAt`, `up
 (8, 20, 9, '2022-10-04 20:30:21', '2022-10-04', NULL),
 (9, 21, 9, '2022-10-04 20:31:03', '2022-10-04', NULL),
 (10, 22, 9, '2022-10-04 20:31:33', '2022-10-04', NULL),
-(11, 23, 11, '2022-10-13 19:38:33', '2022-10-13', NULL);
+(11, 23, 11, '2022-10-13 19:38:33', '2022-10-13', NULL),
+(12, 24, 9, '2022-10-17 15:57:26', '2022-10-17', NULL),
+(13, 25, 9, '2022-10-17 15:57:57', '2022-10-17', NULL);
 
 -- --------------------------------------------------------
 
@@ -94,7 +94,6 @@ INSERT INTO `pokefavorites_users` (`id`, `pokemonId`, `userId`, `createdAt`, `up
 -- Estructura de tabla para la tabla `poketrivia`
 --
 
-DROP TABLE IF EXISTS `poketrivia`;
 CREATE TABLE `poketrivia` (
   `id` int(11) NOT NULL,
   `question` varchar(200) NOT NULL,
@@ -104,7 +103,7 @@ CREATE TABLE `poketrivia` (
   `answer4` varchar(200) NOT NULL,
   `correctAnswer` varchar(200) NOT NULL,
   `image` varchar(200) DEFAULT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
   `updatedAt` date DEFAULT NULL,
   `deletedAt` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -114,7 +113,7 @@ CREATE TABLE `poketrivia` (
 --
 
 INSERT INTO `poketrivia` (`id`, `question`, `answer1`, `answer2`, `answer3`, `answer4`, `correctAnswer`, `image`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, '¿Qué combinación de tipos tiene Gyarados?', 'Agua y Dragón', 'Agua', 'Agua y volador', 'Dragón y Hielo', 'Agua y volador', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL),
+(1, '¿Qué combinación de tipos tiene Gyarados?', 'Agua y Dragón', 'Agua', 'Agua y volador', 'Dragón y Hielo', 'Agua y volador', NULL, '2022-09-23 18:08:53', '2022-10-17', NULL),
 (2, '¿Quién es el creador de Pokémon?', 'Keiji Inafune', 'Gunpei Yokio', 'Satoshi Tajiri', 'Shingeru Miyamoto', 'Satoshi Tajiri', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL),
 (3, '¿Cuál es el pokémon no legendario más fuerte de la primera generación según sus estadísticas?', 'Aerodactyl', 'Gyarados', 'Dragonite', 'Articuno', 'Dragonite', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL),
 (4, '¿Cuántas medallas son necesarias para ir a la Liga Pokémon?', '6', '8', '7', '10', '8', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL),
@@ -133,7 +132,16 @@ INSERT INTO `poketrivia` (`id`, `question`, `answer1`, `answer2`, `answer3`, `an
 (17, '¿Cuál fue el primer Pokemon que Ash atrapo?', 'Onix', 'Bulbasur', 'Gyarados', 'Caterpie', 'Caterpie', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL),
 (18, '¿Cuál es la diferencia entre un Pikachu femenino y uno masculino?', 'La forma de la cola', 'El color', 'La forma de las orejas', 'La forma de los ojos', 'La forma de la cola', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL),
 (19, '¿Quién es el número 1 en la Pokedex?', 'Charmander', 'Bulbasur', 'Muk', 'Staryu', 'Bulbasur', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL),
-(20, '¿En qué evoluciona Squirtle?', 'Nidorina y Nidoqueen', 'Charmeleon y Charizard', 'Ivysaur y Venasur', 'Wartortle y Blastoise', 'Wartortle y Blastoise', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL);
+(20, '¿En qué evoluciona Squirtle?', 'Nidorina y Nidoqueen', 'Charmeleon y Charizard', 'Ivysaur y Venasur', 'Wartortle y Blastoise', 'Wartortle y Blastoise', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL),
+(21, 'Who\'s that Pokemon?', 'Dragonite', 'Charizard', 'Gyarados', 'Aerodactyl', 'Charizard', '1665758202971_img.jpg', '2022-10-14 14:36:42', '2022-10-14', NULL),
+(22, 'Who\'s that Pokemon?', 'Mew', 'Pikachu', 'Mewtwo', 'Scyther', 'Mewtwo', '1665758255491_img.jpg', '2022-10-14 14:37:35', '2022-10-14', NULL),
+(23, 'Who\'s that Pokemon?', 'Squirtle', 'Raichu', 'Raticate', 'Pikachu', 'Pikachu', '1665758313151_img.jpg', '2022-10-14 14:38:33', '2022-10-14', NULL),
+(24, 'Who\'s that Pokemon?', 'Voltorb', 'Wigglytuff', 'Jigglypuff', 'Clefairy', 'Jigglypuff', '1666014898054_img.jpg', '2022-10-14 14:40:17', '2022-10-17', NULL),
+(25, 'Who\'s that Pokemon?', 'Ivysaur', 'Bulbasaur', 'Nidorino', 'Vulpix', 'Bulbasaur', '1666019181651_img.jpg', '2022-10-17 15:06:21', '2022-10-17', '2022-10-17'),
+(26, 'Who\'s that Pokemon?', 'Ivysaur', 'Bulbasaur', 'Nidorino', 'Vulpix', 'Bulbasaur', '1666021745267_img.jpg', '2022-10-17 15:49:05', '2022-10-17', NULL),
+(27, 'Who\'s that Pokemon?', 'Ekans', 'Ninetales', 'Poliwrath', 'Arbok', 'Arbok', '1666021965892_img.jpg', '2022-10-17 15:51:18', '2022-10-17', NULL),
+(28, 'Who\'s that Pokemon?', 'Poliwhirl', 'Poliwrath', 'Graveler', 'Grimer', 'Poliwhirl', '1666022094655_img.jpg', '2022-10-17 15:54:54', '2022-10-17', NULL),
+(29, 'Who\'s that Pokemon?', 'Ponyta', 'Growlithe', 'Tauros', 'Flareon', 'Growlithe', '1666022221851_img.jpg', '2022-10-17 15:57:01', '2022-10-17', NULL);
 
 -- --------------------------------------------------------
 
@@ -141,7 +149,6 @@ INSERT INTO `poketrivia` (`id`, `question`, `answer1`, `answer2`, `answer3`, `an
 -- Estructura de tabla para la tabla `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `role` varchar(50) DEFAULT 'USER',
@@ -151,7 +158,7 @@ CREATE TABLE `users` (
   `file` varchar(255) NOT NULL DEFAULT 'default-img.jpg',
   `deletedAt` date DEFAULT NULL,
   `updatedAt` date DEFAULT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -163,7 +170,7 @@ INSERT INTO `users` (`id`, `role`, `userName`, `email`, `password`, `file`, `del
 (6, 'USER', 'Chikorita', 'chikorita@pokeapi.com', '$2a$10$fULkkGa2/K75l.YLSIrHrOIkTvtXCumRdGgRosExvAQUTtgGUnwSu', 'default_image.jpeg', NULL, '2022-09-09', '2022-09-09 17:56:42'),
 (7, 'USER', 'Squirtle', 'squirtle@poke.com', '$2a$10$uO9VJ7Dw8wnQ2JMRhb1amuI5wcHT.8L3i4/HgJv6xbwIaPMjfBpgS', 'default_image.jpeg', NULL, '2022-09-16', '2022-09-16 15:18:27'),
 (8, 'USER', 'Totito', 'totodile@poke.com', '$2a$10$MTZzQ7cEBXBe1ElSA/GL5uZO0F0M7CFv28LCZr6R25m1DgIvCUlZ.', '1663355819883_img.jpeg', NULL, '2022-09-20', '2022-09-16 19:17:00'),
-(9, 'USER', 'charmander', 'charmander@gmail.com', '$2a$10$ot3OMFCm48I.vcUYaOT8Q.zP86ZYjC16yAcKxTBtEDz31wfNVMQ6O', '1664298523962_img.jpg', NULL, '2022-09-27', '2022-09-27 17:08:44'),
+(9, 'ADMIN', 'charmander', 'charmander@gmail.com', '$2a$10$ot3OMFCm48I.vcUYaOT8Q.zP86ZYjC16yAcKxTBtEDz31wfNVMQ6O', '1664298523962_img.jpg', NULL, '2022-09-27', '2022-09-27 17:08:44'),
 (10, 'USER', 'Shellder', 'shellder@poke.com', '$2a$10$wqG0UsLdDkBNNeZ.pWRYpOyrT/5Vd2DM4DjijYYv4DanFimeoSmVm', 'default_image.jpeg', NULL, '2022-10-04', '2022-10-04 19:57:56'),
 (11, 'ADMIN', 'Magneton', 'magneton@poke.com', '$2a$10$AR1Xpu2tlJ5XryGeokNlVusGrGLRtv0fA8F6sIEg8ruBwGlDXFq1e', 'default_image.jpeg', NULL, '2022-10-13', '2022-10-13 19:37:46');
 
@@ -205,19 +212,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `pokefavorites`
 --
 ALTER TABLE `pokefavorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `pokefavorites_users`
 --
 ALTER TABLE `pokefavorites_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `poketrivia`
 --
 ALTER TABLE `poketrivia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
