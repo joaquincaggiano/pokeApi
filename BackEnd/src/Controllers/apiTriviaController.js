@@ -67,9 +67,9 @@ const triviaController = {
         triviaToUpdate.correctAnswer = req.body.correctAnswer
           ? req.body.correctAnswer
           : triviaToUpdate.correctAnswer;
-        triviaToUpdate.file = req.file?.filename
+        triviaToUpdate.image = req.file?.filename
           ? req.file.filename
-          : triviaToUpdate.file;
+          : triviaToUpdate.image;
 
         triviaToUpdate.save();
 

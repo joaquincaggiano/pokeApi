@@ -23,7 +23,6 @@ function TriviaQuestions() {
       .get("http://localhost:3030/triviaApi/all")
       .then((response) => {
         setQuestionsArray(response.data);
-        // localStorage.setItem("triviaQuestions", JSON.stringify(response.data));
       })
       .catch((error) => {
         console.log(error);
@@ -31,10 +30,6 @@ function TriviaQuestions() {
   }, []);
 
   // console.log("questions array", questionsArray);
-
-  // const goToUpdate = () => {
-  //   navigate(`/trivia/update/${oneQuestion.id}`)
-  // }
 
   return (
     <>

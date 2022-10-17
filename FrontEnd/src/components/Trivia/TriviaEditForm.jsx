@@ -19,12 +19,7 @@ export default function TriviaEditForm() {
 
   // trivia Storage
   const oneTrivia = JSON.parse(localStorage.getItem("triviaQuestion"));
-  console.log("oneTrivia", oneTrivia);
-
-  function onChangeImage(e) {
-    const image = e.target.files[0];
-    setTriviaImage(image);
-  }
+  // console.log("oneTrivia", oneTrivia);
 
   const updateTriviaHandler = (e) => {
     e.preventDefault();
@@ -45,6 +40,13 @@ export default function TriviaEditForm() {
     navigate("/trivia/viewAll");
   };
 
+  function onChangeImage(e) {
+    console.log('e image', e)
+    const image = e.target.files[0];
+    console.log('image', image)
+    setTriviaImage(image);
+  }
+
   return (
     <Container className="pt-5">
       <Card
@@ -59,7 +61,6 @@ export default function TriviaEditForm() {
         {oneTrivia.image !== null ? (
           <div>
             <img
-              // className={`rounded-circle`}
               src={`http://localhost:3030/triviaImages/${oneTrivia.image}`}
             />
             {/* <i className="fa-solid fa-camera"></i> */}
@@ -72,18 +73,6 @@ export default function TriviaEditForm() {
           className="text-white p-3 align-self-center container-fluid"
           onSubmit={updateTriviaHandler}
         >
-          {oneTrivia.image !== null ? (
-            <Form.Group className="mb-3">
-              <Form.Label>Image:</Form.Label>
-              <Form.Control
-                name="image"
-                type="file"
-                onChange={onChangeImage}
-              ></Form.Control>
-            </Form.Group>
-          ) : (
-            ""
-          )}
           <Form.Group className="mb-3">
             <Form.Label>Question:</Form.Label>
             <Form.Control
@@ -132,14 +121,27 @@ export default function TriviaEditForm() {
               defaultValue={oneTrivia.correctAnswer}
             ></Form.Control>
           </Form.Group>
-          {/* <Form.Group className="mb-3">
-            <Form.Label>Image:</Form.Label>
-            <Form.Control
-              type="file"
-              //   onChange={(e) => onChangeImage(e)}
-            ></Form.Control>
-          </Form.Group> */}
-          <Button type="submit">Submit trivia question</Button>
+          <Form.Group className="mb-3">
+              <Form.Label>Image:</Form.Label>
+              <Form.Control
+                // name="image"
+                type="file"
+                onChange={(e) => onChangeImage(e)}
+              ></Form.Control>
+            </Form.Group>
+          {/* {oneTrivia.image !== null ? (
+            <Form.Group className="mb-3">
+              <Form.Label>Image:</Form.Label>
+              <Form.Control
+                // name="image"
+                type="file"
+                onChange={(e) => onChangeImage(e)}
+              ></Form.Control>
+            </Form.Group>
+          ) : (
+            ""
+          )} */}
+          <Button type="submit">Update trivia question</Button>
         </Form>
       </Card>
     </Container>
