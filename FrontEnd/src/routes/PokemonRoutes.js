@@ -32,7 +32,7 @@ function PokemonRoutes() {
       if(userInLocalStorage.role === 'ADMIN'){
         setIsAdmin(true)
       }else{
-        isAdmin(false)
+        setIsAdmin(false)
       }
     }else{
       setUserLogged(false)
@@ -40,20 +40,26 @@ function PokemonRoutes() {
   }, [])
   return (
     <Routes>
+      {/* Home */}
       <Route path="/" element={<Home />} />
+
+      {/* User */}
       <Route path="/user/create" element={<GuestRoutes><Register /></GuestRoutes>} />
       <Route path="/user/login" element={<GuestRoutes><Login /></GuestRoutes>}/>
       <Route path="/user/profile" element={<PrivateRoutes><Profile /></PrivateRoutes>} />
+      <Route path="/user/caught-pokemons" element={<PrivateRoutes><CaughtPokemons /></PrivateRoutes>} />
       <Route path="/user/update/:id" element={<PrivateRoutes><UpdateUser /></PrivateRoutes>} />
+
+      {/* Pokemons */}
       <Route path="/characters" element={<Characters />} />
       <Route path="/characters/:id" element={<Characters />} />
-      <Route path="/trivia" element={<ModalQuestion />} />
-      <Route path="/trivia/create" element={<TriviaForm />} />
-      <Route path="/trivia/viewAll" element={<TriviaQuestions />} />
-      <Route path="/trivia/update/:id" element={<TriviaEditForm />} />
       <Route path="/search/:id" element={<SearchPokemon />} />
-      {/* <Route path="/user/caught-pokemons" element={<PrivateRoutes><CaughtPokemons /></PrivateRoutes>} /> */}
-      <Route path="/user/caught-pokemons" element={<CaughtPokemons />} />
+
+      {/* Trivias */}
+      <Route path="/trivia" element={<ModalQuestion />} />
+      <Route path="/trivia/create" element={<PrivateRoutes><TriviaForm /></PrivateRoutes>} />
+      <Route path="/trivia/viewAll" element={<PrivateRoutes><TriviaQuestions /></PrivateRoutes>} />
+      <Route path="/trivia/update/:id" element={<PrivateRoutes><TriviaEditForm /></PrivateRoutes>} />
     </Routes>
   );
 }

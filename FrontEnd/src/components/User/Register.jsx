@@ -14,12 +14,12 @@ import { Form, Button, Container, Card } from "react-bootstrap";
 import classes from "./Register.module.css"
 
 
-//Assets
-import Starter1 from "../../img/starter-gen1.png";
-import Starter2 from "../../img/starter-gen2.png";
-import Starter3 from "../../img/starter-gen3.png";
-import Starter4 from "../../img/starter-gen4.png";
-import Starter5 from "../../img/starter-gen5.png";
+// //Assets
+// import Starter1 from "../../img/starter-gen1.png";
+// import Starter2 from "../../img/starter-gen2.png";
+// import Starter3 from "../../img/starter-gen3.png";
+// import Starter4 from "../../img/starter-gen4.png";
+// import Starter5 from "../../img/starter-gen5.png";
 
 function Register() {
   // CONTEXT
