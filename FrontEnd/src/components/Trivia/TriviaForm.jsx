@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 function TriviaForm() {
   const [triviaImage, setTriviaImage] = useState();
+
   const navigate = useNavigate();
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log(e);
@@ -31,6 +33,7 @@ function TriviaForm() {
     // console.log('image', image)
     setTriviaImage(image);
   }
+  
   return (
     <Container className="pt-5">
       <Card

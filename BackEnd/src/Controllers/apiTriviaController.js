@@ -40,11 +40,48 @@ const triviaController = {
       }
   },
   updateQuestion: async (req, res) => {
-    // try {
-    //   let triviaToUpdate = PokeTrivia.findByPk(req.params.id)
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      let triviaToUpdate = await PokeTrivia.findByPk(req.params.id);
+      console.log("TRIVIA A ACTUALIZAR",triviaToUpdate);
+
+      if (!req.body) {
+        return res.status(400).json({
+          msg: "BAD REQUEST - COMPLETE ALL FIELDS",
+        });
+      } else {
+        triviaToUpdate.question = req.body.question
+          ? req.body.question
+          : triviaToUpdate.question;
+        triviaToUpdate.answer1 = req.body.answer1
+          ? req.body.answer1
+          : triviaToUpdate.answer1;
+        triviaToUpdate.answer2 = req.body.answer2
+          ? req.body.answer2
+          : triviaToUpdate.answer2;
+        triviaToUpdate.answer3 = req.body.answer3
+          ? req.body.answer3
+          : triviaToUpdate.answer3;
+        triviaToUpdate.answer4 = req.body.answer4
+          ? req.body.answer4
+          : triviaToUpdate.answer4;
+        triviaToUpdate.correctAnswer = req.body.correctAnswer
+          ? req.body.correctAnswer
+          : triviaToUpdate.correctAnswer;
+        triviaToUpdate.file = req.file?.filename
+          ? req.file.filename
+          : triviaToUpdate.file;
+
+        triviaToUpdate.save();
+
+        return res.status(200).json({
+          trivia: triviaToUpdate,
+          msg: "TRIVIA UPDATED SUCCESFULLY",
+        });
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 

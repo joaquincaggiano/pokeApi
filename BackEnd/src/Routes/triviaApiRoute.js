@@ -16,7 +16,7 @@ router.get("/all", triviaController.seeAllQuestions);
 router.post("/create", upload.single("image"), triviaController.createQuestion);
 
 // Update
-router.put("/update/:id", upload.single("file"), triviaController.updateQuestion)
+router.put("/update/:id", upload.single("image"), triviaController.updateQuestion)
 
 // Delete
 // router.delete("/delete/:id", triviaController.deleteQuestion)
