@@ -19,6 +19,6 @@ router.post("/create", upload.single("image"), triviaController.createQuestion);
 router.put("/update/:id", upload.single("image"), triviaController.updateQuestion)
 
 // Delete
-// router.delete("/delete/:id", triviaController.deleteQuestion)
+router.delete("/delete/:id", triviaController.deleteQuestion)
 
 module.exports = router;

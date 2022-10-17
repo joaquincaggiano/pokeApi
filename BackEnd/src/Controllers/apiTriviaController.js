@@ -82,6 +82,20 @@ const triviaController = {
     } catch (error) {
       console.log(error);
     }
+  },
+  deleteQuestion: async (req, res) => {
+    try {
+      await PokeTrivia.destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      return res.status(200).json({
+        msg: "TRIVIA DELETED SUCCESFULLY",
+      });
+    } catch (error) {
+      console.log(error)
+    }
   }
 };
 

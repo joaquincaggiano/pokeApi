@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Css
-import classes from "./TriviaQuestion.module.css"
+import classes from "./TriviaQuestion.module.css";
 
 function TriviaQuestions() {
   const navigate = useNavigate();
@@ -57,28 +57,50 @@ function TriviaQuestions() {
             <tbody className="text-white">
               {questionsArray.map((oneQuestion, i) => {
                 return (
-                    <tr key={i}>
-                      <td>{oneQuestion.question}</td>
-                      <td>{oneQuestion.correctAnswer}</td>
-                      <td>
-                        {oneQuestion.image && (
-                          <img
-                            className="w-50"
-                            src={`http://localhost:3030/triviaImages/${oneQuestion.image}`}
-                          />
-                        )}
-                      </td>
-                      <td>
-                        <button onClick={() => {
-                          localStorage.setItem("triviaQuestion", JSON.stringify(oneQuestion));
-                          navigate(`/trivia/update/${oneQuestion.id}`)
-                          }} 
-                          className={classes.buttonUpdate}>Update</button>
-                      </td>
-                      <td>
-                        <button className={classes.buttonDelete}>Delete</button>
-                      </td>
-                    </tr>
+                  <tr key={i}>
+                    <td>{oneQuestion.question}</td>
+                    <td>{oneQuestion.correctAnswer}</td>
+                    <td>
+                      {oneQuestion.image && (
+                        <img
+                          className="w-50"
+                          src={`http://localhost:3030/triviaImages/${oneQuestion.image}`}
+                        />
+                      )}
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          localStorage.setItem(
+                            "triviaQuestion",
+                            JSON.stringify(oneQuestion)
+                          );
+                          navigate(`/trivia/update/${oneQuestion.id}`);
+                        }}
+                        className={classes.buttonUpdate}
+                      >
+                        Update
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          axios
+                            .delete(
+                              `http://localhost:3030/triviaApi/delete/${oneQuestion.id}`
+                            )
+                            .then((response) => {
+                              console.log("response delete", response);
+                              navigate("/user/profile");
+                            })
+                            .catch((error) => console.log(error));
+                        }}
+                        className={classes.buttonDelete}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
                 );
               })}
             </tbody>
