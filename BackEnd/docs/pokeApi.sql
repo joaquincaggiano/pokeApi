@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 -- Base de datos: `pokeapi`
 --
 
--- --------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS `pokeApi` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `pokeApi`;
 
 --
 -- Estructura de tabla para la tabla `pokefavorites`
@@ -133,15 +134,15 @@ INSERT INTO `poketrivia` (`id`, `question`, `answer1`, `answer2`, `answer3`, `an
 (18, '¿Cuál es la diferencia entre un Pikachu femenino y uno masculino?', 'La forma de la cola', 'El color', 'La forma de las orejas', 'La forma de los ojos', 'La forma de la cola', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL),
 (19, '¿Quién es el número 1 en la Pokedex?', 'Charmander', 'Bulbasur', 'Muk', 'Staryu', 'Bulbasur', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL),
 (20, '¿En qué evoluciona Squirtle?', 'Nidorina y Nidoqueen', 'Charmeleon y Charizard', 'Ivysaur y Venasur', 'Wartortle y Blastoise', 'Wartortle y Blastoise', NULL, '2022-09-23 18:08:53', '2022-09-23', NULL),
-(21, 'Who\'s that Pokemon?', 'Dragonite', 'Charizard', 'Gyarados', 'Aerodactyl', 'Charizard', '1665758202971_img.jpg', '2022-10-14 14:36:42', '2022-10-14', NULL),
-(22, 'Who\'s that Pokemon?', 'Mew', 'Pikachu', 'Mewtwo', 'Scyther', 'Mewtwo', '1665758255491_img.jpg', '2022-10-14 14:37:35', '2022-10-14', NULL),
-(23, 'Who\'s that Pokemon?', 'Squirtle', 'Raichu', 'Raticate', 'Pikachu', 'Pikachu', '1665758313151_img.jpg', '2022-10-14 14:38:33', '2022-10-14', NULL),
-(24, 'Who\'s that Pokemon?', 'Voltorb', 'Wigglytuff', 'Jigglypuff', 'Clefairy', 'Jigglypuff', '1666014898054_img.jpg', '2022-10-14 14:40:17', '2022-10-17', NULL),
-(25, 'Who\'s that Pokemon?', 'Ivysaur', 'Bulbasaur', 'Nidorino', 'Vulpix', 'Bulbasaur', '1666019181651_img.jpg', '2022-10-17 15:06:21', '2022-10-17', '2022-10-17'),
-(26, 'Who\'s that Pokemon?', 'Ivysaur', 'Bulbasaur', 'Nidorino', 'Vulpix', 'Bulbasaur', '1666021745267_img.jpg', '2022-10-17 15:49:05', '2022-10-17', NULL),
-(27, 'Who\'s that Pokemon?', 'Ekans', 'Ninetales', 'Poliwrath', 'Arbok', 'Arbok', '1666021965892_img.jpg', '2022-10-17 15:51:18', '2022-10-17', NULL),
-(28, 'Who\'s that Pokemon?', 'Poliwhirl', 'Poliwrath', 'Graveler', 'Grimer', 'Poliwhirl', '1666022094655_img.jpg', '2022-10-17 15:54:54', '2022-10-17', NULL),
-(29, 'Who\'s that Pokemon?', 'Ponyta', 'Growlithe', 'Tauros', 'Flareon', 'Growlithe', '1666022221851_img.jpg', '2022-10-17 15:57:01', '2022-10-17', NULL);
+(21, "Who\'s that Pokemon?", 'Dragonite', 'Charizard', 'Gyarados', 'Aerodactyl', 'Charizard', '1665758202971_img.jpg', '2022-10-14 14:36:42', '2022-10-14', NULL),
+(22, "Who\'s that Pokemon?", 'Mew', 'Pikachu', 'Mewtwo', 'Scyther', 'Mewtwo', '1665758255491_img.jpg', '2022-10-14 14:37:35', '2022-10-14', NULL),
+(23, "Who\'s that Pokemon?", 'Squirtle', 'Raichu', 'Raticate', 'Pikachu', 'Pikachu', '1665758313151_img.jpg', '2022-10-14 14:38:33', '2022-10-14', NULL),
+(24, "Who\'s that Pokemon?", 'Voltorb', 'Wigglytuff', 'Jigglypuff', 'Clefairy', 'Jigglypuff', '1666014898054_img.jpg', '2022-10-14 14:40:17', '2022-10-17', NULL),
+(25, "Who\'s that Pokemon?", 'Ivysaur', 'Bulbasaur', 'Nidorino', 'Vulpix', 'Bulbasaur', '1666019181651_img.jpg', '2022-10-17 15:06:21', '2022-10-17', '2022-10-17'),
+(26, "Who\'s that Pokemon?", 'Ivysaur', 'Bulbasaur', 'Nidorino', 'Vulpix', 'Bulbasaur', '1666021745267_img.jpg', '2022-10-17 15:49:05', '2022-10-17', NULL),
+(27, "Who\'s that Pokemon?", 'Ekans', 'Ninetales', 'Poliwrath', 'Arbok', 'Arbok', '1666021965892_img.jpg', '2022-10-17 15:51:18', '2022-10-17', NULL),
+(28, "Who\'s that Pokemon?", 'Poliwhirl', 'Poliwrath', 'Graveler', 'Grimer', 'Poliwhirl', '1666022094655_img.jpg', '2022-10-17 15:54:54', '2022-10-17', NULL),
+(29, "Who\'s that Pokemon?", 'Ponyta', 'Growlithe', 'Tauros', 'Flareon', 'Growlithe', '1666022221851_img.jpg', '2022-10-17 15:57:01', '2022-10-17', NULL);
 
 -- --------------------------------------------------------
 

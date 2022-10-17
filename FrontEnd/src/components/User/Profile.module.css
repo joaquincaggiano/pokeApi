@@ -1,5 +1,5 @@
 .containerProfile {
-    padding: 10px;
+  padding: 10px;
 }
 
 .cardStyle {
@@ -93,9 +93,9 @@
 }
 
 @media (min-width: 768px) {
-    .containerProfile {
-        padding: 20px;
-    }
+  .containerProfile {
+    padding: 20px;
+  }
   .cardContent {
     flex-direction: row;
     /* justify-content: space-evenly; */
@@ -115,17 +115,17 @@
 }
 
 @media (min-width: 1200px) {
-    .cardStyle {
-        width: 70%;
-      }
+  .cardStyle {
+    width: 70%;
+  }
 }
 
 @media (min-width: 1920px) {
-    .cardStyle {
-        width: 50%;
-        min-height: 80vh;
-      }
-      .cardStyle p {
-        margin-bottom: 80px;
-      }
+  .cardStyle {
+    width: 50%;
+    min-height: 80vh;
+  }
+  .cardStyle p {
+    margin-bottom: 80px;
+  }
 }
