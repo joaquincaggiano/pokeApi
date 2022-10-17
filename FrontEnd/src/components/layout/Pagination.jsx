@@ -20,33 +20,33 @@ const Pagination = (ref) => {
     prevPage,
     nextPage,
     setActualURL,
-    isLoading
+    isLoading,
   } = useContext(PokemonContext);
-    // Navigate
-    const navigate = useNavigate()
+  // Navigate
+  const navigate = useNavigate();
 
   const [showMenu, setShowMenu] = useState(false);
-  const [pokemonToSearch, setPokemonToSearch] = useState("")
+  const [pokemonToSearch, setPokemonToSearch] = useState("");
 
   const handlePokebolaMenu = () => {
     setShowMenu(!showMenu);
   };
 
   const searchPokemonHandler = () => {
-    setActualURL(`https://pokeapi.co/api/v2/pokemon/${pokemonToSearch}`)
-    navigate(`/search/${pokemonToSearch}`)
-  }
+    setActualURL(`https://pokeapi.co/api/v2/pokemon/${pokemonToSearch}`);
+    navigate(`/search/${pokemonToSearch}`);
+  };
 
   const searchKeyHandler = (e) => {
-    if(e.key === "Enter"){
-      setActualURL(`https://pokeapi.co/api/v2/pokemon/${pokemonToSearch}`)
-      navigate(`/search/${pokemonToSearch}`)
+    if (e.key === "Enter") {
+      setActualURL(`https://pokeapi.co/api/v2/pokemon/${pokemonToSearch}`);
+      navigate(`/search/${pokemonToSearch}`);
     }
-  }
+  };
 
   const pokemonToSearchHandler = (e) => {
-    setPokemonToSearch(e.target.value)
-  }
+    setPokemonToSearch(e.target.value);
+  };
 
   return (
     <>
@@ -82,8 +82,17 @@ const Pagination = (ref) => {
             </select>
           </li>
           <div className={classes.searchBox}>
-            <i onClick={searchPokemonHandler} className={`fa-solid fa-magnifying-glass ${classes.iSearch}`}></i>
-            <input onKeyDown={searchKeyHandler} onChange={pokemonToSearchHandler} className={classes.inputSearch} type="search" placeholder="Pokemon name - nº" />
+            <i
+              onClick={searchPokemonHandler}
+              className={`fa-solid fa-magnifying-glass ${classes.iSearch}`}
+            ></i>
+            <input
+              onKeyDown={searchKeyHandler}
+              onChange={pokemonToSearchHandler}
+              className={classes.inputSearch}
+              type="search"
+              placeholder="Pokemon name - nº"
+            />
           </div>
         </div>
         <div className={classes.buttonsMobileBox}>
@@ -93,7 +102,6 @@ const Pagination = (ref) => {
               data-type="prev"
               onClick={handlerURL}
               disabled={isLoading}
-
             >
               Prev Page
             </button>
@@ -104,7 +112,6 @@ const Pagination = (ref) => {
               data-type="next"
               onClick={handlerURL}
               disabled={isLoading}
-
             >
               Next Page
             </button>
@@ -114,38 +121,47 @@ const Pagination = (ref) => {
 
       {/* DESKTOP */}
       <div className={classes.paginationDesktop}>
-
         <div className={classes.rowOne}>
-
           {/* <div className={classes.searchBox}>
             <i onClick={searchPokemonHandler} className={`fa-solid fa-magnifying-glass ${classes.iSearch}`}></i>
             <input onKeyDown={searchKeyHandler} onChange={pokemonToSearchHandler} className={classes.inputSearch} type="search" placeholder="Pokemon name - nº" />
           </div> */}
 
           <div className={classes.buttonsDesktopBox}>
-            
-              <button
-                className={prevPage ? classes.buttonsDesktop : classes.hiddenButton}
-                data-type="prev"
-                onClick={handlerURL}
-                disabled={isLoading}
-              >
-                Prev Page
-              </button>
-            
-            <div className={classes.searchBox}>
-              <i onClick={searchPokemonHandler} className={`fa-solid fa-magnifying-glass ${classes.iSearch}`}></i>
-              <input onKeyDown={searchKeyHandler} onChange={pokemonToSearchHandler} className={classes.inputSearch} type="search" placeholder="Pokemon name - nº" />
-            </div>
-              <button
-              className={nextPage ? classes.buttonsDesktop : classes.hiddenButton}
-                data-type="next"
-                onClick={handlerURL}
-                disabled={isLoading}
+            <button
+              className={
+                prevPage ? classes.buttonsDesktop : classes.hiddenButton
+              }
+              data-type="prev"
+              onClick={handlerURL}
+              disabled={isLoading}
+            >
+              Prev Page
+            </button>
 
-              >
-                Next Page
-              </button>
+            <div className={classes.searchBox}>
+              <i
+                onClick={searchPokemonHandler}
+                className={`fa-solid fa-magnifying-glass ${classes.iSearch}`}
+              ></i>
+              <input
+                onKeyDown={searchKeyHandler}
+                onChange={pokemonToSearchHandler}
+                className={classes.inputSearch}
+                type="search"
+                placeholder="Pokemon name - nº"
+              />
+            </div>
+            <button
+              className={
+                nextPage ? classes.buttonsDesktop : classes.hiddenButton
+              }
+              data-type="next"
+              onClick={handlerURL}
+              disabled={isLoading}
+            >
+              Next Page
+            </button>
           </div>
         </div>
 
@@ -169,7 +185,6 @@ const Pagination = (ref) => {
             </select>
           </li>
         </div>
-
       </div>
     </>
   );

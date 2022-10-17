@@ -11,17 +11,24 @@ const SearchPokemon = () => {
   const { pokemonSearch, loadingSearch } = useContext(PokemonContext);
 
   const classType = pokemonSearch?.types?.map((type, i) => {
-    const typeUppercase = type.type.name[0].toUpperCase() + type.type.name.slice(1)
+    const typeUppercase =
+      type.type.name[0].toUpperCase() + type.type.name.slice(1);
     const typeNameClass = `type${typeUppercase}`;
     const classType = classes[typeNameClass];
-      return (
-        <div className={classType} key={i}>
-          <p>{type.type.name}</p>
-        </div>
-      )})
+    return (
+      <div className={classType} key={i}>
+        <p>{type.type.name}</p>
+      </div>
+    );
+  });
+
+  console.log("POKEMON SEARCH", pokemonSearch)
 
   return (
     <>
+      {/* {!loadingSearch && pokemonSearch === null ? (
+        <h1 className="text-white text-center">POKEMON NOT FOUND</h1>
+      ) : ("")} */}
       {!loadingSearch && (
         <div className="container">
           <div className={`${classes.pokeFondo} p-4`}>
