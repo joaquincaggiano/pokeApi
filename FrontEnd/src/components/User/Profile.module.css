@@ -98,7 +98,6 @@
   }
   .cardContent {
     flex-direction: row;
-    /* justify-content: space-evenly; */
   }
 
   .welcomeTitle {
@@ -123,9 +122,5 @@
 @media (min-width: 1920px) {
   .cardStyle {
     width: 50%;
-    min-height: 80vh;
-  }
-  .cardStyle p {
-    margin-bottom: 80px;
   }
 }
