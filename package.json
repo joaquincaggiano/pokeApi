@@ -1,0 +1,20 @@
+{
+  "name": "pokeapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaquincaggiano/pokeApi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaquincaggiano/pokeApi/issues"
+  },
+  "homepage": "https://github.com/joaquincaggiano/pokeApi#readme"
+}

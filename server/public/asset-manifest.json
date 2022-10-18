@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8f9b727d.css",
+    "main.js": "/static/js/main.c434982b.js",
+    "static/js/787.31b5add8.chunk.js": "/static/js/787.31b5add8.chunk.js",
+    "static/media/blackFondo.jpg": "/static/media/blackFondo.90059d869c32c005e592.jpg",
+    "static/media/pokemon-legends.jpg": "/static/media/pokemon-legends.e5c6f194ce5576dc6ce2.jpg",
+    "static/media/starter-gen1.png": "/static/media/starter-gen1.5716da6ee7785164f2bd.png",
+    "static/media/starter-gen3.png": "/static/media/starter-gen3.1e5af79f52179a97ac9c.png",
+    "static/media/poke-1ra.jpg": "/static/media/poke-1ra.4137db7eb8f0b9b507ab.jpg",
+    "static/media/starter-gen2.png": "/static/media/starter-gen2.9369dc87bfaf9a328047.png",
+    "static/media/starter-gen5.png": "/static/media/starter-gen5.6d550a421f4477366d3a.png",
+    "static/media/pokeStop.png": "/static/media/pokeStop.c95fd12c025d9b484f4a.png",
+    "static/media/waving-pikachu.gif": "/static/media/waving-pikachu.c9ecf5074d5791f8d2a8.gif",
+    "static/media/footer.jpg": "/static/media/footer.70db6f99e1b2cbf856fe.jpg",
+    "static/media/pokemon-go.jpg": "/static/media/pokemon-go.74df9c652e310f55687e.jpg",
+    "static/media/pokeFondo.jpg": "/static/media/pokeFondo.b0c5973c4c753f470d66.jpg",
+    "static/media/starter-gen4.png": "/static/media/starter-gen4.dfe34cf28737899e4bd3.png",
+    "index.html": "/index.html",
+    "main.8f9b727d.css.map": "/static/css/main.8f9b727d.css.map",
+    "main.c434982b.js.map": "/static/js/main.c434982b.js.map",
+    "787.31b5add8.chunk.js.map": "/static/js/787.31b5add8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8f9b727d.css",
+    "static/js/main.c434982b.js"
+  ]
+}
