@@ -1,5 +1,5 @@
 // React Hooks
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 // Hook de redux
 import { useSelector, useDispatch } from "react-redux";
@@ -43,15 +43,10 @@ function CaughtPokemons() {
 
   // Show pokemons
   const [showPokemonFavs, setShowPokemonFavs] = useState(false);
-  
-  // const divAllPokemons = useRef();
 
   const showPokemonHandler = () => {
     setShowPokemonFavs(!showPokemonFavs);
-    // divAllPokemons?.current?.classList?.remove(`${classes.visibilityHidden}`)
-    // console.log(divAllPokemons?.current?.classList)
   }
-
 
   return (
     <div>
@@ -61,10 +56,8 @@ function CaughtPokemons() {
       </div>
       <h3 className={classes.amountPokeball}>Amount inside pokeball: {totalPokemonFav}</h3>
       {showPokemonFavs && (
-        // <div ref={divAllPokemons} className={`${classes.cardsContainer} ${classes.visibilityHidden} container`}>
         <div className={`${classes.cardsContainer} container`}>
           {pokeFavs.map((onePoke, i) => {
-            // console.log("onePoke",onePoke)
             return <EachFavPokemon key={i} pokemonId={onePoke.pokemon} pokeFavoriteId={onePoke.id}/>;
           })}
         </div>
