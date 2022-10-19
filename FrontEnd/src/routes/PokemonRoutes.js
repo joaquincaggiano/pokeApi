@@ -45,7 +45,7 @@ function PokemonRoutes() {
       {/* Home */}
       <Route path="/" element={<Home />} />
       {/* NOT FOUND*/}
-      <Route path="/404" element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
 
       {/* User */}
       <Route path="/user/create" element={<GuestRoutes><Register /></GuestRoutes>} />

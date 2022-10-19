@@ -2,7 +2,6 @@
 import classes from "./EachCharacter.module.css";
 
 function EachCharacter(props) {
-  
   const showModalHandler = (e) => {
     props.setPokemonId(props.id);
     props.setShowModal(true);
@@ -11,22 +10,26 @@ function EachCharacter(props) {
   const pokemonNumber = String(props.id);
 
   const handlePokeFav = () => {
-    if(!props.pokeFavClass){
+    if (localStorage.getItem("user") === null) {
+      alert("You need to log in");
+      props.setOpenTrivia(false);
+    } else if (!props.pokeFavClass) {
       props.setPokemonId(props.id);
       props.setOpenTrivia(true);
-    }else{
-      alert('This Pokemon is already in your team!')
+    } else {
+      alert("This Pokemon is already in your team!");
     }
   };
   const classType = props.typePokemon?.map((type, i) => {
-    const typeUppercase = type[0].toUpperCase() + type.slice(1)
+    const typeUppercase = type[0].toUpperCase() + type.slice(1);
     const typeNameClass = `type${typeUppercase}`;
     const classType = classes[typeNameClass];
-      return (
-        <div className={classType} key={i}>
-          <p>{type}</p>
-        </div>
-      )})
+    return (
+      <div className={classType} key={i}>
+        <p>{type}</p>
+      </div>
+    );
+  });
 
   return (
     <div
@@ -44,8 +47,19 @@ function EachCharacter(props) {
           <div className={classes.orderNamePokebola}>
             <h4 className="card-title">{props.name}</h4>
 
-            <div className={!props.pokeFavClass ? classes.pokebola : classes.pokebolaCatch} onClick={handlePokeFav}>
-              <div className={props.pokeFavClass ? classes.detailPokebolaCatch : classes.detailPokebola}></div>
+            <div
+              className={
+                !props.pokeFavClass ? classes.pokebola : classes.pokebolaCatch
+              }
+              onClick={handlePokeFav}
+            >
+              <div
+                className={
+                  props.pokeFavClass
+                    ? classes.detailPokebolaCatch
+                    : classes.detailPokebola
+                }
+              ></div>
             </div>
           </div>
 

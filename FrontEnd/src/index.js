@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// Redux
-import { Provider } from "react-redux";
-import { store } from "./app/Store";
+// redux
+import { Provider } from 'react-redux';
+import { store } from "./app/store";
 
 // Boostrap
 import 'bootstrap/dist/css/bootstrap.css';

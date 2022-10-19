@@ -12,7 +12,7 @@ import { PokemonContext } from "../../context/charactersContext";
 import classes from "./SearchPokemon.module.css";
 
 const SearchPokemon = () => {
-  const { pokemonSearch, loadingSearch } = useContext(PokemonContext);
+  const { pokemonSearch, loadingSearch} = useContext(PokemonContext);
   const params = useParams()
 
   const classType = pokemonSearch?.types?.map((type, i) => {
@@ -30,10 +30,7 @@ const SearchPokemon = () => {
 
   return (
     <>
-      {/* {!loadingSearch && pokemonSearch === null ? (
-        <h1 className="text-white text-center">POKEMON NOT FOUND</h1>
-      ) : ("")} */}
-      {pokemonSearch.types === undefined && <NotFound search={params.id} />}
+      {pokemonSearch?.types === undefined && <NotFound search={params.id} />}
       {!loadingSearch && (
         <div className="container">
           <div className={`${classes.pokeFondo} p-4`}>

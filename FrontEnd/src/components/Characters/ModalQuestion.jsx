@@ -55,10 +55,10 @@ const ModalQuestion = (props) => {
         .catch((error) => console.log(error));
       props.onCloseModal();
       alert("Pokemon atrapado");
-      navigate('/user/caught-pokemons')
-    } else if(answer === undefined) {
+      navigate("/user/caught-pokemons");
+    } else if (answer === undefined) {
       props.onCloseModal();
-    }else {
+    } else {
       setWrongAnswer(!wrongAnswer);
       alert("Respuesta Incorrecta");
     }
@@ -71,7 +71,15 @@ const ModalQuestion = (props) => {
       <div className={styles.backdrop} onClick={props.onCloseModal}></div>
       <div className={styles.cardPokemon}>
         <h4>{question?.question}</h4>
-        {question?.image != null ? <img className={styles.whoIsThatPokemon} src={`http://localhost:3030/triviaImages/${question.image}`} alt="who's that pokemon?" /> : ""}
+        {question?.image != null ? (
+          <img
+            className={styles.whoIsThatPokemon}
+            src={`http://localhost:3030/triviaImages/${question.image}`}
+            alt="who's that pokemon?"
+          />
+        ) : (
+          ""
+        )}
         <InputQuestion answer={question?.answer1} setAnswer={setAnswer} />
         <InputQuestion answer={question?.answer2} setAnswer={setAnswer} />
         <InputQuestion answer={question?.answer3} setAnswer={setAnswer} />

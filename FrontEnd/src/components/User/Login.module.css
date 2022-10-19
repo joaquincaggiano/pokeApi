@@ -13,6 +13,13 @@ h2{
     font-size: 18px;
 }
 
+.msgErrorBox{
+    background: salmon;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
 @media (min-width: 768px) {
     .imageFormat{
         width: 40%;

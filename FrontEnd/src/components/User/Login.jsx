@@ -105,7 +105,7 @@ const Login = () => {
               onBlur={onBlurHandler}
             />
             {state.emailFormat.isValid === false && (
-              <span className={classes.errorMsg}>{state.emailFormat.msg}</span>
+              <div className={classes.msgErrorBox}><span className={classes.errorMsg}>{state.emailFormat.msg}</span></div>
             )}
           </Form.Group>
 
@@ -121,9 +121,9 @@ const Login = () => {
               onBlur={onBlurHandler}
             />
             {state.passwordFormat.isValid === false && (
-              <span className={classes.errorMsg}>
+              <div className={classes.msgErrorBox}><span className={classes.errorMsg}>
                 {state.passwordFormat.msg}
-              </span>
+              </span></div>
             )}
           </Form.Group>
 

@@ -3,6 +3,14 @@
     font-weight: bold;
     font-size: 18px;
 }
+
+.msgErrorBox{
+    background: salmon;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
 .imageFormat{
     width: 35%;
     margin: auto;

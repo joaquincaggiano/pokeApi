@@ -125,7 +125,7 @@ function Register() {
               placeholder="Escribí tu nombre de usuario"
             />
             {state.usernameLength.isValid === false && (
-              <span className={classes.errorMsg}>{state.usernameLength.msg}</span>
+              <div className={classes.msgErrorBox}><span className={classes.errorMsg}>{state.usernameLength.msg}</span></div>
             )}
           </Form.Group>
 
@@ -142,7 +142,7 @@ function Register() {
               placeholder="Escribí tu email"
             />
             {state.emailFormat.isValid === false && (
-              <span className={classes.errorMsg}>{state.emailFormat.msg}</span>
+              <div className={classes.msgErrorBox}><span className={classes.errorMsg}>{state.emailFormat.msg}</span></div>
             )}
           </Form.Group>
 
@@ -159,7 +159,7 @@ function Register() {
               placeholder="Password"
             />
             {state.passwordFormat.isValid === false && (
-              <span className={classes.errorMsg}>{state.passwordFormat.msg}</span>
+              <div className={classes.msgErrorBox}><span className={classes.errorMsg}>{state.passwordFormat.msg}</span></div>
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="avatarUpload">
