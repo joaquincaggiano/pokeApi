@@ -2,7 +2,7 @@
 import { createContext } from "react";
 
 // Hooks
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState} from "react";
 
 // Axios
 import axios from "axios";
@@ -21,13 +21,15 @@ export const UserProvider = ({ children }) => {
   const [isLoadingUpdate, setIsLoadingUpdate] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
-
   const [errorRegister, setErrorRegister] = useState("");
+  const [loadingMsgRegister, setLoadingMsgRegister] = useState(false);
+  
+
+
   // REFERENCIAS DE INPUTS
   const userNameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-
 
   // REGISTER
   async function register() {
@@ -42,10 +44,12 @@ export const UserProvider = ({ children }) => {
         .post("http://localhost:3030/api/user/create", dataUser)
         .then((response) => {
           console.log("response", response);
+          setLoadingMsgRegister(false)
         })
         .catch((error) => {
           console.log(error)
           setErrorRegister(error.response.data.msg)
+          setLoadingMsgRegister(true)
         });
     } catch (error) {
       console.log(error)
@@ -181,7 +185,8 @@ export const UserProvider = ({ children }) => {
     setIsLoading,
     setIsAdmin,
     isAdmin,
-    errorRegister
+    errorRegister,
+    loadingMsgRegister
   };
 
   return (

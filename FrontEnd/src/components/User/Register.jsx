@@ -11,8 +11,7 @@ import { UserContext } from "../../context/userContext";
 import { Form, Button, Container, Card } from "react-bootstrap";
 
 // Css
-import classes from "./Register.module.css"
-
+import classes from "./Register.module.css";
 
 // //Assets
 // import Starter1 from "../../img/starter-gen1.png";
@@ -34,7 +33,8 @@ function Register() {
     setFile,
     onePokeImage,
     getOneImage,
-    errorRegister
+    errorRegister,
+    loadingMsgRegister,
   } = useContext(UserContext);
 
   // Reducer States
@@ -42,11 +42,11 @@ function Register() {
 
   // useState
   const [formIsValid, setFormIsValid] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
-  useEffect(()=>{
-    getOneImage()
-  }, [])
+  useEffect(() => {
+    getOneImage();
+  }, []);
 
   // useEffect
   useEffect(() => {
@@ -57,24 +57,25 @@ function Register() {
     ) {
       setFormIsValid(true);
     } else {
-      setFormIsValid(false)
+      setFormIsValid(false);
     }
-  }, [
-    inputValue,
-  ]);
+  }, [inputValue]);
 
   // Navigate
   let navigate = useNavigate();
+  console.log("ERROR MSG", errorRegister);
 
   // Submit function
   function handleOnSubmit(e) {
     e.preventDefault();
     register();
-    // navigate("/user/login");
+    if (loadingMsgRegister) {
+      navigate("/user/login");
+    }
   }
 
   const onChangeHandler = (e) => {
-    setInputValue(e.target.value)
+    setInputValue(e.target.value);
     dispatch({
       type: e.target.dataset.type,
       payload: {
@@ -108,7 +109,7 @@ function Register() {
         }}
       >
         <h2>{onePokeImage.name}</h2>
-        <img className={classes.imageFormat} src={onePokeImage.img}/>
+        <img className={classes.imageFormat} src={onePokeImage.img} />
         <Form
           className="text-white p-3 align-self-center container-fluid"
           onSubmit={(e) => handleOnSubmit(e)}
@@ -126,7 +127,11 @@ function Register() {
               placeholder="Escribí tu nombre de usuario"
             />
             {state.usernameLength.isValid === false && (
-              <div className={classes.msgErrorBox}><span className={classes.errorMsg}>{state.usernameLength.msg}</span></div>
+              <div className={classes.msgErrorBox}>
+                <span className={classes.errorMsg}>
+                  {state.usernameLength.msg}
+                </span>
+              </div>
             )}
           </Form.Group>
 
@@ -143,7 +148,11 @@ function Register() {
               placeholder="Escribí tu email"
             />
             {state.emailFormat.isValid === false && (
-              <div className={classes.msgErrorBox}><span className={classes.errorMsg}>{state.emailFormat.msg}</span></div>
+              <div className={classes.msgErrorBox}>
+                <span className={classes.errorMsg}>
+                  {state.emailFormat.msg}
+                </span>
+              </div>
             )}
           </Form.Group>
 
@@ -160,7 +169,11 @@ function Register() {
               placeholder="Password"
             />
             {state.passwordFormat.isValid === false && (
-              <div className={classes.msgErrorBox}><span className={classes.errorMsg}>{state.passwordFormat.msg}</span></div>
+              <div className={classes.msgErrorBox}>
+                <span className={classes.errorMsg}>
+                  {state.passwordFormat.msg}
+                </span>
+              </div>
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="avatarUpload">
@@ -178,7 +191,14 @@ function Register() {
             />
           </Form.Group>
 
-          {errorRegister && <div className={classes.msgErrorBox} style={{marginBottom: "5px"}}><span className={classes.errorMsg}>{errorRegister}</span></div>}
+          {errorRegister && (
+            <div
+              className={classes.msgErrorBox}
+              style={{ marginBottom: "5px" }}
+            >
+              <span className={classes.errorMsg}>{errorRegister}</span>
+            </div>
+          )}
 
           <Button
             // onClick={onSendHandler}
