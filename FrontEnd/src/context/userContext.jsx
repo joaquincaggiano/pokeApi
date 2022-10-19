@@ -19,8 +19,10 @@ export const UserProvider = ({ children }) => {
   const [file, setFile] = useState();
   const [onePokeImage, setOnePokeImage] = useState({});
   const [isLoadingUpdate, setIsLoadingUpdate] = useState(true);
-  const [isLoading, setIsLoading] = useState(true)
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const [errorRegister, setErrorRegister] = useState("");
   // REFERENCIAS DE INPUTS
   const userNameRef = useRef();
   const emailRef = useRef();
@@ -41,9 +43,12 @@ export const UserProvider = ({ children }) => {
         .then((response) => {
           console.log("response", response);
         })
-        .catch((error) => console.log("Error", error));
-    } catch {
-      console.error();
+        .catch((error) => {
+          console.log(error)
+          setErrorRegister(error.response.data.msg)
+        });
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -175,7 +180,8 @@ export const UserProvider = ({ children }) => {
     isLoading,
     setIsLoading,
     setIsAdmin,
-    isAdmin
+    isAdmin,
+    errorRegister
   };
 
   return (

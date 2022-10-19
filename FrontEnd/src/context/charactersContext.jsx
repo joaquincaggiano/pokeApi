@@ -1,8 +1,6 @@
 // React
 import { createContext, useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
-
 // Axios
 import Axios from "axios";
 
@@ -25,7 +23,7 @@ export const PokemonContextProvider = ({ children }) => {
   const [pokemonSearch, setPokemonSearch] = useState({});
 
   // const URL ="https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
-  const navigate = useNavigate();
+  
   // Handler
   const handlerURL = (e) => {
     const type = e.target.dataset.type;

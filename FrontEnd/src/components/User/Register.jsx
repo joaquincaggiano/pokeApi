@@ -33,7 +33,8 @@ function Register() {
     ACTIONS,
     setFile,
     onePokeImage,
-    getOneImage
+    getOneImage,
+    errorRegister
   } = useContext(UserContext);
 
   // Reducer States
@@ -69,7 +70,7 @@ function Register() {
   function handleOnSubmit(e) {
     e.preventDefault();
     register();
-    return navigate("/user/login");
+    // navigate("/user/login");
   }
 
   const onChangeHandler = (e) => {
@@ -176,6 +177,8 @@ function Register() {
               onChange={onChangeFile}
             />
           </Form.Group>
+
+          {errorRegister && <div className={classes.msgErrorBox} style={{marginBottom: "5px"}}><span className={classes.errorMsg}>{errorRegister}</span></div>}
 
           <Button
             // onClick={onSendHandler}
