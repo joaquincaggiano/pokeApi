@@ -1,0 +1,14 @@
+version: '3.0'
+services:
+ poke-app:
+  image: cataqdev/poke-app
+  ports:
+  - 3000:3000
+ poke-backend:
+  image: cataqdev/poke-backend
+  ports:
+  - 3030:3030
+ db:
+  image: mysql
+  environment:
+   MYSQL_ROOT_PASSWORD: 'root'

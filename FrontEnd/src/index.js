@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 
 // redux
 import { Provider } from 'react-redux';
-import { store } from "./app/store";
+import { store } from "./app/Store";
 
 // Boostrap
 import 'bootstrap/dist/css/bootstrap.css';
